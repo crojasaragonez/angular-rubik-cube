@@ -1,7 +1,7 @@
 
-<div style="display: flex;">
-  <div id="cube"></div>
-  <div id="cube">
+<div class="row">
+  <div class="side"></div>
+  <div class="side">
     <div class="cell" [ngClass]="cube.top.cells[0][0].color">*</div>
     <div class="cell" [ngClass]="cube.top.cells[0][1].color">*</div>
     <div class="cell" [ngClass]="cube.top.cells[0][2].color">*</div>
@@ -14,11 +14,11 @@
     <div class="cell" [ngClass]="cube.top.cells[2][1].color">*</div>
     <div class="cell" [ngClass]="cube.top.cells[2][2].color">*</div>
   </div>
-  <div id="cube"></div>
+  <div class="side"></div>
 </div>
 
-<div style="display: flex;">
-  <div id="cube">
+<div class="row">
+  <div class="side">
     <div class="cell" [ngClass]="cube.left.cells[0][0].color">*</div>
     <div class="cell" [ngClass]="cube.left.cells[0][1].color">*</div>
     <div class="cell" [ngClass]="cube.left.cells[0][2].color">*</div>
@@ -32,7 +32,7 @@
     <div class="cell" [ngClass]="cube.left.cells[2][2].color">*</div>
   </div>
 
-  <div id="cube">
+  <div class="side">
     <div class="cell" [ngClass]="cube.front.cells[0][0].color">*</div>
     <div class="cell" [ngClass]="cube.front.cells[0][1].color">*</div>
     <div class="cell" [ngClass]="cube.front.cells[0][2].color">*</div>
@@ -46,7 +46,7 @@
     <div class="cell" [ngClass]="cube.front.cells[2][2].color">*</div>
   </div>
 
-    <div id="cube">
+    <div class="side">
     <div class="cell" [ngClass]="cube.right.cells[0][0].color">*</div>
     <div class="cell" [ngClass]="cube.right.cells[0][1].color">*</div>
     <div class="cell" [ngClass]="cube.right.cells[0][2].color">*</div>
@@ -62,9 +62,9 @@
 </div>
 
 
-<div style="display: flex;">
-  <div id="cube"></div>
-  <div id="cube">
+<div class="row">
+  <div class="side"></div>
+  <div class="side">
     <div class="cell" [ngClass]="cube.bottom.cells[0][0].color">*</div>
     <div class="cell" [ngClass]="cube.bottom.cells[0][1].color">*</div>
     <div class="cell" [ngClass]="cube.bottom.cells[0][2].color">*</div>
@@ -77,12 +77,12 @@
     <div class="cell" [ngClass]="cube.bottom.cells[2][1].color">*</div>
     <div class="cell" [ngClass]="cube.bottom.cells[2][2].color">*</div>
   </div>
-  <div id="cube"></div>
+  <div class="side"></div>
 </div>
 
-<div style="display: flex;">
-  <div id="cube"></div>
-  <div id="cube">
+<div class="row">
+  <div class="side"></div>
+  <div class="side">
     <div class="cell" [ngClass]="cube.back.cells[0][0].color">*</div>
     <div class="cell" [ngClass]="cube.back.cells[0][1].color">*</div>
     <div class="cell" [ngClass]="cube.back.cells[0][2].color">*</div>
@@ -95,7 +95,7 @@
     <div class="cell" [ngClass]="cube.back.cells[2][1].color">*</div>
     <div class="cell" [ngClass]="cube.back.cells[2][2].color">*</div>
   </div>
-  <div id="cube"></div>
+  <div class="side"></div>
 </div>
 
 <button (click)="cube.moveDown(2)">Move Down</button>
