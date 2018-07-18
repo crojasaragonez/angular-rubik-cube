@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Cube } from './cube';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  cube: Cube
+  constructor() {
+    this.cube = new Cube();
+    this.cube.reset();
+  }
 }

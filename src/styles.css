@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+#cube {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cell {
+  text-align: center;
+  width: 33.33%;
+  height: 33.33%;
+  flex-grow: 1;
+}
+
+.red {
+  background-color: #b71234;
+}
+
+.orange {
+  background-color: #ff5800;
+}
+
+.green {
+  background-color: #009b48;
+}
+
+.blue {
+  background-color: #0046ad;
+}
+
+.yellow {
+  background-color: #ffd500;
+}
+
+.white {
+  background-color: #ffffff;
+}
+
