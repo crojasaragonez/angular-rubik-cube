@@ -21,6 +21,9 @@ export class Cube {
   }
 
   moveDown(position: number) {
+    if (position == 0) {
+      this.left.rotateRight();
+    }
     [0, 1, 2].forEach(cell => {
       var first = this.front.cells[cell][position];
       this.front.cells[cell][position] = this.top.cells[cell][position];
