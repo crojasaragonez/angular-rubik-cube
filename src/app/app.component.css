@@ -92,27 +92,3 @@ body {
 #radio-back:checked ~ .space3d ._3dbox {
   transform: rotateY(180deg);
 }
-
-._3dface--front {
-  background: #ffd500;
-}
-
-._3dface--left {
-  background: #009b48;
-}
-
-._3dface--right {
-  background: #0046ad;
-}
-
-._3dface--top {
-  background: #b71234;
-}
-
-._3dface--bottom {
-  background: #ff5800;
-}
-
-._3dface--back {
-  background: #ffffff;
-}

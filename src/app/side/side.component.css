@@ -1,9 +1,38 @@
 .cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-grow: 1;
   width: 33.33%;
   height: 33.33%;
-  box-sizing: border-box;
   border: 1px solid;
+  box-sizing: border-box;
+}
+
+.side {
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.red {
+  background-color: #b71234;
+}
+
+.orange {
+  background-color: #ff5800;
+}
+
+.green {
+  background-color: #009b48;
+}
+
+.blue {
+  background-color: #0046ad;
+}
+
+.yellow {
+  background-color: #ffd500;
+}
+
+.white {
+  background-color: #ffffff;
 }
