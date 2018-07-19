@@ -1,5 +1,5 @@
-.separator {
-  margin-top: 40px;
+.space3d {
+  margin: 40px 90px 0px 40px;
 }
 
 /* 3D Cube */
@@ -78,10 +78,4 @@
 
 #radio-back:checked ~ .space3d ._3dbox {
   transform: rotateY(180deg);
-}
-
-.cube-controls {
-  position: absolute;
-  top: 30px;
-  left: 30px;
 }

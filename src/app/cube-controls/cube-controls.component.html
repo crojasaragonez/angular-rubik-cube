@@ -1,0 +1,17 @@
+<div class="cube-controls">
+  Column: <input [(ngModel)]="column"><br>
+  Row: <input [(ngModel)]="row">
+  <div class="button-container">
+    <div class="button-item"></div>
+    <div class="button-item"><button>^</button></div>
+    <div class="button-item"></div>
+
+    <div class="button-item"><button><</button></div>
+    <div class="button-item"><button (click)="cube.reset()">Reset</button></div>
+    <div class="button-item" (click)="cube.moveRight(row)"><button>></button></div>
+
+    <div class="button-item"></div>
+    <div class="button-item" (click)="cube.moveDown(column)"><button>v</button></div>
+    <div class="button-item"></div>
+  </div>
+</div>

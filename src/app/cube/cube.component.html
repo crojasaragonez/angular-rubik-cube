@@ -1,19 +1,11 @@
-<div class="cube-controls">
+<app-cube-controls [cube]="cube"></app-cube-controls>
 
-</div>
 <input type="radio" id="radio-front" name="select-face"/> Original
 <input type="radio" id="radio-top" name="select-face"/> Top
 <input type="radio" id="radio-bottom" name="select-face"/> Bottom
 <input type="radio" id="radio-left" name="select-face"/> Left
 <input type="radio" id="radio-right" name="select-face"/> Right
 <input type="radio" id="radio-back" name="select-face"/> Back
-Column: <input [(ngModel)]="column">
-Row: <input [(ngModel)]="row">
-<button (click)="cube.moveDown(column)">Move Down</button>
-<button (click)="cube.moveRight(row)">Move Right</button>
-<button (click)="cube.reset()">Reset</button>
-
-<div class="separator"></div>
 
 <div class="space3d">
     <div class="_3dbox">
@@ -37,8 +29,3 @@ Row: <input [(ngModel)]="row">
       </div>
     </div>
 </div>
-
-<div class="separator"></div>
-
-
-

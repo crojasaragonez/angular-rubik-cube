@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { CubeComponent } from './cube/cube.component';
 import { SideComponent } from './side/side.component';
+import { CubeControlsComponent } from './cube-controls/cube-controls.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CubeComponent,
-    SideComponent
+    SideComponent,
+    CubeControlsComponent
   ],
   imports: [
     BrowserModule,
