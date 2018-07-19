@@ -1,4 +1,4 @@
-
+<!--
 <div class="row">
   <div class="side"></div>
   <app-side [side]="cube.top"></app-side>
@@ -23,6 +23,42 @@
     <app-side [side]="cube.back"></app-side>
   <div class="side"></div>
 </div>
+
+-->
+    <input type="radio" id="radio-front" name="select-face"/> Original
+    <input type="radio" id="radio-top" name="select-face"/> Top
+    <input type="radio" id="radio-bottom" name="select-face"/> Bottom
+    <input type="radio" id="radio-left" name="select-face"/> Left
+    <input type="radio" id="radio-right" name="select-face"/> Right
+    <input type="radio" id="radio-back" name="select-face"/> Back
+
+<div class="separator"></div>
+
+
+<div class="space3d">
+    <div class="_3dbox">
+      <div class="_3dface _3dface--front">
+        <app-side [side]="cube.front"></app-side>
+      </div>
+      <div class="_3dface _3dface--top">
+        <app-side [side]="cube.top"></app-side>
+      </div>
+      <div class="_3dface _3dface--bottom">
+        <app-side [side]="cube.bottom"></app-side>
+      </div>
+      <div class="_3dface _3dface--left">
+        <app-side [side]="cube.left"></app-side>
+      </div>
+      <div class="_3dface _3dface--right">
+        <app-side [side]="cube.right"></app-side>
+      </div>
+      <div class="_3dface _3dface--back">
+        <app-side [side]="cube.back"></app-side>
+      </div>
+    </div>
+</div>
+
+<div class="separator"></div>
 
 <input [(ngModel)]="column">
 <input [(ngModel)]="row">
