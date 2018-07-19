@@ -24,6 +24,9 @@ export class Cube {
     if (position == 0) {
       this.left.rotateRight();
     }
+    if (position == 2) {
+      this.right.rotateRight();
+    }
     [0, 1, 2].forEach(cell => {
       var first = this.front.cells[cell][position];
       this.front.cells[cell][position] = this.top.cells[cell][position];
@@ -34,6 +37,12 @@ export class Cube {
   }
 
   moveUp(position: number) {
+    if (position == 0) {
+      this.left.rotateLeft();
+    }
+    if (position == 2) {
+      this.right.rotateLeft();
+    }
     [0, 1, 2].forEach(cell => {
       var first = this.front.cells[cell][position];
       this.front.cells[cell][position] = this.bottom.cells[cell][position];
@@ -44,22 +53,30 @@ export class Cube {
   }
 
   moveRight(position: number) {
-    [0, 1, 2].forEach(cell => {
-      var first = this.front.cells[position][cell];
-      this.front.cells[position][cell] = this.left.cells[position][cell];
-      this.left.cells[position][cell] = this.back.cells[position][cell];
-      this.back.cells[position][cell] = this.right.cells[position][cell];
-      this.right.cells[position][cell] = first;
-    });
+    if (position == 0) {
+      this.top.rotateRight();
+    }
+    if (position == 2) {
+      this.bottom.rotateRight();
+    }
+    let first = this.front.cells[position];
+    this.front.cells[position] = this.left.cells[position];
+    this.left.cells[position] = this.back.cells[position];
+    this.back.cells[position] = this.right.cells[position];
+    this.right.cells[position] = first;
   }
 
   moveLeft(position: number) {
-    [0, 1, 2].forEach(cell => {
-      var first = this.front.cells[position][cell];
-      this.front.cells[position][cell] = this.right.cells[position][cell];
-      this.right.cells[position][cell] = this.back.cells[position][cell];
-      this.back.cells[position][cell] = this.left.cells[position][cell];
-      this.left.cells[position][cell] = first;
-    });
+    if (position == 0) {
+      this.top.rotateLeft();
+    }
+    if (position == 2) {
+      this.bottom.rotateLeft();
+    }
+    let first = this.front.cells[position];
+    this.front.cells[position] = this.right.cells[position];
+    this.right.cells[position] = this.back.cells[position];
+    this.back.cells[position] = this.left.cells[position];
+    this.left.cells[position] = first;
   }
 }
