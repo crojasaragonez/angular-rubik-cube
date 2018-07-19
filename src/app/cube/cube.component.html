@@ -1,39 +1,19 @@
-<!--
-<div class="row">
-  <div class="side"></div>
-  <app-side [side]="cube.top"></app-side>
-  <div class="side"></div>
+<div class="cube-controls">
+
 </div>
-
-<div class="row">
-  <app-side [side]="cube.left"></app-side>
-  <app-side [side]="cube.front"></app-side>
-  <app-side [side]="cube.right"></app-side>
-</div>
-
-
-<div class="row">
-  <div class="side"></div>
-  <app-side [side]="cube.bottom"></app-side>
-  <div class="side"></div>
-</div>
-
-<div class="row">
-  <div class="side"></div>
-    <app-side [side]="cube.back"></app-side>
-  <div class="side"></div>
-</div>
-
--->
-    <input type="radio" id="radio-front" name="select-face"/> Original
-    <input type="radio" id="radio-top" name="select-face"/> Top
-    <input type="radio" id="radio-bottom" name="select-face"/> Bottom
-    <input type="radio" id="radio-left" name="select-face"/> Left
-    <input type="radio" id="radio-right" name="select-face"/> Right
-    <input type="radio" id="radio-back" name="select-face"/> Back
+<input type="radio" id="radio-front" name="select-face"/> Original
+<input type="radio" id="radio-top" name="select-face"/> Top
+<input type="radio" id="radio-bottom" name="select-face"/> Bottom
+<input type="radio" id="radio-left" name="select-face"/> Left
+<input type="radio" id="radio-right" name="select-face"/> Right
+<input type="radio" id="radio-back" name="select-face"/> Back
+Column: <input [(ngModel)]="column">
+Row: <input [(ngModel)]="row">
+<button (click)="cube.moveDown(column)">Move Down</button>
+<button (click)="cube.moveRight(row)">Move Right</button>
+<button (click)="cube.reset()">Reset</button>
 
 <div class="separator"></div>
-
 
 <div class="space3d">
     <div class="_3dbox">
@@ -60,9 +40,5 @@
 
 <div class="separator"></div>
 
-<input [(ngModel)]="column">
-<input [(ngModel)]="row">
-<button (click)="cube.moveDown(column)">Move Down</button>
-<button (click)="cube.moveRight(row)">Move Right</button>
-<button (click)="cube.reset()">Reset</button>
+
 
