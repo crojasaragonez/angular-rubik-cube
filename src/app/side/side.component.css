@@ -1,0 +1,7 @@
+.cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33.33%;
+  height: 33.33%;
+}

@@ -1,0 +1,28 @@
+
+<div class="row">
+  <div class="side"></div>
+  <app-side [side]="cube.top"></app-side>
+  <div class="side"></div>
+</div>
+
+<div class="row">
+  <app-side [side]="cube.left"></app-side>
+  <app-side [side]="cube.front"></app-side>
+  <app-side [side]="cube.right"></app-side>
+</div>
+
+
+<div class="row">
+  <div class="side"></div>
+  <app-side [side]="cube.bottom"></app-side>
+  <div class="side"></div>
+</div>
+
+<div class="row">
+  <div class="side"></div>
+    <app-side [side]="cube.back"></app-side>
+  <div class="side"></div>
+</div>
+
+<button (click)="cube.moveDown(2)">Move Down</button>
+<button (click)="cube.moveRight(0)">Move Right</button>

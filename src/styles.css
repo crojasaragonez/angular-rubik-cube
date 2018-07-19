@@ -11,13 +11,6 @@
   display: flex;
 }
 
-.cell {
-  text-align: center;
-  width: 33.33%;
-  height: 33.33%;
-  flex-grow: 1;
-}
-
 .red {
   background-color: #b71234;
 }
