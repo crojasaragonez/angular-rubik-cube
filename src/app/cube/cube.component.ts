@@ -9,7 +9,11 @@ import { Cube } from '../cube';
 export class CubeComponent implements OnInit {
 
   cube: Cube
+  column: number;
+  row: number;
   constructor() {
+    this.column = 0;
+    this.row = 0;
     this.cube = new Cube();
     this.cube.reset();
   }
