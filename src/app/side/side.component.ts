@@ -9,9 +9,15 @@ import { Side } from '../side';
 export class SideComponent implements OnInit {
 
   @Input() side: Side;
+  @Input() invert = false;
+
+  row_indexes = [0, 1, 2];
+  column_indexes = [0, 1, 2];
   constructor() { }
 
   ngOnInit() {
+    if (this.invert) {
+      this.column_indexes = this.column_indexes.reverse();
+    }
   }
-
 }
