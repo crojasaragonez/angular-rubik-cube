@@ -3,10 +3,10 @@
   Row: <input [(ngModel)]="row">
   <div class="button-container">
     <div class="button-item"></div>
-    <div class="button-item"><button>^</button></div>
+    <div class="button-item" (click)="cube.moveUp(column)"><button>^</button></div>
     <div class="button-item"></div>
 
-    <div class="button-item"><button><</button></div>
+    <div class="button-item" (click)="cube.moveLeft(row)"><button><</button></div>
     <div class="button-item"><button (click)="cube.reset()">Reset</button></div>
     <div class="button-item" (click)="cube.moveRight(row)"><button>></button></div>
 

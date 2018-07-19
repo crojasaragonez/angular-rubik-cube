@@ -22,11 +22,21 @@ export class Cube {
 
   moveDown(position: number) {
     [0, 1, 2].forEach(cell => {
-      var first = this.bottom.cells[cell][position];
-      this.bottom.cells[cell][position] = this.front.cells[cell][position];
+      var first = this.front.cells[cell][position];
       this.front.cells[cell][position] = this.top.cells[cell][position];
       this.top.cells[cell][position] = this.back.cells[cell][position];
-      this.back.cells[cell][position] = first;
+      this.back.cells[cell][position] = this.bottom.cells[cell][position];
+      this.bottom.cells[cell][position] = first;
+    });
+  }
+
+  moveUp(position: number) {
+    [0, 1, 2].forEach(cell => {
+      var first = this.front.cells[cell][position];
+      this.front.cells[cell][position] = this.bottom.cells[cell][position];
+      this.bottom.cells[cell][position] = this.back.cells[cell][position];
+      this.back.cells[cell][position] = this.top.cells[cell][position];
+      this.top.cells[cell][position] = first;
     });
   }
 
@@ -37,6 +47,16 @@ export class Cube {
       this.left.cells[position][cell] = this.back.cells[position][cell];
       this.back.cells[position][cell] = this.right.cells[position][cell];
       this.right.cells[position][cell] = first;
+    });
+  }
+
+  moveLeft(position: number) {
+    [0, 1, 2].forEach(cell => {
+      var first = this.front.cells[position][cell];
+      this.front.cells[position][cell] = this.right.cells[position][cell];
+      this.right.cells[position][cell] = this.back.cells[position][cell];
+      this.back.cells[position][cell] = this.left.cells[position][cell];
+      this.left.cells[position][cell] = first;
     });
   }
 }
