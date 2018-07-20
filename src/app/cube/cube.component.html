@@ -7,8 +7,7 @@
 <input type="radio" id="radio-right" name="select-face"/> Right
 <input type="radio" id="radio-back" name="select-face"/> Back
 
-<button (click)="cube.left.rotateLeft()">left</button>
-<button (click)="cube.left.rotateRight()">right</button>
+<button *ngIf="cube.history.length > 0" (click)="cube.undo()">undo</button>
 
 <div class="space3d">
     <div class="_3dbox">

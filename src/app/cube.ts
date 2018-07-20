@@ -1,4 +1,5 @@
 import { Side } from './side';
+import { Move, Direction } from './move';
 export class Cube {
   private top: Side;
   private bottom: Side;
@@ -7,8 +8,9 @@ export class Cube {
   private front: Side;
   private back: Side;
 
+  private history: Move[];
   constructor() {
-
+    this.history = [];
   }
 
   reset() {
@@ -18,9 +20,15 @@ export class Cube {
     this.right = new Side().reset('blue');
     this.front = new Side().reset('yellow');
     this.back = new Side().reset('white');
+    this.history = [];
   }
 
-  moveDown(position: number) {
+  undo() {
+    const move = this.history.pop();
+    this[move.undo()](move.value, false);
+  }
+
+  moveDown(position: number, record_move = true) {
     if (position == 0) {
       this.left.rotateRight();
     }
@@ -34,9 +42,12 @@ export class Cube {
       this.back.cells[cell][position] = this.bottom.cells[cell][position];
       this.bottom.cells[cell][position] = first;
     });
+    if (record_move) {
+      this.history.push(new Move(position, Direction.Down));
+    }
   }
 
-  moveUp(position: number) {
+  moveUp(position: number, record_move = true) {
     if (position == 0) {
       this.left.rotateLeft();
     }
@@ -50,9 +61,12 @@ export class Cube {
       this.back.cells[cell][position] = this.top.cells[cell][position];
       this.top.cells[cell][position] = first;
     });
+    if (record_move) {
+      this.history.push(new Move(position, Direction.Up));
+    }
   }
 
-  moveRight(position: number) {
+  moveRight(position: number, record_move = true) {
     if (position == 0) {
       this.top.rotateRight();
     }
@@ -64,9 +78,12 @@ export class Cube {
     this.left.cells[position] = this.back.cells[position];
     this.back.cells[position] = this.right.cells[position];
     this.right.cells[position] = first;
+    if (record_move) {
+      this.history.push(new Move(position, Direction.Right));
+    }
   }
 
-  moveLeft(position: number) {
+  moveLeft(position: number, record_move = true) {
     if (position == 0) {
       this.top.rotateLeft();
     }
@@ -78,5 +95,8 @@ export class Cube {
     this.right.cells[position] = this.back.cells[position];
     this.back.cells[position] = this.left.cells[position];
     this.left.cells[position] = first;
+    if (record_move) {
+      this.history.push(new Move(position, Direction.Left));
+    }
   }
 }
