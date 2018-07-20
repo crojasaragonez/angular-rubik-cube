@@ -21,7 +21,7 @@
   transition: all 0.85s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   height: 100%;
   transform-style: preserve-3d;
-  transform: rotateX(-15deg) rotateY(15deg);
+  /*transform: rotateX(-18deg) rotateY(36deg);*/
 }
 
 ._3dface {
@@ -58,24 +58,4 @@
 
 ._3dface--back {
   transform: rotateY(180deg) translate3d(0, 0, 125px);
-}
-
-#radio-left:checked ~ .space3d ._3dbox {
-  transform: rotateY(90deg);
-}
-
-#radio-right:checked ~ .space3d ._3dbox {
-  transform: rotateY(-90deg);
-}
-
-#radio-bottom:checked ~ .space3d ._3dbox {
-  transform: rotateX(90deg);
-}
-
-#radio-top:checked ~ .space3d ._3dbox {
-  transform: rotateX(-90deg);
-}
-
-#radio-back:checked ~ .space3d ._3dbox {
-  transform: rotateY(180deg);
 }

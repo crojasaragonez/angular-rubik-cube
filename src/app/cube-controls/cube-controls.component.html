@@ -7,7 +7,10 @@
     <div class="button-item"></div>
 
     <div class="button-item" (click)="cube.moveLeft(row)"><button><</button></div>
-    <div class="button-item"><button (click)="cube.reset()">Reset</button></div>
+    <div class="button-item">
+      <button (click)="cube.reset()">Reset</button>
+      <button *ngIf="cube.history.length > 0" (click)="cube.undo()">Undo</button>
+    </div>
     <div class="button-item" (click)="cube.moveRight(row)"><button>></button></div>
 
     <div class="button-item"></div>
