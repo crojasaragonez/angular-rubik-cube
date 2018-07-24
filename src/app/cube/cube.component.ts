@@ -11,6 +11,8 @@ export class CubeComponent implements OnInit {
   cube: Cube;
   rotateX: number;
   rotateY: number;
+  mouseDown: boolean = false;
+  last: MouseEvent;
   constructor() {
     this.cube = new Cube();
     this.cube.reset();
@@ -37,10 +39,20 @@ export class CubeComponent implements OnInit {
     event.stopPropagation();
   }
 
+  @HostListener('window:mouseup') onMouseup() {
+    this.mouseDown = false;
+  }
 
-  mouseMoved(ev) {
-    let rotY = ev.pageX * 0.1;
-    let rotX = ev.pageY * 0.1;
-    //$("#cube").css("transform", "translateZ( -100px) rotateX( " + rotX + "deg) rotateY(" + rotY + "deg)");
+  @HostListener('window:mousedown', ['$event']) onMousedown(event) {
+    this.mouseDown = true;
+    this.last = event;
+  }
+
+  @HostListener('window:mousemove', ['$event']) onMousemove(event: MouseEvent) {
+    if(this.mouseDown) {
+      this.rotateX -= event.clientY - this.last.clientY;
+      this.rotateY += event.clientX - this.last.clientX;
+      this.last = event;
+    }
   }
 }
