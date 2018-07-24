@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SideComponent } from './side.component';
+import { Side } from '../side';
 
 describe('SideComponent', () => {
   let component: SideComponent;
@@ -16,6 +17,8 @@ describe('SideComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SideComponent);
     component = fixture.componentInstance;
+    component.invert = false;
+    component.side = new Side('red');
     fixture.detectChanges();
   });
 

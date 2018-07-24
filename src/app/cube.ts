@@ -34,26 +34,26 @@ export class Cube {
   }
 
   moveDown(column: number, record_move = true) {
-    if (column === 0) { this.left.rotateRight(); }
+    if (column === 0) { this.left.rotateLeft(); }
     if (column === 2) { this.right.rotateRight(); }
     this.moveVertical(MoveBehaviour.Down, column, record_move);
   }
 
   moveUp(column: number, record_move = true) {
-    if (column === 0) { this.left.rotateLeft(); }
+    if (column === 0) { this.left.rotateRight(); }
     if (column === 2) { this.right.rotateLeft(); }
     this.moveVertical(MoveBehaviour.Up, column, record_move);
   }
 
   moveRight(row: number, record_move = true) {
     if (row === 0) { this.top.rotateRight(); }
-    if (row === 2) { this.bottom.rotateRight(); }
+    if (row === 2) { this.bottom.rotateLeft(); }
     this.moveHorizontal(MoveBehaviour.Right, row, record_move);
   }
 
   moveLeft(row: number, record_move = true) {
     if (row === 0) { this.top.rotateLeft(); }
-    if (row === 2) { this.bottom.rotateLeft(); }
+    if (row === 2) { this.bottom.rotateRight(); }
     this.moveHorizontal(MoveBehaviour.Left, row, record_move);
   }
 

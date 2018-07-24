@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { CubeControlsComponent } from './cube-controls.component';
+import { Cube } from '../cube';
 
 describe('CubeControlsComponent', () => {
   let component: CubeControlsComponent;
@@ -8,7 +10,8 @@ describe('CubeControlsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CubeControlsComponent ]
+      declarations: [ CubeControlsComponent ],
+      imports: [FormsModule]
     })
     .compileComponents();
   }));
@@ -16,6 +19,9 @@ describe('CubeControlsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CubeControlsComponent);
     component = fixture.componentInstance;
+    component.column = 0;
+    component.row = 0;
+    component.cube = new Cube();
     fixture.detectChanges();
   });
 

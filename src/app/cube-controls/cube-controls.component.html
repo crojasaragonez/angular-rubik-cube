@@ -1,6 +1,6 @@
 <div class="cube-controls">
-  Column: <input [(ngModel)]="column"><br>
-  Row: <input [(ngModel)]="row">
+  Column: <input type="number" max="2" min="0" [(ngModel)]="column"><br>
+  Row: <input type="number" max="2" min="0" [(ngModel)]="row">
   <div class="button-container">
     <div class="button-item"></div>
     <div class="button-item" (click)="cube.moveUp(column)"><button>^</button></div>

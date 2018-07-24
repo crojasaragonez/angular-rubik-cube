@@ -7,7 +7,6 @@ import { Cube } from './cube';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
   cube: Cube;
   constructor() {
     this.cube = new Cube();
