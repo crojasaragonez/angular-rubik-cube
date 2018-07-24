@@ -9,15 +9,11 @@ import { Cube } from '../cube';
 export class CubeComponent implements OnInit {
 
   cube: Cube;
-  rotateX: number;
-  rotateY: number;
   mouseDown = false;
   last: MouseEvent;
   constructor() {
     this.cube = new Cube();
     this.cube.reset();
-    this.rotateX = -18;
-    this.rotateY = 36;
   }
 
   ngOnInit() {
@@ -25,16 +21,16 @@ export class CubeComponent implements OnInit {
 
   @HostListener('window:keydown', ['$event']) onkeyUp(event: any) {
     if (event.keyCode === 39) {
-      this.rotateY += 5;
+      this.cube.rotateY += 5;
     }
     if (event.keyCode === 37) {
-      this.rotateY -= 5;
+      this.cube.rotateY -= 5;
     }
     if (event.keyCode === 40) {
-      this.rotateX += 5;
+      this.cube.rotateX += 5;
     }
     if (event.keyCode === 38) {
-      this.rotateX -= 5;
+      this.cube.rotateX -= 5;
     }
     event.stopPropagation();
   }
@@ -50,8 +46,8 @@ export class CubeComponent implements OnInit {
 
   @HostListener('window:mousemove', ['$event']) onMousemove(event: MouseEvent) {
     if (this.mouseDown) {
-      this.rotateX -= event.clientY - this.last.clientY;
-      this.rotateY += event.clientX - this.last.clientX;
+      this.cube.rotateX -= event.clientY - this.last.clientY;
+      this.cube.rotateY += event.clientX - this.last.clientX;
       this.last = event;
     }
   }
