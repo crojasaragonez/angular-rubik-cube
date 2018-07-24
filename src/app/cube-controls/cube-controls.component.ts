@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Cube } from '../cube';
 
 @Component({
@@ -6,7 +6,7 @@ import { Cube } from '../cube';
   templateUrl: './cube-controls.component.html',
   styleUrls: ['./cube-controls.component.css']
 })
-export class CubeControlsComponent implements OnInit {
+export class CubeControlsComponent {
 
   @Input() cube: Cube;
   column: number;
@@ -15,8 +15,4 @@ export class CubeControlsComponent implements OnInit {
     this.column = 0;
     this.row = 0;
   }
-
-  ngOnInit() {
-  }
-
 }

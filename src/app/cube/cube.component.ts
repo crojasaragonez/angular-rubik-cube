@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Cube } from '../cube';
 
 @Component({
@@ -6,7 +6,7 @@ import { Cube } from '../cube';
   templateUrl: './cube.component.html',
   styleUrls: ['./cube.component.css']
 })
-export class CubeComponent implements OnInit {
+export class CubeComponent {
 
   cube: Cube;
   mouseDown = false;
@@ -14,9 +14,6 @@ export class CubeComponent implements OnInit {
   constructor() {
     this.cube = new Cube();
     this.cube.reset();
-  }
-
-  ngOnInit() {
   }
 
   @HostListener('window:keydown', ['$event']) onkeyUp(event: any) {
