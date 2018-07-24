@@ -11,7 +11,7 @@ export class CubeComponent implements OnInit {
   cube: Cube;
   rotateX: number;
   rotateY: number;
-  mouseDown: boolean = false;
+  mouseDown = false;
   last: MouseEvent;
   constructor() {
     this.cube = new Cube();
@@ -49,7 +49,7 @@ export class CubeComponent implements OnInit {
   }
 
   @HostListener('window:mousemove', ['$event']) onMousemove(event: MouseEvent) {
-    if(this.mouseDown) {
+    if (this.mouseDown) {
       this.rotateX -= event.clientY - this.last.clientY;
       this.rotateY += event.clientX - this.last.clientX;
       this.last = event;

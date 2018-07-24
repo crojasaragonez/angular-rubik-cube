@@ -8,7 +8,7 @@ import { Cube } from './cube';
 })
 export class AppComponent {
   title = 'app';
-  cube: Cube
+  cube: Cube;
   constructor() {
     this.cube = new Cube();
     this.cube.reset();

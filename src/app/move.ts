@@ -1,8 +1,8 @@
 export enum Direction {
-  Up = "moveUp",
-  Down = "moveDown",
-  Left = "moveLeft",
-  Right = "moveRight",
+  Up = 'moveUp',
+  Down = 'moveDown',
+  Left = 'moveLeft',
+  Right = 'moveRight',
 }
 
 export class Move {
@@ -14,9 +14,9 @@ export class Move {
   }
 
   undo() {
-    if (this.action == Direction.Up) return Direction.Down;
-    if (this.action == Direction.Down) return Direction.Up;
-    if (this.action == Direction.Left) return Direction.Right;
+    if (this.action === Direction.Up) { return Direction.Down; }
+    if (this.action === Direction.Down) { return Direction.Up; }
+    if (this.action === Direction.Left) { return Direction.Right; }
     return Direction.Left;
   }
 }
