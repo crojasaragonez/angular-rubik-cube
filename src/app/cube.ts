@@ -13,7 +13,7 @@ export class Cube {
   private history: Move[];
 
   constructor() {
-    this.history = [];
+    this.reset();
   }
 
   reset() {

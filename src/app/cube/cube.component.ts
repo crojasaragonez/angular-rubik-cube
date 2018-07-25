@@ -13,7 +13,6 @@ export class CubeComponent {
   last: MouseEvent;
   constructor() {
     this.cube = new Cube();
-    this.cube.reset();
   }
 
   @HostListener('window:keydown', ['$event']) onkeyUp(event: any) {

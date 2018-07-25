@@ -6,12 +6,7 @@ export enum Direction {
 }
 
 export class Move {
-  value: number;
-  action: Direction;
-  constructor(value, action: Direction) {
-    this.action = action;
-    this.value = value;
-  }
+  constructor(private value, private action: Direction) { }
 
   undo() {
     if (this.action === Direction.Up) { return Direction.Down; }
