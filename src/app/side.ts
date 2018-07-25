@@ -11,6 +11,10 @@ export class Side {
     ];
   }
 
+  selectCell(x: number, y: number) {
+    this.cells[x][y].selected = true;
+  }
+
   resetSelection() {
     this.cells.forEach(row => {
       row.forEach(cell => {

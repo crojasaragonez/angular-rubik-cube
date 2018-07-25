@@ -23,6 +23,8 @@ export class Cube {
     this.right = new Side('blue');
     this.front = new Side('yellow');
     this.back = new Side('white');
+    //select cell 0,0 from the front side by default
+    this.front.selectCell(0, 0);
     this.rotateX = -18;
     this.rotateY = 36;
     this.history = [];
