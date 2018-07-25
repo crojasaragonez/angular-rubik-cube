@@ -6,7 +6,7 @@ export enum Direction {
 }
 
 export class Move {
-  constructor(private value, private action: Direction) { }
+  constructor(public value, private action: Direction) { }
 
   undo() {
     if (this.action === Direction.Up) { return Direction.Down; }
