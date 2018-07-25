@@ -9,10 +9,6 @@ import { Cube } from '../cube';
 export class CubeControlsComponent {
 
   @Input() cube: Cube;
-  column: number;
-  row: number;
   constructor() {
-    this.column = 0;
-    this.row = 0;
   }
 }

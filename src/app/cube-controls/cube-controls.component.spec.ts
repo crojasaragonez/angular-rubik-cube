@@ -19,8 +19,6 @@ describe('CubeControlsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CubeControlsComponent);
     component = fixture.componentInstance;
-    component.column = 0;
-    component.row = 0;
     component.cube = new Cube();
     fixture.detectChanges();
   });

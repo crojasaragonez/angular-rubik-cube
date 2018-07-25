@@ -16,19 +16,24 @@ export class CubeComponent {
   }
 
   @HostListener('window:keydown', ['$event']) onkeyUp(event: any) {
+    event.preventDefault();
+    event.stopPropagation();
+    const side = this.cube.findSelection();
+    if (side === undefined) {
+      return;
+    }
     if (event.keyCode === 39) {
-      this.cube.rotateY += 5;
+      this.cube.moveRight(side.selectedCellLocation.x, true);
     }
     if (event.keyCode === 37) {
-      this.cube.rotateY -= 5;
+      this.cube.moveLeft(side.selectedCellLocation.x, true);
     }
     if (event.keyCode === 40) {
-      this.cube.rotateX += 5;
+      this.cube.moveDown(side.selectedCellLocation.y, true);
     }
     if (event.keyCode === 38) {
-      this.cube.rotateX -= 5;
+      this.cube.moveUp(side.selectedCellLocation.y, true);
     }
-    event.stopPropagation();
   }
 
   @HostListener('window:mouseup') onMouseup() {

@@ -1,16 +1,17 @@
 import { Side } from './side';
 import { Move, Direction } from './move';
 import { MoveBehaviour, MoveIntructions } from './move-behaviour';
+
 export class Cube {
-  private top: Side;
-  private bottom: Side;
-  private left: Side;
-  private right: Side;
-  private front: Side;
-  private back: Side;
-  public rotateX = -18;
-  public rotateY = 36;
-  private history: Move[];
+  top: Side;
+  bottom: Side;
+  left: Side;
+  right: Side;
+  front: Side;
+  back: Side;
+  rotateX = -18;
+  rotateY = 36;
+  history: Move[];
 
   constructor() {
     this.reset();
@@ -23,7 +24,7 @@ export class Cube {
     this.right = new Side('blue');
     this.front = new Side('yellow');
     this.back = new Side('white');
-    //select cell 0,0 from the front side by default
+    // select cell 0,0 from the front side by default
     this.front.selectCell(0, 0);
     this.rotateX = -18;
     this.rotateY = 36;
@@ -34,6 +35,10 @@ export class Cube {
     [this.top, this.bottom, this.left, this.right, this.front, this.back].forEach(side => {
       side.resetSelection();
     });
+  }
+
+  findSelection() {
+    return [this.top, this.bottom, this.left, this.right, this.front, this.back].find(x => x.selected === true);
   }
 
   undo() {

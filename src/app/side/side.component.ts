@@ -23,8 +23,8 @@ export class SideComponent implements OnInit {
     }
   }
 
-  select(x, y){
+  select(x, y) {
     this.cube.resetSelection();
-    this.side.cells[x][y].selected = true;
+    this.side.selectCell(x, y);
   }
 }

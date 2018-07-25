@@ -1,23 +1,40 @@
 import { Cube } from './cube';
 import { Side } from './side';
 import { Move, Direction } from './move';
+import { Location } from './location';
+import { Cell } from './cell';
 
 describe('Cube', () => {
   const instance = new Cube();
+
+  const selected_side = new Side('yellow');
+  selected_side.selectCell(0, 0);
 
   describe('reset', () => {
     it('should reset default attributes in the cube', () => {
       instance.reset();
       expect(instance['top']).toEqual(new Side('red'));
-      expect(instance['top']).toEqual(new Side('red'));
       expect(instance['bottom']).toEqual(new Side('orange'));
       expect(instance['left']).toEqual(new Side('green'));
       expect(instance['right']).toEqual(new Side('blue'));
-      expect(instance['front']).toEqual(new Side('yellow'));
       expect(instance['back']).toEqual(new Side('white'));
+      expect(instance['front']).toEqual(selected_side);
       expect(instance['rotateX']).toEqual(-18);
       expect(instance['rotateY']).toEqual(36);
       expect(instance['history']).toEqual([]);
+    });
+  });
+
+  describe('findSelection', () =>  {
+    it('should find the current selected position', () => {
+      expect(instance.findSelection()).toEqual(selected_side);
+    });
+  });
+
+  describe('resetSelection', () => {
+    it('should reset the current selected position', () => {
+      instance.resetSelection();
+      expect(instance.findSelection()).toEqual(undefined);
     });
   });
 
