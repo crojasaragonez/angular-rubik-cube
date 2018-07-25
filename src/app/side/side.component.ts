@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Side } from '../side';
+import { Cube } from '../cube';
 
 @Component({
   selector: 'app-side',
@@ -8,6 +9,7 @@ import { Side } from '../side';
 })
 export class SideComponent implements OnInit {
 
+  @Input() cube: Cube;
   @Input() side: Side;
   @Input() invert = false;
 
@@ -19,5 +21,10 @@ export class SideComponent implements OnInit {
     if (this.invert) {
       this.column_indexes = this.column_indexes.reverse();
     }
+  }
+
+  select(x, y){
+    this.cube.resetSelection();
+    this.side.cells[x][y].selected = true;
   }
 }

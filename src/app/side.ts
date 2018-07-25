@@ -1,4 +1,5 @@
 import { Cell } from './cell';
+import { Cube } from './cube';
 export class Side {
   cells: Cell[][];
 
@@ -8,6 +9,14 @@ export class Side {
       [new Cell(color), new Cell(color), new Cell(color)],
       [new Cell(color), new Cell(color), new Cell(color)],
     ];
+  }
+
+  resetSelection() {
+    this.cells.forEach(row => {
+      row.forEach(cell => {
+        cell.selected = false;
+      })
+    });
   }
 
   rotateLeft() {

@@ -3,22 +3,22 @@
 <div class="space3d">
     <div class="_3dbox" [ngStyle]="{'transform':'rotateX(' + cube.rotateX + 'deg) rotateY(' + cube.rotateY + 'deg)'}">
       <div class="_3dface _3dface--front">
-        <app-side [side]="cube.front"></app-side>
+        <app-side [cube]="cube" [side]="cube.front"></app-side>
       </div>
       <div class="_3dface _3dface--top">
-        <app-side [side]="cube.top"></app-side>
+        <app-side [cube]="cube" [side]="cube.top"></app-side>
       </div>
       <div class="_3dface _3dface--bottom">
-        <app-side [side]="cube.bottom"></app-side>
+        <app-side [cube]="cube" [side]="cube.bottom"></app-side>
       </div>
       <div class="_3dface _3dface--left">
-        <app-side [side]="cube.left"></app-side>
+        <app-side [cube]="cube" [side]="cube.left"></app-side>
       </div>
       <div class="_3dface _3dface--right">
-        <app-side [side]="cube.right"></app-side>
+        <app-side [cube]="cube" [side]="cube.right"></app-side>
       </div>
       <div class="_3dface _3dface--back">
-        <app-side [side]="cube.back" [invert]="true"></app-side>
+        <app-side [cube]="cube" [side]="cube.back" [invert]="true"></app-side>
       </div>
     </div>
 </div>

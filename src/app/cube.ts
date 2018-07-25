@@ -28,6 +28,12 @@ export class Cube {
     this.history = [];
   }
 
+  resetSelection() {
+    [this.top, this.bottom, this.left, this.right, this.front, this.back].forEach(side => {
+      side.resetSelection();
+    });
+  }
+
   undo() {
     const move = this.history.pop();
     this[move.undo()](move.value, false);

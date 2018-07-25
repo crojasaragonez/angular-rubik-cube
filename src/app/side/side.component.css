@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+.selected {
+  filter: brightness(50%);
+}
+
 .side {
   width: 250px;
   height: 250px;
