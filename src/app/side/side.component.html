@@ -1,5 +1,8 @@
 <div class="side">
   <ng-container *ngFor="let x of row_indexes">
-    <div *ngFor="let y of column_indexes" class="cell" [ngClass]="side.cells[x][y].color"></div>
+    <div *ngFor="let y of column_indexes" class="cell" [class.selected]="side.cells[x][y].selected"
+                                                       [ngClass]="side.cells[x][y].color"
+                                                       (click)="select(x, y)">
+    </div>
   </ng-container>
 </div>

@@ -1,17 +1,7 @@
-export enum Direction {
-  Up = 'moveUp',
-  Down = 'moveDown',
-  Left = 'moveLeft',
-  Right = 'moveRight',
-}
+import { Direction } from './enums/direction.enum';
 
 export class Move {
-  value: number;
-  action: Direction;
-  constructor(value, action: Direction) {
-    this.action = action;
-    this.value = value;
-  }
+  constructor(public value, public action: Direction) { }
 
   undo() {
     if (this.action === Direction.Up) { return Direction.Down; }

@@ -1,8 +1,9 @@
 import { Side } from './side';
 import { Cell } from './cell';
+import { SidePosition } from './enums/side-position.enum';
 
 describe('Side', () => {
-  const instance = new Side('red');
+  const instance = new Side('red', SidePosition.Top);
   it('should have the correct dimensions', () => {
     expect(instance.cells.length).toEqual(3);
     expect(instance.cells[0].length).toEqual(3);

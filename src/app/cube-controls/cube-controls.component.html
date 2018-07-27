@@ -1,20 +1,8 @@
 <div class="cube-controls">
-  Column: <input type="number" max="2" min="0" [(ngModel)]="column"><br>
-  Row: <input type="number" max="2" min="0" [(ngModel)]="row">
   <div class="button-container">
-    <div class="button-item"></div>
-    <div class="button-item" (click)="cube.moveUp(column)"><button>^</button></div>
-    <div class="button-item"></div>
-
-    <div class="button-item" (click)="cube.moveLeft(row)"><button><</button></div>
     <div class="button-item">
       <button (click)="cube.reset()">Reset</button>
       <button *ngIf="cube.history.length > 0" (click)="cube.undo()">Undo</button>
     </div>
-    <div class="button-item" (click)="cube.moveRight(row)"><button>></button></div>
-
-    <div class="button-item"></div>
-    <div class="button-item" (click)="cube.moveDown(column)"><button>v</button></div>
-    <div class="button-item"></div>
   </div>
 </div>

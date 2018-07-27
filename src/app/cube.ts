@@ -1,31 +1,47 @@
 import { Side } from './side';
-import { Move, Direction } from './move';
-import { MoveBehaviour, MoveIntructions } from './move-behaviour';
+import { Move } from './move';
+import { MoveIntructions } from './move-instructions';
+import { MoveIntruction } from './move-intruction';
+import { SidePosition } from './enums/side-position.enum';
+import { Direction } from './enums/direction.enum';
+
 export class Cube {
-  private top: Side;
-  private bottom: Side;
-  private left: Side;
-  private right: Side;
-  private front: Side;
-  private back: Side;
-  public rotateX = -18;
-  public rotateY = 36;
-  private history: Move[];
+  top: Side;
+  bottom: Side;
+  left: Side;
+  right: Side;
+  front: Side;
+  back: Side;
+  rotateX = -18;
+  rotateY = 36;
+  history: Move[];
 
   constructor() {
-    this.history = [];
+    this.reset();
   }
 
   reset() {
-    this.top = new Side('red');
-    this.bottom = new Side('orange');
-    this.left = new Side('green');
-    this.right = new Side('blue');
-    this.front = new Side('yellow');
-    this.back = new Side('white');
+    this.top = new Side('red', SidePosition.Top);
+    this.bottom = new Side('orange', SidePosition.Bottom);
+    this.left = new Side('green', SidePosition.Left);
+    this.right = new Side('blue', SidePosition.Right);
+    this.front = new Side('yellow', SidePosition.Front);
+    this.back = new Side('white', SidePosition.Back);
+    // select cell 0,0 from the front side by default
+    this.front.selectCell(0, 0);
     this.rotateX = -18;
     this.rotateY = 36;
     this.history = [];
+  }
+
+  resetSelection() {
+    this.allSides().forEach(side => {
+      side.resetSelection();
+    });
+  }
+
+  findSelection() {
+    return this.allSides().find(x => x.selected === true);
   }
 
   undo() {
@@ -36,28 +52,32 @@ export class Cube {
   moveDown(column: number, record_move = true) {
     if (column === 0) { this.left.rotateLeft(); }
     if (column === 2) { this.right.rotateRight(); }
-    this.moveVertical(MoveBehaviour.Down, column, record_move);
+    this.moveVertical(MoveIntructions.Down, column, record_move);
   }
 
   moveUp(column: number, record_move = true) {
     if (column === 0) { this.left.rotateRight(); }
     if (column === 2) { this.right.rotateLeft(); }
-    this.moveVertical(MoveBehaviour.Up, column, record_move);
+    this.moveVertical(MoveIntructions.Up, column, record_move);
   }
 
   moveRight(row: number, record_move = true) {
     if (row === 0) { this.top.rotateRight(); }
     if (row === 2) { this.bottom.rotateLeft(); }
-    this.moveHorizontal(MoveBehaviour.Right, row, record_move);
+    this.moveHorizontal(MoveIntructions.Right, row, record_move);
   }
 
   moveLeft(row: number, record_move = true) {
     if (row === 0) { this.top.rotateLeft(); }
     if (row === 2) { this.bottom.rotateRight(); }
-    this.moveHorizontal(MoveBehaviour.Left, row, record_move);
+    this.moveHorizontal(MoveIntructions.Left, row, record_move);
   }
 
-  private moveHorizontal(instructions: MoveIntructions, row, record_move = true) {
+  private allSides() {
+    return [this.top, this.bottom, this.left, this.right, this.front, this.back];
+  }
+
+  private moveHorizontal(instructions: MoveIntruction, row, record_move = true) {
     const first = this[instructions.start_with].cells[row];
     instructions.moves.forEach(move => {
       if (move.to === '') { return this[move.from].cells[row] = first; }
@@ -68,7 +88,7 @@ export class Cube {
     }
   }
 
-  private moveVertical(instructions: MoveIntructions, column, record_move = true) {
+  private moveVertical(instructions: MoveIntruction, column, record_move = true) {
     [0, 1, 2].forEach(cell => {
       const first = this[instructions.start_with].cells[cell][column];
       instructions.moves.forEach(move => {
