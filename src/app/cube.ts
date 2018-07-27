@@ -32,13 +32,13 @@ export class Cube {
   }
 
   resetSelection() {
-    [this.top, this.bottom, this.left, this.right, this.front, this.back].forEach(side => {
+    this.allSides().forEach(side => {
       side.resetSelection();
     });
   }
 
   findSelection() {
-    return [this.top, this.bottom, this.left, this.right, this.front, this.back].find(x => x.selected === true);
+    return this.allSides().find(x => x.selected === true);
   }
 
   undo() {
@@ -68,6 +68,10 @@ export class Cube {
     if (row === 0) { this.top.rotateLeft(); }
     if (row === 2) { this.bottom.rotateRight(); }
     this.moveHorizontal(MoveBehaviour.Left, row, record_move);
+  }
+
+  private allSides() {
+    return [this.top, this.bottom, this.left, this.right, this.front, this.back];
   }
 
   private moveHorizontal(instructions: MoveIntructions, row, record_move = true) {
