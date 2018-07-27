@@ -1,8 +1,8 @@
 export enum SidePosition {
-  Top,
-  Bottom,
-  Left,
-  Right,
-  Front,
-  Back
+  Top = 'top',
+  Bottom = 'bottom',
+  Left = 'left',
+  Right = 'right',
+  Front = 'front',
+  Back = 'back'
 }
