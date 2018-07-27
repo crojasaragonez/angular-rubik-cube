@@ -7,7 +7,7 @@ export class Side {
   cells: Cell[][];
   selectedCellLocation: Location;
 
-  constructor(color: string, position: SidePosition, public selected: boolean = false) {
+  constructor(color: string, public position: SidePosition, public selected: boolean = false) {
     this.cells = [
       [new Cell(color), new Cell(color), new Cell(color)],
       [new Cell(color), new Cell(color), new Cell(color)],
