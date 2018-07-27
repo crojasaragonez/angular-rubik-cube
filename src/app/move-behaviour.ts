@@ -1,4 +1,5 @@
-import { Direction } from './move';
+import { Direction } from './enums/direction.enum';
+
 export class MoveBehaviour {
   static Left: MoveIntructions = {
     start_with: 'front',

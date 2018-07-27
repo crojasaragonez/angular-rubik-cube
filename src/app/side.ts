@@ -1,12 +1,13 @@
 import { Cell } from './cell';
 import { Cube } from './cube';
 import { Location } from './location';
+import { SidePosition } from './side-position.enum';
 
 export class Side {
   cells: Cell[][];
   selectedCellLocation: Location;
 
-  constructor(color: string, public selected: boolean = false) {
+  constructor(color: string, position: SidePosition, public selected: boolean = false) {
     this.cells = [
       [new Cell(color), new Cell(color), new Cell(color)],
       [new Cell(color), new Cell(color), new Cell(color)],

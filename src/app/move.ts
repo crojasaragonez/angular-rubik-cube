@@ -1,9 +1,4 @@
-export enum Direction {
-  Up = 'moveUp',
-  Down = 'moveDown',
-  Left = 'moveLeft',
-  Right = 'moveRight',
-}
+import { Direction } from './enums/direction.enum';
 
 export class Move {
   constructor(public value, public action: Direction) { }

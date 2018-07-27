@@ -1,6 +1,8 @@
 import { Side } from './side';
-import { Move, Direction } from './move';
+import { Move } from './move';
 import { MoveBehaviour, MoveIntructions } from './move-behaviour';
+import { SidePosition } from './enums/side-position.enum';
+import { Direction } from './enums/direction.enum';
 
 export class Cube {
   top: Side;
@@ -18,12 +20,12 @@ export class Cube {
   }
 
   reset() {
-    this.top = new Side('red');
-    this.bottom = new Side('orange');
-    this.left = new Side('green');
-    this.right = new Side('blue');
-    this.front = new Side('yellow');
-    this.back = new Side('white');
+    this.top = new Side('red', SidePosition.Top);
+    this.bottom = new Side('orange', SidePosition.Bottom);
+    this.left = new Side('green', SidePosition.Left);
+    this.right = new Side('blue', SidePosition.Right);
+    this.front = new Side('yellow', SidePosition.Front);
+    this.back = new Side('white', SidePosition.Back);
     // select cell 0,0 from the front side by default
     this.front.selectCell(0, 0);
     this.rotateX = -18;
