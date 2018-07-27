@@ -1,8 +1,8 @@
 import { Direction } from './enums/direction.enum';
 import { SidePosition } from './enums/side-position.enum';
 
-export class MoveBehaviour {
-  static Left: MoveIntructions = {
+export class MoveIntructions {
+  static Left: MoveIntruction = {
     start_with: SidePosition.Front,
     direction: Direction.Left,
     moves: [
@@ -12,7 +12,7 @@ export class MoveBehaviour {
       { from: SidePosition.Left, to: '' }
     ]
   };
-  static Right: MoveIntructions = {
+  static Right: MoveIntruction = {
     start_with: SidePosition.Front,
     direction: Direction.Right,
     moves: [
@@ -22,7 +22,7 @@ export class MoveBehaviour {
       { from: SidePosition.Right, to: '' }
     ]
   };
-  static Up: MoveIntructions = {
+  static Up: MoveIntruction = {
     start_with: SidePosition.Front,
     direction: Direction.Up,
     moves: [
@@ -32,7 +32,7 @@ export class MoveBehaviour {
       { from: SidePosition.Top, to: '' },
     ]
   };
-  static Down: MoveIntructions = {
+  static Down: MoveIntruction = {
     start_with: SidePosition.Front,
     direction: Direction.Down,
     moves: [
@@ -44,8 +44,9 @@ export class MoveBehaviour {
   };
 }
 
-export interface MoveIntructions {
+export interface MoveIntruction {
   start_with: string;
   direction: Direction;
   moves: any[];
 }
+

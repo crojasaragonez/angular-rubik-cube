@@ -1,6 +1,6 @@
 import { Side } from './side';
 import { Move } from './move';
-import { MoveBehaviour, MoveIntructions } from './move-behaviour';
+import { MoveIntructions, MoveIntruction } from './move-instructions';
 import { SidePosition } from './enums/side-position.enum';
 import { Direction } from './enums/direction.enum';
 
@@ -51,32 +51,32 @@ export class Cube {
   moveDown(column: number, record_move = true) {
     if (column === 0) { this.left.rotateLeft(); }
     if (column === 2) { this.right.rotateRight(); }
-    this.moveVertical(MoveBehaviour.Down, column, record_move);
+    this.moveVertical(MoveIntructions.Down, column, record_move);
   }
 
   moveUp(column: number, record_move = true) {
     if (column === 0) { this.left.rotateRight(); }
     if (column === 2) { this.right.rotateLeft(); }
-    this.moveVertical(MoveBehaviour.Up, column, record_move);
+    this.moveVertical(MoveIntructions.Up, column, record_move);
   }
 
   moveRight(row: number, record_move = true) {
     if (row === 0) { this.top.rotateRight(); }
     if (row === 2) { this.bottom.rotateLeft(); }
-    this.moveHorizontal(MoveBehaviour.Right, row, record_move);
+    this.moveHorizontal(MoveIntructions.Right, row, record_move);
   }
 
   moveLeft(row: number, record_move = true) {
     if (row === 0) { this.top.rotateLeft(); }
     if (row === 2) { this.bottom.rotateRight(); }
-    this.moveHorizontal(MoveBehaviour.Left, row, record_move);
+    this.moveHorizontal(MoveIntructions.Left, row, record_move);
   }
 
   private allSides() {
     return [this.top, this.bottom, this.left, this.right, this.front, this.back];
   }
 
-  private moveHorizontal(instructions: MoveIntructions, row, record_move = true) {
+  private moveHorizontal(instructions: MoveIntruction, row, record_move = true) {
     const first = this[instructions.start_with].cells[row];
     instructions.moves.forEach(move => {
       if (move.to === '') { return this[move.from].cells[row] = first; }
@@ -87,7 +87,7 @@ export class Cube {
     }
   }
 
-  private moveVertical(instructions: MoveIntructions, column, record_move = true) {
+  private moveVertical(instructions: MoveIntruction, column, record_move = true) {
     [0, 1, 2].forEach(cell => {
       const first = this[instructions.start_with].cells[cell][column];
       instructions.moves.forEach(move => {
