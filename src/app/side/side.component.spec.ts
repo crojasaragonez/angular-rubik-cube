@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SideComponent } from './side.component';
 import { Side } from '../side';
+import { SidePosition } from '../enums/side-position.enum';
 
 describe('SideComponent', () => {
   let component: SideComponent;
@@ -18,7 +19,7 @@ describe('SideComponent', () => {
     fixture = TestBed.createComponent(SideComponent);
     component = fixture.componentInstance;
     component.invert = false;
-    component.side = new Side('red');
+    component.side = new Side('red', SidePosition.Top);
     fixture.detectChanges();
   });
 
