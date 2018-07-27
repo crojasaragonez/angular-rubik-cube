@@ -1,5 +1,6 @@
 import { Direction } from './enums/direction.enum';
 import { SidePosition } from './enums/side-position.enum';
+import { MoveIntruction } from './move-intruction';
 
 export class MoveIntructions {
   static Left: MoveIntruction = {
@@ -44,9 +45,4 @@ export class MoveIntructions {
   };
 }
 
-export interface MoveIntruction {
-  start_with: string;
-  direction: Direction;
-  moves: any[];
-}
 

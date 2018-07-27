@@ -1,6 +1,7 @@
 import { Side } from './side';
 import { Move } from './move';
-import { MoveIntructions, MoveIntruction } from './move-instructions';
+import { MoveIntructions } from './move-instructions';
+import { MoveIntruction } from './move-intruction';
 import { SidePosition } from './enums/side-position.enum';
 import { Direction } from './enums/direction.enum';
 
