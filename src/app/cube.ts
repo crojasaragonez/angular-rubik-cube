@@ -44,10 +44,9 @@ export class Cube {
     return this.allSides().find(x => x.selected === true);
   }
 
-  test() {
-
-    const side = this.findSelection();
-    const column = side.selectedCellLocation.y;
+  moveUp2(column: number) {
+    if (column === 0) { this.back.rotateRight(); }
+    if (column === 2) { this.front.rotateLeft(); }
     const first = [this.top.cells[column][0], this.top.cells[column][1], this.top.cells[column][2]];
 
     this.top.cells[column][0] = this.left.cells[2][column];

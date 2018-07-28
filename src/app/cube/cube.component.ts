@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { Cube } from '../cube';
 import { Mode } from '../enums/mode.enum';
+import { SidePosition } from '../enums/side-position.enum';
 
 @Component({
   selector: 'app-cube',
@@ -26,7 +27,13 @@ export class CubeComponent {
       if (event.keyCode === 39) { this.cube.moveRight(side.selectedCellLocation.x, true); }
       if (event.keyCode === 37) { this.cube.moveLeft(side.selectedCellLocation.x, true); }
       if (event.keyCode === 40) { this.cube.moveDown(side.selectedCellLocation.y, true); }
-      if (event.keyCode === 38) { this.cube.moveUp(side.selectedCellLocation.y, true); }
+      if (event.keyCode === 38) {
+        if (side.position === SidePosition.Left || side.position === SidePosition.Right) {
+          this.cube.moveUp2(side.selectedCellLocation.y);
+          return;
+        }
+        this.cube.moveUp(side.selectedCellLocation.y, true);
+      }
       return;
     }
     if (event.keyCode === 39) { this.cube.rotateY += 5; }
