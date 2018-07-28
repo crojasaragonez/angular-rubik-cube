@@ -1,7 +1,12 @@
-<div class="cube-controls">
+<div class="top-controls">
   <h2 *ngIf="cube.history.length === 0">Rubik Cube</h2>
   <ng-container *ngIf="cube.history.length > 0">
     <button (click)="cube.reset()">Reset</button>
     <button (click)="cube.undo()">Undo</button>
   </ng-container>
+</div>
+<div class="bottom-controls">
+  {{mode}}
+  <input type="radio" name="mode" [(ngModel)]="mode" [value]="0"> Play
+  <input type="radio" name="mode" [(ngModel)]="mode" [value]="1"> Move
 </div>

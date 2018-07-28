@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Cube } from '../cube';
+import { Mode } from '../enums/mode.enum';
 
 @Component({
   selector: 'app-cube-controls',
@@ -9,6 +10,8 @@ import { Cube } from '../cube';
 export class CubeControlsComponent {
 
   @Input() cube: Cube;
+  @Input() mode: Mode;
   constructor() {
+
   }
 }

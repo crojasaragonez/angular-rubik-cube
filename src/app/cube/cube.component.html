@@ -1,4 +1,4 @@
-<app-cube-controls [cube]="cube"></app-cube-controls>
+<app-cube-controls [cube]="cube" [mode]="mode" (modeChange)="mode = $event"></app-cube-controls>
 
 <div class="space3d">
     <div class="_3dbox" [ngStyle]="{'transform':'rotateX(' + cube.rotateX + 'deg) rotateY(' + cube.rotateY + 'deg)'}">
@@ -10,3 +10,5 @@
       <app-side class="_3dface _3dface--back" [cube]="cube" [side]="cube.back" [invert]="true"></app-side>
     </div>
 </div>
+
+{{mode}}

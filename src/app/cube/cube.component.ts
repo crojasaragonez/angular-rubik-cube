@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { Cube } from '../cube';
+import { Mode } from '../enums/mode.enum';
 
 @Component({
   selector: 'app-cube',
@@ -11,8 +12,10 @@ export class CubeComponent {
   cube: Cube;
   mouseDown = false;
   last: MouseEvent;
+  mode: Mode;
   constructor() {
     this.cube = new Cube();
+    this.mode = Mode.Play;
   }
 
   @HostListener('window:keydown', ['$event']) onkeyUp(event: any) {
@@ -36,7 +39,7 @@ export class CubeComponent {
     }
   }
 
-  /*@HostListener('window:mouseup') onMouseup() {
+  @HostListener('window:mouseup') onMouseup() {
     this.mouseDown = false;
   }
 
@@ -46,15 +49,17 @@ export class CubeComponent {
   }
 
   @HostListener('window:mousemove', ['$event']) onMousemove(event: MouseEvent) {
+    event.preventDefault();
     if (this.mouseDown) {
       this.cube.rotateX -= event.clientY - this.last.clientY;
       this.cube.rotateY += event.clientX - this.last.clientX;
       this.last = event;
     }
-  }*/
+  }
 
 
   @HostListener('swipe',  ['$event']) onTap(e) {
+    if (this.mode === Mode.Move) { return };
     const side = this.cube.findSelection();
     if (side === undefined) { return; }
     if (e.direction === 4) { this.cube.moveRight(side.selectedCellLocation.x, true); }
