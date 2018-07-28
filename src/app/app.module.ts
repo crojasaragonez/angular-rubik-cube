@@ -6,6 +6,15 @@ import { AppComponent } from './app.component';
 import { CubeComponent } from './cube/cube.component';
 import { SideComponent } from './side/side.component';
 import { CubeControlsComponent } from './cube-controls/cube-controls.component';
+import { HammerGestureConfig, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
+
+export class MyHammerConfig extends HammerGestureConfig  {
+  overrides = <any>{
+    'swipe': {
+      direction: 31 // /!\ ugly hack to allow swipe in all direction
+    }
+  }
+}
 
 @NgModule({
   declarations: [
@@ -18,7 +27,7 @@ import { CubeControlsComponent } from './cube-controls/cube-controls.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{ provide: HAMMER_GESTURE_CONFIG, useClass: MyHammerConfig }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

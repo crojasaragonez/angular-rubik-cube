@@ -36,7 +36,7 @@ export class CubeComponent {
     }
   }
 
-  @HostListener('window:mouseup') onMouseup() {
+  /*@HostListener('window:mouseup') onMouseup() {
     this.mouseDown = false;
   }
 
@@ -51,5 +51,15 @@ export class CubeComponent {
       this.cube.rotateY += event.clientX - this.last.clientX;
       this.last = event;
     }
+  }*/
+
+
+  @HostListener('swipe',  ['$event']) onTap(e) {
+    const side = this.cube.findSelection();
+    if (side === undefined) { return; }
+    if (e.direction === 4) { this.cube.moveRight(side.selectedCellLocation.x, true); }
+    if (e.direction === 2) { this.cube.moveLeft(side.selectedCellLocation.x, true); }
+    if (e.direction === 16) { this.cube.moveDown(side.selectedCellLocation.y, true); }
+    if (e.direction === 8) { this.cube.moveUp(side.selectedCellLocation.y, true); }
   }
 }
