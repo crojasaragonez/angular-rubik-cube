@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Cube } from '../cube';
 import { Mode } from '../enums/mode.enum';
 
@@ -11,7 +11,13 @@ export class CubeControlsComponent {
 
   @Input() cube: Cube;
   @Input() mode: Mode;
+  @Output() modeChange = new EventEmitter();
   constructor() {
 
+  }
+
+  change(newValue) {
+    this.mode = newValue;
+    this.modeChange.emit(newValue);
   }
 }

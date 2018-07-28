@@ -6,7 +6,6 @@
   </ng-container>
 </div>
 <div class="bottom-controls">
-  {{mode}}
-  <input type="radio" name="mode" [(ngModel)]="mode" [value]="0"> Play
-  <input type="radio" name="mode" [(ngModel)]="mode" [value]="1"> Move
+  <input type="radio" name="mode" [(ngModel)]="mode" [value]="0" (ngModelChange)="change($event)"> Play
+  <input type="radio" name="mode" [(ngModel)]="mode" [value]="1" (ngModelChange)="change($event)"> Move
 </div>
