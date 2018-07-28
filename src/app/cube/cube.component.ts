@@ -73,7 +73,19 @@ export class CubeComponent {
     if (side === undefined) { return; }
     if (e.direction === 4) { this.cube.moveRight(side.selectedCellLocation.x); }
     if (e.direction === 2) { this.cube.moveLeft(side.selectedCellLocation.x); }
-    if (e.direction === 16) { this.cube.moveDown(side.selectedCellLocation.y); }
-    if (e.direction === 8) { this.cube.moveUp(side.selectedCellLocation.y); }
+    if (e.direction === 16) {
+      if (side.position === SidePosition.Left || side.position === SidePosition.Right) {
+        this.cube.moveDown2(side.selectedCellLocation.y);
+        return;
+      }
+      this.cube.moveDown(side.selectedCellLocation.y);
+    }
+    if (e.direction === 8) {
+      if (side.position === SidePosition.Left || side.position === SidePosition.Right) {
+        this.cube.moveUp2(side.selectedCellLocation.y);
+        return;
+      }
+      this.cube.moveUp(side.selectedCellLocation.y);
+    }
   }
 }

@@ -44,10 +44,14 @@ export class Cube {
     return this.allSides().find(x => x.selected === true);
   }
 
-  moveUp2(column: number) {
+  moveUp2(column: number, record_move = true) {
     if (column === 0) { this.back.rotateRight(); }
     if (column === 2) { this.front.rotateLeft(); }
-    const first = [this.top.cells[column][0], this.top.cells[column][1], this.top.cells[column][2]];
+    const first = [
+      this[MoveIntructions.Down2.start_with].cells[column][0],
+      this[MoveIntructions.Down2.start_with].cells[column][1],
+      this[MoveIntructions.Down2.start_with].cells[column][2]
+    ];
 
     this.top.cells[column][0] = this.left.cells[2][column];
     this.top.cells[column][1] = this.left.cells[1][column];
@@ -64,12 +68,20 @@ export class Cube {
     this.right.cells[0][column] = first[0];
     this.right.cells[1][column] = first[1];
     this.right.cells[2][column] = first[2];
+
+    if (record_move) {
+      this.history.push(new Move(column, MoveIntructions.Up2.direction));
+    }
   }
 
-  moveDown2(column: number) {
+  moveDown2(column: number, record_move = true) {
     if (column === 0) { this.back.rotateLeft(); }
     if (column === 2) { this.front.rotateRight(); }
-    const first = [this.top.cells[column][2], this.top.cells[column][1], this.top.cells[column][0]];
+    const first = [
+      this.top.cells[column][2],
+      this.top.cells[column][1],
+      this.top.cells[column][0]
+    ];
 
     this.top.cells[column][0] = this.right.cells[0][column];
     this.top.cells[column][1] = this.right.cells[1][column];
@@ -86,6 +98,10 @@ export class Cube {
     this.left.cells[0][column] = first[0];
     this.left.cells[1][column] = first[1];
     this.left.cells[2][column] = first[2];
+
+    if (record_move) {
+      this.history.push(new Move(column, MoveIntructions.Down2.direction));
+    }
   }
 
   undo() {

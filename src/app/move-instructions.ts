@@ -33,6 +33,11 @@ export class MoveIntructions {
       { from: SidePosition.Top, to: '' },
     ]
   };
+  static Up2: MoveIntruction = {
+    start_with: SidePosition.Top,
+    direction: Direction.Up2,
+    moves: []
+  };
   static Down: MoveIntruction = {
     start_with: SidePosition.Front,
     direction: Direction.Down,
@@ -42,6 +47,11 @@ export class MoveIntructions {
       { from: SidePosition.Back, to: SidePosition.Bottom },
       { from: SidePosition.Bottom, to: '' },
     ]
+  };
+  static Down2: MoveIntruction = {
+    start_with: SidePosition.Top,
+    direction: Direction.Down2,
+    moves: []
   };
 }
 
