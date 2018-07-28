@@ -3,6 +3,7 @@
     <div *ngFor="let y of column_indexes" class="cell" [class.selected]="side.cells[x][y].selected"
                                                        [ngClass]="side.cells[x][y].color"
                                                        (click)="select(x, y)">
+                                                       {{side.cells[x][y].text}}
     </div>
   </ng-container>
 </div>

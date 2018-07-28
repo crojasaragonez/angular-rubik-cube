@@ -44,6 +44,23 @@ export class Cube {
     return this.allSides().find(x => x.selected === true);
   }
 
+  test() {
+
+    MoveIntructions.Test.moves.forEach(move => {
+      this[move.from].cells[1][0] = this[move.to].cells[2][1];
+      this[move.from].cells[1][1] = this[move.to].cells[1][1];
+      this[move.from].cells[1][2] = this[move.to].cells[0][1];
+    })
+    this.top.cells[1][0] = this.left.cells[2][1];
+    this.top.cells[1][1] = this.left.cells[1][1];
+    this.top.cells[1][2] = this.left.cells[0][1];
+    /*const first = this[MoveIntructions.Test.start_with].cells[1][0];
+    console.log(first);*/
+    /*MoveIntructions.Test.moves.forEach(move => {
+
+    })*/
+  }
+
   undo() {
     const move = this.history.pop();
     this[move.undo()](move.value, false);
