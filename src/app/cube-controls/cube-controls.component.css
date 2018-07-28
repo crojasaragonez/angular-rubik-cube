@@ -1,24 +1,12 @@
 .cube-controls {
   position: absolute;
-  top: 30px;
-  left: 30px;
-}
-
-input {
-  max-width: 50px;
-}
-
-.button-container {
+  top: 0px;
+  left: 0px;
   display: flex;
-  flex-wrap: wrap;
-}
-
-.button-item {
-  width: 33.33%;
-  flex-grow: 1;
-  text-align: center;
-}
-
-.button-item button {
   width: 100%;
+  justify-content: center;
+}
+
+button {
+  flex-grow: 1;
 }
