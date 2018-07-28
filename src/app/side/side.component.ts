@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Side } from '../side';
 import { Cube } from '../cube';
+import { SidePosition } from '../enums/side-position.enum';
 
 @Component({
   selector: 'app-side',
@@ -26,5 +27,10 @@ export class SideComponent implements OnInit {
   select(x, y) {
     this.cube.resetSelection();
     this.side.selectCell(x, y);
+  }
+
+  flexWrap() {
+    if(this.side.position == SidePosition.Bottom) { return 'wrap-reverse'; }
+    return 'wrap';
   }
 }

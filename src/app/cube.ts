@@ -46,19 +46,25 @@ export class Cube {
 
   test() {
 
-    MoveIntructions.Test.moves.forEach(move => {
-      this[move.from].cells[1][0] = this[move.to].cells[2][1];
-      this[move.from].cells[1][1] = this[move.to].cells[1][1];
-      this[move.from].cells[1][2] = this[move.to].cells[0][1];
-    })
-    this.top.cells[1][0] = this.left.cells[2][1];
-    this.top.cells[1][1] = this.left.cells[1][1];
-    this.top.cells[1][2] = this.left.cells[0][1];
-    /*const first = this[MoveIntructions.Test.start_with].cells[1][0];
-    console.log(first);*/
-    /*MoveIntructions.Test.moves.forEach(move => {
+    const side = this.findSelection();
+    const column = side.selectedCellLocation.y;
+    const first = [this.top.cells[column][0], this.top.cells[column][1], this.top.cells[column][2]];
 
-    })*/
+    this.top.cells[column][0] = this.left.cells[2][column];
+    this.top.cells[column][1] = this.left.cells[1][column];
+    this.top.cells[column][2] = this.left.cells[0][column];
+
+    this.left.cells[0][column] = this.bottom.cells[column][0];
+    this.left.cells[1][column] = this.bottom.cells[column][1];
+    this.left.cells[2][column] = this.bottom.cells[column][2];
+
+    this.bottom.cells[column][2] = this.right.cells[0][column];
+    this.bottom.cells[column][1] = this.right.cells[1][column];
+    this.bottom.cells[column][0] = this.right.cells[2][column];
+
+    this.right.cells[0][column] = first[0];
+    this.right.cells[1][column] = first[1];
+    this.right.cells[2][column] = first[2];
   }
 
   undo() {

@@ -9,4 +9,5 @@
   <input type="radio" name="mode" [(ngModel)]="mode" [value]="0" (ngModelChange)="change($event)"> Play
   <input type="radio" name="mode" [(ngModel)]="mode" [value]="1" (ngModelChange)="change($event)"> Move
   <button (click)="cube.test()">Test</button>
+  <button (click)="cube.reset()">Reset</button>
 </div>

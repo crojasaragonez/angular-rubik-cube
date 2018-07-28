@@ -43,18 +43,6 @@ export class MoveIntructions {
       { from: SidePosition.Bottom, to: '' },
     ]
   };
-
-
-  static Test: MoveIntruction = {
-    start_with: SidePosition.Top,
-    direction: Direction.Up,
-    moves: [
-      { from: SidePosition.Top, to: SidePosition.Left },
-      { from: SidePosition.Top, to: SidePosition.Right },
-      /*{ from: SidePosition.Right, to: SidePosition.Bottom },
-      { from: SidePosition.Bottom, to: '' },*/
-    ]
-  };
 }
 
 
