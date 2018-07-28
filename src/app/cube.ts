@@ -66,6 +66,28 @@ export class Cube {
     this.right.cells[2][column] = first[2];
   }
 
+  moveDown2(column: number) {
+    if (column === 0) { this.back.rotateLeft(); }
+    if (column === 2) { this.front.rotateRight(); }
+    const first = [this.top.cells[column][2], this.top.cells[column][1], this.top.cells[column][0]];
+
+    this.top.cells[column][0] = this.right.cells[0][column];
+    this.top.cells[column][1] = this.right.cells[1][column];
+    this.top.cells[column][2] = this.right.cells[2][column];
+
+    this.right.cells[0][column] = this.bottom.cells[column][0];
+    this.right.cells[1][column] = this.bottom.cells[column][1];
+    this.right.cells[2][column] = this.bottom.cells[column][2];
+
+    this.bottom.cells[column][2] = this.left.cells[2][column];
+    this.bottom.cells[column][1] = this.left.cells[1][column];
+    this.bottom.cells[column][0] = this.left.cells[0][column];
+
+    this.left.cells[0][column] = first[0];
+    this.left.cells[1][column] = first[1];
+    this.left.cells[2][column] = first[2];
+  }
+
   undo() {
     const move = this.history.pop();
     this[move.undo()](move.value, false);
