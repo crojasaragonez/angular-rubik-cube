@@ -30,7 +30,7 @@ export class SideComponent implements OnInit {
   }
 
   flexWrap() {
-    if(this.side.position == SidePosition.Bottom) { return 'wrap-reverse'; }
+    if (this.side.position === SidePosition.Bottom) { return 'wrap-reverse'; }
     return 'wrap';
   }
 }

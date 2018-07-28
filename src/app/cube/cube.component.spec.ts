@@ -5,6 +5,7 @@ import { CubeComponent } from './cube.component';
 import { CubeControlsComponent } from '../cube-controls/cube-controls.component';
 import { SideComponent } from '../side/side.component';
 import { Cube } from '../cube';
+import 'hammerjs';
 
 describe('CubeComponent', () => {
   let component: CubeComponent;

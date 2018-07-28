@@ -1,4 +1,4 @@
-<div class="side" [ngStyle]="{'flex-wrap': flexWrap() }" style=": wrap-reverse;">
+<div class="side" [ngStyle]="{'flex-wrap': flexWrap() }">
   <ng-container *ngFor="let x of row_indexes">
     <div *ngFor="let y of column_indexes" class="cell" [class.selected]="side.cells[x][y].selected"
                                                        [ngClass]="side.cells[x][y].color"
