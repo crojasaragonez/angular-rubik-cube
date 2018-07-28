@@ -83,21 +83,12 @@ export class Cube {
       this.top.cells[column][0]
     ];
 
-    this.top.cells[column][0] = this.right.cells[0][column];
-    this.top.cells[column][1] = this.right.cells[1][column];
-    this.top.cells[column][2] = this.right.cells[2][column];
-
-    this.right.cells[0][column] = this.bottom.cells[column][0];
-    this.right.cells[1][column] = this.bottom.cells[column][1];
-    this.right.cells[2][column] = this.bottom.cells[column][2];
-
-    this.bottom.cells[column][2] = this.left.cells[2][column];
-    this.bottom.cells[column][1] = this.left.cells[1][column];
-    this.bottom.cells[column][0] = this.left.cells[0][column];
-
-    this.left.cells[0][column] = first[0];
-    this.left.cells[1][column] = first[1];
-    this.left.cells[2][column] = first[2];
+    [0, 1, 2].forEach(index => {
+      this.top.cells[column][index] = this.right.cells[index][column];
+      this.right.cells[index][column] = this.bottom.cells[column][index];
+      this.bottom.cells[column][index] = this.left.cells[index][column];
+      this.left.cells[index][column] = first[index];
+    });
 
     if (record_move) {
       this.history.push(new Move(column, MoveIntructions.Down2.direction));
