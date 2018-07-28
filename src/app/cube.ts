@@ -74,7 +74,7 @@ export class Cube {
   }
 
   private allSides() {
-    return [this.top, this.bottom, this.left, this.right, this.front, this.back];
+    return [this.front, this.top, this.bottom, this.left, this.right, this.back];
   }
 
   private moveHorizontal(instructions: MoveIntruction, row, record_move = true) {
