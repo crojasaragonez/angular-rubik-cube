@@ -20,7 +20,7 @@ export class CubeComponent {
 
   @HostListener('window:keydown', ['$event']) onkeyUp(event: any) {
     event.preventDefault();
-    if (this.mode == Mode.Play){
+    if (this.mode === Mode.Play) {
       const side = this.cube.findSelection();
       if (side === undefined) { return; }
       if (event.keyCode === 39) { this.cube.moveRight(side.selectedCellLocation.x, true); }
@@ -45,7 +45,7 @@ export class CubeComponent {
   }
 
   @HostListener('window:mousemove', ['$event']) onMousemove(event: MouseEvent) {
-    if (this.mode !== Mode.Move) { return };
+    if (this.mode !== Mode.Move) { return; }
     event.preventDefault();
     if (this.mouseDown) {
       this.cube.rotateX -= event.clientY - this.last.clientY;
@@ -54,9 +54,8 @@ export class CubeComponent {
     }
   }
 
-
   @HostListener('swipe',  ['$event']) onTap(e) {
-    if (this.mode !== Mode.Play) { return };
+    if (this.mode !== Mode.Play) { return; }
     const side = this.cube.findSelection();
     if (side === undefined) { return; }
     if (e.direction === 4) { this.cube.moveRight(side.selectedCellLocation.x, true); }

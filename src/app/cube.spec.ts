@@ -7,7 +7,7 @@ import { SidePosition } from './enums/side-position.enum';
 
 describe('Cube', () => {
   const instance = new Cube();
-  const selected_side =new Side('yellow', SidePosition.Front);
+  const selected_side = new Side('yellow', SidePosition.Front);
   selected_side.selectCell(0, 0);
 
   describe('reset', () => {
