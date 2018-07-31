@@ -12,9 +12,6 @@ export class CubeControlsComponent {
   @Input() cube: Cube;
   @Input() mode: Mode;
   @Output() modeChange = new EventEmitter();
-  constructor() {
-
-  }
 
   change(newValue) {
     this.mode = newValue;

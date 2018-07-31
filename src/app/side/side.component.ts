@@ -16,7 +16,6 @@ export class SideComponent implements OnInit {
 
   row_indexes = [0, 1, 2];
   column_indexes = [0, 1, 2];
-  constructor() { }
 
   ngOnInit() {
     if (this.invert) {

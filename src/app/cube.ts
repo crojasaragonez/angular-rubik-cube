@@ -98,9 +98,9 @@ export class Cube {
   private moveHorizontal(instructions: MoveIntruction, row, record_move = true) {
     const first = this[instructions.start_with].cells[row];
     instructions.moves.forEach(move => {
-      if (move.to === '') { return this[move.from].cells[row] = first; }
       this[move.from].cells[row] = this[move.to].cells[row];
     });
+    this[instructions.end_with].cells[row] = first;
     this.handleHistory(new Move(row, instructions.direction), record_move);
   }
 
@@ -108,9 +108,9 @@ export class Cube {
     [0, 1, 2].forEach(cell => {
       const first = this[instructions.start_with].cells[cell][column];
       instructions.moves.forEach(move => {
-        if (move.to === '') { return this[move.from].cells[cell][column] = first; }
         this[move.from].cells[cell][column] = this[move.to].cells[cell][column];
       });
+      this[instructions.end_with].cells[cell][column] = first;
     });
     this.handleHistory(new Move(column, instructions.direction), record_move);
   }

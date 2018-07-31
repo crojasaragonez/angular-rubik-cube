@@ -1,4 +1,4 @@
 export class Cell {
-  constructor(public color: string, public selected: boolean = false, public text: string = '') {
+  constructor(public color: string, public text: string = '', public selected: boolean = false) {
   }
 }
