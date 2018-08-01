@@ -174,14 +174,35 @@ describe('Cube', () => {
       instance.reset();
     });
 
+    /*const side_colors =  ((side: Side) => {
+      return side.cells.map(c => c.map(e => e.color)));
+    });*/
+    const side_colors = (side: Side) => {
+      return side.cells.map(c => c.map(e => e.color));
+    };
+
     it('should have the right cells in the right place', () => {
       instance.moveDown(0);
-      [0, 1, 2].forEach(i => {
-        expect(instance.front.cells[i][0].color).toEqual('red');
-        expect(instance.bottom.cells[i][0].color).toEqual('yellow');
-        expect(instance.back.cells[i][0].color).toEqual('orange');
-        expect(instance.top.cells[i][0].color).toEqual('white');
-      });
+      expect(side_colors(instance.front)).toEqual([
+                                                                          ['red', 'yellow', 'yellow'],
+                                                                          ['red', 'yellow', 'yellow'],
+                                                                          ['red', 'yellow', 'yellow'],
+                                                                          ]);
+      expect(side_colors(instance.bottom)).toEqual([
+                                                                            ['yellow', 'orange', 'orange'],
+                                                                            ['yellow', 'orange', 'orange'],
+                                                                            ['yellow', 'orange', 'orange'],
+                                                                          ]);
+      expect(side_colors(instance.back)).toEqual([
+                                                                      ['orange', 'white', 'white'],
+                                                                      ['orange', 'white', 'white'],
+                                                                      ['orange', 'white', 'white'],
+                                                                    ]);
+      expect(side_colors(instance.top)).toEqual([
+                                                                      ['white', 'red', 'red'],
+                                                                      ['white', 'red', 'red'],
+                                                                      ['white', 'red', 'red'],
+                                                                    ]);
       instance.front.selectCell(0, 0);
       instance.moveRight(0);
       expect(instance.front.cells[0].map((e) => e.color)).toEqual(['green', 'green', 'green']);
