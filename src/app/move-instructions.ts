@@ -28,9 +28,9 @@ export class MoveIntructions {
     end_with: SidePosition.Top,
     direction: Direction.Up,
     moves: [
-      { from: SidePosition.Front, to: SidePosition.Bottom },
-      { from: SidePosition.Bottom, to: SidePosition.Back },
-      { from: SidePosition.Back, to: SidePosition.Top },
+      { from: SidePosition.Bottom, to: SidePosition.Front },
+      { from: SidePosition.Back, to: SidePosition.Bottom },
+      { from: SidePosition.Top, to: SidePosition.Back },
     ]
   };
   static Up2: MoveIntruction = {
@@ -42,9 +42,9 @@ export class MoveIntructions {
     end_with: SidePosition.Bottom,
     direction: Direction.Down,
     moves: [
-      { from: SidePosition.Front, to: SidePosition.Top },
-      { from: SidePosition.Top, to: SidePosition.Back },
-      { from: SidePosition.Back, to: SidePosition.Bottom },
+      { from: SidePosition.Top, to: SidePosition.Front },
+      { from: SidePosition.Back, to: SidePosition.Top },
+      { from: SidePosition.Bottom, to: SidePosition.Back },
     ]
   };
   static Down2: MoveIntruction = {

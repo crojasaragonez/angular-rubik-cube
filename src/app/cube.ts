@@ -108,7 +108,7 @@ export class Cube {
     [0, 1, 2].forEach(cell => {
       const first = this[instructions.start_with].cells[cell][column];
       instructions.moves.forEach(move => {
-        this[move.from].cells[cell][column] = this[move.to].cells[cell][column];
+        this[move.to].cells[cell][column] = this[move.from].cells[cell][column];
       });
       this[instructions.end_with].cells[cell][column] = first;
     });
