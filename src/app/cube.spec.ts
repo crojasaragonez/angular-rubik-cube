@@ -174,41 +174,68 @@ describe('Cube', () => {
       instance.reset();
     });
 
-    /*const side_colors =  ((side: Side) => {
-      return side.cells.map(c => c.map(e => e.color)));
-    });*/
     const side_colors = (side: Side) => {
       return side.cells.map(c => c.map(e => e.color));
     };
 
-    it('should have the right cells in the right place', () => {
-      instance.moveDown(0);
-      expect(side_colors(instance.front)).toEqual([
-                                                                          ['red', 'yellow', 'yellow'],
-                                                                          ['red', 'yellow', 'yellow'],
-                                                                          ['red', 'yellow', 'yellow'],
-                                                                          ]);
-      expect(side_colors(instance.bottom)).toEqual([
-                                                                            ['yellow', 'orange', 'orange'],
-                                                                            ['yellow', 'orange', 'orange'],
-                                                                            ['yellow', 'orange', 'orange'],
-                                                                          ]);
-      expect(side_colors(instance.back)).toEqual([
-                                                                      ['orange', 'white', 'white'],
-                                                                      ['orange', 'white', 'white'],
-                                                                      ['orange', 'white', 'white'],
-                                                                    ]);
-      expect(side_colors(instance.top)).toEqual([
-                                                                      ['white', 'red', 'red'],
-                                                                      ['white', 'red', 'red'],
-                                                                      ['white', 'red', 'red'],
-                                                                    ]);
-      instance.front.selectCell(0, 0);
-      instance.moveRight(0);
-      expect(instance.front.cells[0].map((e) => e.color)).toEqual(['green', 'green', 'green']);
-      expect(instance.right.cells[0].map((e) => e.color)).toEqual(['red', 'yellow', 'yellow']);
-      expect(instance.back.cells[0].map((e) => e.color)).toEqual(['blue', 'blue', 'blue']);
-      // expect(instance.left.cells[0].map((e) => e.color)).toEqual(['white', 'white', 'orange']);
+    describe('moveDown', () => {
+      it('should have cube sides in the right place', () => {
+        instance.moveDown(0);
+        expect(side_colors(instance.front)).toEqual([ ['red', 'yellow', 'yellow'],
+                                                      ['red', 'yellow', 'yellow'],
+                                                      ['red', 'yellow', 'yellow']]);
+
+        expect(side_colors(instance.bottom)).toEqual([['yellow', 'orange', 'orange'],
+                                                      ['yellow', 'orange', 'orange'],
+                                                      ['yellow', 'orange', 'orange']]);
+
+        expect(side_colors(instance.back)).toEqual([  ['orange', 'white', 'white'],
+                                                      ['orange', 'white', 'white'],
+                                                      ['orange', 'white', 'white']]);
+
+        expect(side_colors(instance.top)).toEqual([   ['white', 'red', 'red'],
+                                                      ['white', 'red', 'red'],
+                                                      ['white', 'red', 'red']]);
+
+        expect(side_colors(instance.left)).toEqual([  ['green', 'green', 'green'],
+                                                      ['green', 'green', 'green'],
+                                                      ['green', 'green', 'green']]);
+
+        expect(side_colors(instance.right)).toEqual([ ['blue', 'blue', 'blue'],
+                                                      ['blue', 'blue', 'blue'],
+                                                      ['blue', 'blue', 'blue']]);
+      });
+    });
+
+    describe('moveDown, moveRight', () => {
+      it('should have cube sides in the right place', () => {
+        instance.moveDown(0);
+        instance.front.selectCell(0, 0);
+        instance.moveRight(0);
+        expect(side_colors(instance.front)).toEqual([ ['green', 'green', 'green'],
+                                                      ['red', 'yellow', 'yellow'],
+                                                      ['red', 'yellow', 'yellow']]);
+
+        expect(side_colors(instance.bottom)).toEqual([['yellow', 'orange', 'orange'],
+                                                      ['yellow', 'orange', 'orange'],
+                                                      ['yellow', 'orange', 'orange']]);
+
+        /*expect(side_colors(instance.back)).toEqual([  ['blue', 'blue', 'blue'],
+                                                      ['white', 'white', 'orange'],
+                                                      ['white', 'white', 'orange']]);*/
+
+        expect(side_colors(instance.top)).toEqual([   ['red', 'red', 'red'],
+                                                      ['red', 'red', 'red'],
+                                                      ['white', 'white', 'white']]);
+
+        /*expect(side_colors(instance.left)).toEqual([  ['white', 'white', 'orange'],
+                                                      ['green', 'green', 'green'],
+                                                      ['green', 'green', 'green']]);*/
+
+        expect(side_colors(instance.right)).toEqual([ ['red', 'yellow', 'yellow'],
+                                                      ['blue', 'blue', 'blue'],
+                                                      ['blue', 'blue', 'blue']]);
+      });
     });
   });
 });
