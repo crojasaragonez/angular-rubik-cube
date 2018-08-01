@@ -8,9 +8,9 @@ export class MoveIntructions {
     end_with: SidePosition.Left,
     direction: Direction.Left,
     moves: [
-      { from: SidePosition.Front, to: SidePosition.Right },
-      { from: SidePosition.Right, to: SidePosition.Back },
-      { from: SidePosition.Back, to: SidePosition.Left },
+      { from: SidePosition.Right, to: SidePosition.Front },
+      { from: SidePosition.Back, to: SidePosition.Right },
+      { from: SidePosition.Left, to: SidePosition.Back },
     ]
   };
   static Right: MoveIntruction = {
@@ -18,9 +18,9 @@ export class MoveIntructions {
     end_with: SidePosition.Right,
     direction: Direction.Right,
     moves: [
-      { from: SidePosition.Front, to: SidePosition.Left },
-      { from: SidePosition.Left, to: SidePosition.Back },
-      { from: SidePosition.Back, to: SidePosition.Right },
+      { from: SidePosition.Left, to: SidePosition.Front },
+      { from: SidePosition.Back, to: SidePosition.Left },
+      { from: SidePosition.Right, to: SidePosition.Back },
     ]
   };
   static Up: MoveIntruction = {
