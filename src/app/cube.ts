@@ -68,13 +68,13 @@ export class Cube {
   }
 
   moveDown(column: number, record_move = true) {
-    if (column === 0) { this.left.rotateLeft(); }
+    if (column === 0) { this.left.rotateRight(); }
     if (column === 2) { this.right.rotateRight(); }
     this.moveVertical(MoveIntructions.Down, column, record_move);
   }
 
   moveUp(column: number, record_move = true) {
-    if (column === 0) { this.left.rotateRight(); }
+    if (column === 0) { this.left.rotateLeft(); }
     if (column === 2) { this.right.rotateLeft(); }
     this.moveVertical(MoveIntructions.Up, column, record_move);
   }
