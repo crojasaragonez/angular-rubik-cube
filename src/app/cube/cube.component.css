@@ -34,7 +34,7 @@
 ._3dface--left {
   left: 50%;
   margin-left: -125px;
-  transform: rotateY(-90deg) translate3d(0, 0, 125px);
+  transform: rotateY(90deg) translate3d(0, 0, -125px);
 }
 
 ._3dface--right {
@@ -44,5 +44,5 @@
 }
 
 ._3dface--back {
-  transform: rotateY(180deg) translate3d(0, 0, 125px);
+  transform: rotateY(0deg) translate3d(0, 0, -125px);
 }
