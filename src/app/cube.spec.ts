@@ -207,6 +207,28 @@ describe('Cube', () => {
       });
     });
 
+    describe('moveUp', () => {
+      it('should have cube sides in the right place', () => {
+        instance.moveUp(0);
+        expect(side_colors(instance.front)).toEqual([ ['orange', 'yellow', 'yellow'],
+                                                      ['orange', 'yellow', 'yellow'],
+                                                      ['orange', 'yellow', 'yellow']]);
+
+        expect(side_colors(instance.top)).toEqual([['yellow', 'red', 'red'],
+                                                   ['yellow', 'red', 'red'],
+                                                   ['yellow', 'red', 'red']]);
+
+
+        expect(side_colors(instance.back)).toEqual([  ['red', 'white', 'white'],
+                                                      ['red', 'white', 'white'],
+                                                      ['red', 'white', 'white']]);
+
+        expect(side_colors(instance.bottom)).toEqual([['white', 'orange', 'orange'],
+                                                      ['white', 'orange', 'orange'],
+                                                      ['white', 'orange', 'orange']]);
+      });
+    });
+
     describe('moveDown, moveRight', () => {
       it('should have cube sides in the right place', () => {
         instance.moveDown(0);
