@@ -24,5 +24,13 @@ describe('Move', () => {
     it('should return the opposite move', () => {
       expect(new Move(0, Direction.Left).undo()).toEqual(Direction.Right);
     });
+
+    it('should return the opposite move', () => {
+      expect(new Move(0, Direction.Down2).undo()).toEqual(Direction.Up2);
+    });
+
+    it('should return the opposite move', () => {
+      expect(new Move(0, Direction.Up2).undo()).toEqual(Direction.Down2);
+    });
   });
 });

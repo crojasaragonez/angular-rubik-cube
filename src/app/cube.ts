@@ -35,13 +35,31 @@ export class Cube {
   }
 
   resetSelection() {
-    this.allSides().forEach(side => {
-      side.resetSelection();
-    });
+    this.allSides().forEach(side => { side.resetSelection(); });
   }
 
   findSelection() {
     return this.allSides().find(x => x.selected === true);
+  }
+
+  moveUp2(column: number, record_move = true) {
+    if (column === 0) { this.back.rotateRight(); }
+    if (column === 2) { this.front.rotateLeft(); }
+    [1, 2, 3].forEach(() => { this.moveDown2(column, false); });
+    this.handleHistory(new Move(column, MoveIntructions.Up2.direction), record_move);
+  }
+
+  moveDown2(column: number, record_move = true) {
+    if (column === 0) { this.back.rotateLeft(); }
+    if (column === 2) { this.front.rotateRight(); }
+    const first = [this.top.cells[column][2], this.top.cells[column][1], this.top.cells[column][0]];
+    [0, 1, 2].forEach(index => {
+      this.top.cells[column][index] = this.right.cells[index][column];
+      this.right.cells[index][column] = this.bottom.cells[column][index];
+      this.bottom.cells[column][index] = this.left.cells[index][column];
+      this.left.cells[index][column] = first[index];
+    });
+    this.handleHistory(new Move(column, MoveIntructions.Down2.direction), record_move);
   }
 
   undo() {
@@ -80,24 +98,24 @@ export class Cube {
   private moveHorizontal(instructions: MoveIntruction, row, record_move = true) {
     const first = this[instructions.start_with].cells[row];
     instructions.moves.forEach(move => {
-      if (move.to === '') { return this[move.from].cells[row] = first; }
-      this[move.from].cells[row] = this[move.to].cells[row];
+      this[move.to].cells[row] = this[move.from].cells[row];
     });
-    if (record_move) {
-      this.history.push(new Move(row, instructions.direction));
-    }
+    this[instructions.end_with].cells[row] = first;
+    this.handleHistory(new Move(row, instructions.direction), record_move);
   }
 
   private moveVertical(instructions: MoveIntruction, column, record_move = true) {
     [0, 1, 2].forEach(cell => {
       const first = this[instructions.start_with].cells[cell][column];
       instructions.moves.forEach(move => {
-        if (move.to === '') { return this[move.from].cells[cell][column] = first; }
-        this[move.from].cells[cell][column] = this[move.to].cells[cell][column];
+        this[move.to].cells[cell][column] = this[move.from].cells[cell][column];
       });
+      this[instructions.end_with].cells[cell][column] = first;
     });
-    if (record_move) {
-      this.history.push(new Move(column, instructions.direction));
-    }
+    this.handleHistory(new Move(column, instructions.direction), record_move);
+  }
+
+  private handleHistory(move: Move, record_move = true) {
+    if (record_move) { this.history.push(move); }
   }
 }

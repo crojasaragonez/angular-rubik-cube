@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { Cube } from '../cube';
 import { Mode } from '../enums/mode.enum';
+import { SidePosition } from '../enums/side-position.enum';
 
 @Component({
   selector: 'app-cube',
@@ -23,10 +24,22 @@ export class CubeComponent {
     if (this.mode === Mode.Play) {
       const side = this.cube.findSelection();
       if (side === undefined) { return; }
-      if (event.keyCode === 39) { this.cube.moveRight(side.selectedCellLocation.x, true); }
-      if (event.keyCode === 37) { this.cube.moveLeft(side.selectedCellLocation.x, true); }
-      if (event.keyCode === 40) { this.cube.moveDown(side.selectedCellLocation.y, true); }
-      if (event.keyCode === 38) { this.cube.moveUp(side.selectedCellLocation.y, true); }
+      if (event.keyCode === 39) { this.cube.moveRight(side.selectedCellLocation.x); }
+      if (event.keyCode === 37) { this.cube.moveLeft(side.selectedCellLocation.x); }
+      if (event.keyCode === 40) {
+        if (side.position === SidePosition.Left || side.position === SidePosition.Right) {
+          this.cube.moveDown2(side.selectedCellLocation.y);
+          return;
+        }
+        this.cube.moveDown(side.selectedCellLocation.y);
+      }
+      if (event.keyCode === 38) {
+        if (side.position === SidePosition.Left || side.position === SidePosition.Right) {
+          this.cube.moveUp2(side.selectedCellLocation.y);
+          return;
+        }
+        this.cube.moveUp(side.selectedCellLocation.y);
+      }
       return;
     }
     if (event.keyCode === 39) { this.cube.rotateY += 5; }
@@ -58,9 +71,21 @@ export class CubeComponent {
     if (this.mode !== Mode.Play) { return; }
     const side = this.cube.findSelection();
     if (side === undefined) { return; }
-    if (e.direction === 4) { this.cube.moveRight(side.selectedCellLocation.x, true); }
-    if (e.direction === 2) { this.cube.moveLeft(side.selectedCellLocation.x, true); }
-    if (e.direction === 16) { this.cube.moveDown(side.selectedCellLocation.y, true); }
-    if (e.direction === 8) { this.cube.moveUp(side.selectedCellLocation.y, true); }
+    if (e.direction === 4) { this.cube.moveRight(side.selectedCellLocation.x); }
+    if (e.direction === 2) { this.cube.moveLeft(side.selectedCellLocation.x); }
+    if (e.direction === 16) {
+      if (side.position === SidePosition.Left || side.position === SidePosition.Right) {
+        this.cube.moveDown2(side.selectedCellLocation.y);
+        return;
+      }
+      this.cube.moveDown(side.selectedCellLocation.y);
+    }
+    if (e.direction === 8) {
+      if (side.position === SidePosition.Left || side.position === SidePosition.Right) {
+        this.cube.moveUp2(side.selectedCellLocation.y);
+        return;
+      }
+      this.cube.moveUp(side.selectedCellLocation.y);
+    }
   }
 }
