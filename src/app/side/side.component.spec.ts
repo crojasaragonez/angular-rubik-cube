@@ -18,7 +18,6 @@ describe('SideComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SideComponent);
     component = fixture.componentInstance;
-    component.invert = false;
     component.side = new Side('red', SidePosition.Top);
     fixture.detectChanges();
   });
