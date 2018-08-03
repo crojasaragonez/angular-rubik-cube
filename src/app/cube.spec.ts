@@ -242,6 +242,64 @@ describe('Cube', () => {
         expect(instance.left.cells[0][2].text).toEqual('3');
       });
     });
+
+    //////////////////////////////////////////////////////////
+
+    describe('orange, green, yellow', () => {
+      it('should have the right colors', () => {
+        expect(instance.bottom.cells[0][0].color).toEqual('orange');
+        expect(instance.left.cells[2][2].color).toEqual('green');
+        expect(instance.front.cells[2][0].color).toEqual('yellow');
+      });
+
+      it('should have the right text', () => {
+        expect(instance.bottom.cells[0][0].text).toEqual('1');
+        expect(instance.left.cells[2][2].text).toEqual('9');
+        expect(instance.front.cells[2][0].text).toEqual('7');
+      });
+    });
+
+    describe('orange, white, green', () => {
+      it('should have the right colors', () => {
+        expect(instance.bottom.cells[2][0].color).toEqual('orange');
+        expect(instance.back.cells[0][0].color).toEqual('white');
+        expect(instance.left.cells[2][0].color).toEqual('green');
+      });
+
+      it('should have the right text', () => {
+        expect(instance.bottom.cells[2][0].text).toEqual('7');
+        expect(instance.back.cells[0][0].text).toEqual('1');
+        expect(instance.left.cells[2][0].text).toEqual('7');
+      });
+    });
+
+    describe('orange, blue, white', () => {
+      it('should have the right colors', () => {
+        expect(instance.bottom.cells[2][2].color).toEqual('orange');
+        expect(instance.right.cells[2][2].color).toEqual('blue');
+        expect(instance.back.cells[0][2].color).toEqual('white');
+      });
+
+      it('should have the right text', () => {
+        expect(instance.bottom.cells[2][2].text).toEqual('9');
+        expect(instance.right.cells[2][2].text).toEqual('9');
+        expect(instance.back.cells[0][2].text).toEqual('3');
+      });
+    });
+
+    describe('orange, yellow, blue', () => {
+      it('should have the right colors', () => {
+        expect(instance.bottom.cells[0][2].color).toEqual('orange');
+        expect(instance.front.cells[2][2].color).toEqual('yellow');
+        expect(instance.right.cells[2][0].color).toEqual('blue');
+      });
+
+      it('should have the right text', () => {
+        expect(instance.bottom.cells[0][2].text).toEqual('3');
+        expect(instance.front.cells[2][2].text).toEqual('9');
+        expect(instance.right.cells[2][0].text).toEqual('7');
+      });
+    });
   });
 
   describe('cell consistency after some moves', () => {
