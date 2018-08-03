@@ -11,7 +11,7 @@ export class Side {
     this.cells = [
       [new Cell(color, '1'), new Cell(color, '2'), new Cell(color, '3')],
       [new Cell(color, '4'), new Cell(color, '5'), new Cell(color, '6')],
-      [new Cell(color, '7'), new Cell(color, '8'), new Cell(color, '8')],
+      [new Cell(color, '7'), new Cell(color, '8'), new Cell(color, '9')],
     ];
   }
 
