@@ -9,9 +9,9 @@ export class Side {
 
   constructor(color: string, public position: SidePosition, public selected: boolean = false) {
     this.cells = [
-      [new Cell(color, '0,0'), new Cell(color, '0,1'), new Cell(color, '0,2')],
-      [new Cell(color, '1,0'), new Cell(color, '1,1'), new Cell(color, '1,2')],
-      [new Cell(color, '2,0'), new Cell(color, '2,1'), new Cell(color, '2,2')],
+      [new Cell(color, '1'), new Cell(color, '2'), new Cell(color, '3')],
+      [new Cell(color, '4'), new Cell(color, '5'), new Cell(color, '6')],
+      [new Cell(color, '7'), new Cell(color, '8'), new Cell(color, '8')],
     ];
   }
 
