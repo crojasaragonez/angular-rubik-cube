@@ -362,34 +362,24 @@ describe('Cube', () => {
       });
     });
 
-    describe('moveDown, moveRight', () => {
+    describe('moveRight', () => {
       it('should have cube sides in the right place', () => {
-        instance.moveDown(0);
-        instance.front.selectCell(0, 0);
         instance.moveRight(0);
-        /*expect(side_colors(instance.front)).toEqual([ ['green', 'green', 'green'],
-                                                      ['red', 'yellow', 'yellow'],
-                                                      ['red', 'yellow', 'yellow']]);
+        expect(side_colors(instance.front)).toEqual([ ['green', 'green', 'green'],
+                                                      ['yellow', 'yellow', 'yellow'],
+                                                      ['yellow', 'yellow', 'yellow']]);
 
-        expect(side_colors(instance.bottom)).toEqual([['yellow', 'orange', 'orange'],
-                                                      ['yellow', 'orange', 'orange'],
-                                                      ['yellow', 'orange', 'orange']]);
+        expect(side_colors(instance.right)).toEqual([ ['yellow', 'yellow', 'yellow'],
+                                                      ['blue', 'blue', 'blue'],
+                                                      ['blue', 'blue', 'blue']]);
 
         expect(side_colors(instance.back)).toEqual([  ['blue', 'blue', 'blue'],
-                                                      ['orange', 'white', 'white'],
-                                                      ['orange', 'white', 'white']]);
-
-        expect(side_colors(instance.top)).toEqual([   ['red', 'red', 'red'],
-                                                      ['red', 'red', 'red'],
+                                                      ['white', 'white', 'white'],
                                                       ['white', 'white', 'white']]);
 
-        expect(side_colors(instance.left)).toEqual([  ['orange', 'white', 'white'],
+        expect(side_colors(instance.left)).toEqual([  ['white', 'white', 'white'],
                                                       ['green', 'green', 'green'],
                                                       ['green', 'green', 'green']]);
-
-        expect(side_colors(instance.right)).toEqual([ ['red', 'yellow', 'yellow'],
-                                                      ['blue', 'blue', 'blue'],
-                                                      ['blue', 'blue', 'blue']]);*/
       });
     });
   });
