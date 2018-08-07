@@ -4,23 +4,23 @@ import { MoveIntruction } from './move-intruction';
 
 export class MoveIntructions {
   static Left: MoveIntruction = {
-    start_with: SidePosition.Front,
-    end_with: SidePosition.Left,
+    start_with: SidePosition.Left,
+    end_with: SidePosition.Back,
     direction: Direction.Left,
     moves: [
+      { from: SidePosition.Front, to: SidePosition.Left },
       { from: SidePosition.Right, to: SidePosition.Front },
       { from: SidePosition.Back, to: SidePosition.Right },
-      { from: SidePosition.Left, to: SidePosition.Back },
     ]
   };
   static Right: MoveIntruction = {
-    start_with: SidePosition.Front,
-    end_with: SidePosition.Right,
+    start_with: SidePosition.Right,
+    end_with: SidePosition.Back,
     direction: Direction.Right,
     moves: [
+      { from: SidePosition.Front, to: SidePosition.Right },
       { from: SidePosition.Left, to: SidePosition.Front },
-      { from: SidePosition.Back, to: SidePosition.Left },
-      { from: SidePosition.Right, to: SidePosition.Back },
+      { from: SidePosition.Back, to: SidePosition.Left }
     ]
   };
   static Up: MoveIntruction = {
