@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Side } from '../side';
 import { Cube } from '../cube';
 import { SidePosition } from '../enums/side-position.enum';
@@ -8,28 +8,16 @@ import { SidePosition } from '../enums/side-position.enum';
   templateUrl: './side.component.html',
   styleUrls: ['./side.component.css']
 })
-export class SideComponent implements OnInit {
+export class SideComponent {
 
   @Input() cube: Cube;
   @Input() side: Side;
-  @Input() invert = false;
 
   row_indexes = [0, 1, 2];
   column_indexes = [0, 1, 2];
 
-  ngOnInit() {
-    if (this.invert) {
-      this.column_indexes = this.column_indexes.reverse();
-    }
-  }
-
   select(x, y) {
     this.cube.resetSelection();
     this.side.selectCell(x, y);
-  }
-
-  flexWrap() {
-    if (this.side.position === SidePosition.Bottom) { return 'wrap-reverse'; }
-    return 'wrap';
   }
 }

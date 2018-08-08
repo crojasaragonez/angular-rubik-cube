@@ -169,6 +169,139 @@ describe('Cube', () => {
     });
   });
 
+  describe('corner consistency', () => {
+    beforeEach(() => {
+      instance.reset();
+    });
+    describe('red, yellow, green', () => {
+      it('should have the right colors', () => {
+        expect(instance.front.cells[0][0].color).toEqual('yellow');
+        expect(instance.left.cells[0][2].color).toEqual('green');
+        expect(instance.top.cells[2][0].color).toEqual('red');
+      });
+
+      it('should have the right text', () => {
+        expect(instance.front.cells[0][0].text).toEqual('1');
+        expect(instance.left.cells[0][2].text).toEqual('3');
+        expect(instance.top.cells[2][0].text).toEqual('7');
+      });
+    });
+
+    describe('red, blue, yellow', () => {
+      it('should have the right colors', () => {
+        expect(instance.top.cells[2][2].color).toEqual('red');
+        expect(instance.right.cells[0][0].color).toEqual('blue');
+        expect(instance.front.cells[0][2].color).toEqual('yellow');
+      });
+
+      it('should have the right text', () => {
+        expect(instance.top.cells[2][2].text).toEqual('9');
+        expect(instance.right.cells[0][0].text).toEqual('1');
+        expect(instance.front.cells[0][2].text).toEqual('3');
+      });
+    });
+
+    describe('red, white, blue', () => {
+      it('should have the right colors', () => {
+        expect(instance.top.cells[0][2].color).toEqual('red');
+        expect(instance.back.cells[2][2].color).toEqual('white');
+        expect(instance.right.cells[0][2].color).toEqual('blue');
+      });
+
+      it('should have the right text', () => {
+        expect(instance.top.cells[0][2].text).toEqual('3');
+        expect(instance.back.cells[2][2].text).toEqual('9');
+        expect(instance.right.cells[0][2].text).toEqual('3');
+      });
+    });
+
+    describe('red, green, white', () => {
+      it('should have the right colors', () => {
+        expect(instance.top.cells[0][0].color).toEqual('red');
+        expect(instance.left.cells[0][0].color).toEqual('green');
+        expect(instance.back.cells[2][0].color).toEqual('white');
+      });
+
+      it('should have the right text', () => {
+        expect(instance.top.cells[0][0].text).toEqual('1');
+        expect(instance.left.cells[0][0].text).toEqual('1');
+        expect(instance.back.cells[2][0].text).toEqual('7');
+      });
+    });
+
+    describe('red, yellow, green', () => {
+      it('should have the right colors', () => {
+        expect(instance.top.cells[2][0].color).toEqual('red');
+        expect(instance.front.cells[0][0].color).toEqual('yellow');
+        expect(instance.left.cells[0][2].color).toEqual('green');
+      });
+
+      it('should have the right text', () => {
+        expect(instance.top.cells[2][0].text).toEqual('7');
+        expect(instance.front.cells[0][0].text).toEqual('1');
+        expect(instance.left.cells[0][2].text).toEqual('3');
+      });
+    });
+
+    //////////////////////////////////////////////////////////
+
+    describe('orange, green, yellow', () => {
+      it('should have the right colors', () => {
+        expect(instance.bottom.cells[0][0].color).toEqual('orange');
+        expect(instance.left.cells[2][2].color).toEqual('green');
+        expect(instance.front.cells[2][0].color).toEqual('yellow');
+      });
+
+      it('should have the right text', () => {
+        expect(instance.bottom.cells[0][0].text).toEqual('1');
+        expect(instance.left.cells[2][2].text).toEqual('9');
+        expect(instance.front.cells[2][0].text).toEqual('7');
+      });
+    });
+
+    describe('orange, white, green', () => {
+      it('should have the right colors', () => {
+        expect(instance.bottom.cells[2][0].color).toEqual('orange');
+        expect(instance.back.cells[0][0].color).toEqual('white');
+        expect(instance.left.cells[2][0].color).toEqual('green');
+      });
+
+      it('should have the right text', () => {
+        expect(instance.bottom.cells[2][0].text).toEqual('7');
+        expect(instance.back.cells[0][0].text).toEqual('1');
+        expect(instance.left.cells[2][0].text).toEqual('7');
+      });
+    });
+
+    describe('orange, blue, white', () => {
+      it('should have the right colors', () => {
+        expect(instance.bottom.cells[2][2].color).toEqual('orange');
+        expect(instance.right.cells[2][2].color).toEqual('blue');
+        expect(instance.back.cells[0][2].color).toEqual('white');
+      });
+
+      it('should have the right text', () => {
+        expect(instance.bottom.cells[2][2].text).toEqual('9');
+        expect(instance.right.cells[2][2].text).toEqual('9');
+        expect(instance.back.cells[0][2].text).toEqual('3');
+      });
+    });
+
+    describe('orange, yellow, blue', () => {
+      it('should have the right colors', () => {
+        expect(instance.bottom.cells[0][2].color).toEqual('orange');
+        expect(instance.front.cells[2][2].color).toEqual('yellow');
+        expect(instance.right.cells[2][0].color).toEqual('blue');
+      });
+
+      it('should have the right text', () => {
+        expect(instance.bottom.cells[0][2].text).toEqual('3');
+        expect(instance.front.cells[2][2].text).toEqual('9');
+        expect(instance.right.cells[2][0].text).toEqual('7');
+      });
+    });
+  });
+
   describe('cell consistency after some moves', () => {
     beforeEach(() => {
       instance.reset();
@@ -229,34 +362,68 @@ describe('Cube', () => {
       });
     });
 
-    describe('moveDown, moveRight', () => {
+    describe('moveRight', () => {
       it('should have cube sides in the right place', () => {
-        instance.moveDown(0);
-        instance.front.selectCell(0, 0);
         instance.moveRight(0);
         expect(side_colors(instance.front)).toEqual([ ['green', 'green', 'green'],
-                                                      ['red', 'yellow', 'yellow'],
-                                                      ['red', 'yellow', 'yellow']]);
+                                                      ['yellow', 'yellow', 'yellow'],
+                                                      ['yellow', 'yellow', 'yellow']]);
 
-        expect(side_colors(instance.bottom)).toEqual([['yellow', 'orange', 'orange'],
-                                                      ['yellow', 'orange', 'orange'],
-                                                      ['yellow', 'orange', 'orange']]);
-
-        /*expect(side_colors(instance.back)).toEqual([  ['blue', 'blue', 'blue'],
-                                                      ['white', 'white', 'orange'],
-                                                      ['white', 'white', 'orange']]);*/
-
-        expect(side_colors(instance.top)).toEqual([   ['red', 'red', 'red'],
-                                                      ['red', 'red', 'red'],
-                                                      ['white', 'white', 'white']]);
-
-        /*expect(side_colors(instance.left)).toEqual([  ['white', 'white', 'orange'],
-                                                      ['green', 'green', 'green'],
-                                                      ['green', 'green', 'green']]);*/
-
-        expect(side_colors(instance.right)).toEqual([ ['red', 'yellow', 'yellow'],
+        expect(side_colors(instance.right)).toEqual([ ['yellow', 'yellow', 'yellow'],
                                                       ['blue', 'blue', 'blue'],
                                                       ['blue', 'blue', 'blue']]);
+
+        expect(side_colors(instance.back)).toEqual([  ['white', 'white', 'white'],
+                                                      ['white', 'white', 'white'],
+                                                      ['blue', 'blue', 'blue']]);
+
+        expect(side_colors(instance.left)).toEqual([  ['white', 'white', 'white'],
+                                                      ['green', 'green', 'green'],
+                                                      ['green', 'green', 'green']]);
+      });
+    });
+
+    describe('moveLeft', () => {
+      it('should have cube sides in the right place', () => {
+        instance.moveLeft(0);
+        expect(side_colors(instance.front)).toEqual([['blue', 'blue', 'blue'],
+                                                    ['yellow', 'yellow', 'yellow'],
+                                                    ['yellow', 'yellow', 'yellow']]);
+
+        expect(side_colors(instance.left)).toEqual([['yellow', 'yellow', 'yellow'],
+                                                    ['green', 'green', 'green'],
+                                                    ['green', 'green', 'green']]);
+
+        expect(side_colors(instance.back)).toEqual([['white', 'white', 'white'],
+                                                    ['white', 'white', 'white'],
+                                                    ['green', 'green', 'green']]);
+
+        expect(side_colors(instance.right)).toEqual([['white', 'white', 'white'],
+                                                     ['blue', 'blue', 'blue'],
+                                                     ['blue', 'blue', 'blue']]);
+      });
+    });
+
+    describe('moveLeft, moveUp', () => {
+      it('should have cube sides in the right place', () => {
+        instance.moveLeft(0);
+        instance.front.selectCell(0, 0);
+        instance.moveUp(0);
+        expect(side_colors(instance.front)).toEqual([['orange', 'blue', 'blue'],
+                                                     ['orange', 'yellow', 'yellow'],
+                                                     ['orange', 'yellow', 'yellow']]);
+
+        expect(side_colors(instance.left)).toEqual([['yellow', 'green', 'green'],
+                                                    ['yellow', 'green', 'green'],
+                                                    ['yellow', 'green', 'green']]);
+
+        expect(side_colors(instance.back)).toEqual([['red', 'white', 'white'],
+                                                    ['red', 'white', 'white'],
+                                                    ['red', 'green', 'green']]);
+
+        expect(side_colors(instance.right)).toEqual([['white', 'white', 'white'],
+                                                     ['blue', 'blue', 'blue'],
+                                                     ['blue', 'blue', 'blue']]);
       });
     });
   });

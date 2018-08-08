@@ -97,10 +97,15 @@ export class Cube {
 
   private moveHorizontal(instructions: MoveIntruction, row, record_move = true) {
     const first = this[instructions.start_with].cells[row];
+    const opposite_row = this.oppositeIndex(row);
     instructions.moves.forEach(move => {
-      this[move.to].cells[row] = this[move.from].cells[row];
+      if (move.from === SidePosition.Back) {
+        this[move.to].cells[row] = this[move.from].cells[opposite_row].reverse();
+      } else {
+        this[move.to].cells[row] = this[move.from].cells[row];
+      }
     });
-    this[instructions.end_with].cells[row] = first;
+    this[instructions.end_with].cells[opposite_row] = first.reverse();
     this.handleHistory(new Move(row, instructions.direction), record_move);
   }
 
@@ -117,5 +122,11 @@ export class Cube {
 
   private handleHistory(move: Move, record_move = true) {
     if (record_move) { this.history.push(move); }
+  }
+
+  private oppositeIndex(index) {
+    if (index === 1) { return index; }
+    if (index === 0) { return 2; }
+    return 0;
   }
 }
