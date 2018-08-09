@@ -404,6 +404,42 @@ describe('Cube', () => {
       });
     });
 
+    describe('moveDown2', () => {
+      it('should have cube sides in the right place', () => {
+        instance.moveDown2(0);
+        expect(side_colors(instance.left)).toEqual([['red', 'green', 'green'],
+                                                    ['red', 'green', 'green'],
+                                                    ['red', 'green', 'green']]);
+        expect(side_colors(instance.bottom)).toEqual([['orange', 'orange', 'orange'],
+                                                    ['orange', 'orange', 'orange'],
+                                                    ['green', 'green', 'green']]);
+        expect(side_colors(instance.right)).toEqual([['blue', 'blue', 'orange'],
+                                                    ['blue', 'blue', 'orange'],
+                                                    ['blue', 'blue', 'orange']]);
+        expect(side_colors(instance.top)).toEqual([['blue', 'blue', 'blue'],
+                                                    ['red', 'red', 'red'],
+                                                    ['red', 'red', 'red']]);
+      });
+    });
+
+    describe('moveUp2', () => {
+      it('should have cube sides in the right place', () => {
+        instance.moveUp2(0);
+        expect(side_colors(instance.left)).toEqual([['orange', 'green', 'green'],
+                                                    ['orange', 'green', 'green'],
+                                                    ['orange', 'green', 'green']]);
+        expect(side_colors(instance.bottom)).toEqual([['orange', 'orange', 'orange'],
+                                                    ['orange', 'orange', 'orange'],
+                                                    ['blue', 'blue', 'blue']]);
+        expect(side_colors(instance.right)).toEqual([['blue', 'blue', 'red'],
+                                                    ['blue', 'blue', 'red'],
+                                                    ['blue', 'blue', 'red']]);
+        expect(side_colors(instance.top)).toEqual([['green', 'green', 'green'],
+                                                    ['red', 'red', 'red'],
+                                                    ['red', 'red', 'red']]);
+      });
+    });
+
     describe('moveLeft, moveUp', () => {
       it('should have cube sides in the right place', () => {
         instance.moveLeft(0);

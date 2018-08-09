@@ -43,7 +43,7 @@ export class Cube {
   }
 
   moveUp2(column: number, record_move = true) {
-    [1, 2, 3].forEach(() => { this.moveDown2(column, false); });
+    this.indexIterator(() => { this.moveDown2(column, false); });
     this.handleHistory(new Move(column, MoveIntructions.Up2.direction), record_move);
   }
 
@@ -54,19 +54,23 @@ export class Cube {
     const first = [this.top.cells[column][0], this.top.cells[column][1], this.top.cells[column][2]];
     const opposite_column = this.oppositeIndex(column);
 
-    [0, 1, 2].forEach(index => {
+    this.indexIterator(index => {
       const opposite_index = this.oppositeIndex(index);
       this.top.cells[column][index] = this.right.cells[index][opposite_column];
       this.right.cells[index][opposite_column] = this.bottom.cells[opposite_column][opposite_index];
     });
 
-    [0, 1, 2].forEach(index => {
+    this.indexIterator(index => {
       const opposite_index = this.oppositeIndex(index);
       this.bottom.cells[opposite_column][index] = this.left.cells[index][column];
       this.left.cells[index][column] = first[opposite_index];
     });
 
     this.handleHistory(new Move(column, MoveIntructions.Down2.direction), record_move);
+  }
+
+  indexIterator(body: Function) {
+    [0, 1, 2].forEach(index => body(index));
   }
 
   undo() {
@@ -117,7 +121,7 @@ export class Cube {
   }
 
   private moveVertical(instructions: MoveIntruction, column, record_move = true) {
-    [0, 1, 2].forEach(cell => {
+    this.indexIterator(cell => {
       const first = this[instructions.start_with].cells[cell][column];
       instructions.moves.forEach(move => {
         this[move.to].cells[cell][column] = this[move.from].cells[cell][column];
