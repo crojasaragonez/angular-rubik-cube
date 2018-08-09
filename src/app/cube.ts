@@ -52,23 +52,20 @@ export class Cube {
     if (column === 2) { this.front.rotateRight(); }
 
     const first = [this.top.cells[column][0], this.top.cells[column][1], this.top.cells[column][2]];
-
     const opposite_column = this.oppositeIndex(column);
-    this.top.cells[column][0] = this.right.cells[0][opposite_column];
-    this.top.cells[column][1] = this.right.cells[1][opposite_column];
-    this.top.cells[column][2] = this.right.cells[2][opposite_column];
 
-    this.right.cells[0][opposite_column] = this.bottom.cells[opposite_column][2];
-    this.right.cells[1][opposite_column] = this.bottom.cells[opposite_column][1];
-    this.right.cells[2][opposite_column] = this.bottom.cells[opposite_column][0];
+    [0, 1, 2].forEach(index => {
+      const opposite_index = this.oppositeIndex(index);
+      this.top.cells[column][index] = this.right.cells[index][opposite_column];
+      this.right.cells[index][opposite_column] = this.bottom.cells[opposite_column][opposite_index];
+    });
 
-    this.bottom.cells[opposite_column][0] = this.left.cells[0][column];
-    this.bottom.cells[opposite_column][1] = this.left.cells[1][column];
-    this.bottom.cells[opposite_column][2] = this.left.cells[2][column];
+    [0, 1, 2].forEach(index => {
+      const opposite_index = this.oppositeIndex(index);
+      this.bottom.cells[opposite_column][index] = this.left.cells[index][column];
+      this.left.cells[index][column] = first[opposite_index];
+    });
 
-    this.left.cells[0][column] = first[2];
-    this.left.cells[1][column] = first[1];
-    this.left.cells[2][column] = first[0];
     this.handleHistory(new Move(column, MoveIntructions.Down2.direction), record_move);
   }
 
