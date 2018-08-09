@@ -43,8 +43,6 @@ export class Cube {
   }
 
   moveUp2(column: number, record_move = true) {
-    if (column === 0) { this.back.rotateRight(); }
-    if (column === 2) { this.front.rotateLeft(); }
     [1, 2, 3].forEach(() => { this.moveDown2(column, false); });
     this.handleHistory(new Move(column, MoveIntructions.Up2.direction), record_move);
   }
@@ -52,13 +50,25 @@ export class Cube {
   moveDown2(column: number, record_move = true) {
     if (column === 0) { this.back.rotateLeft(); }
     if (column === 2) { this.front.rotateRight(); }
-    const first = [this.top.cells[column][2], this.top.cells[column][1], this.top.cells[column][0]];
-    [0, 1, 2].forEach(index => {
-      this.top.cells[column][index] = this.right.cells[index][column];
-      this.right.cells[index][column] = this.bottom.cells[column][index];
-      this.bottom.cells[column][index] = this.left.cells[index][column];
-      this.left.cells[index][column] = first[index];
-    });
+
+    const first = [this.top.cells[column][0], this.top.cells[column][1], this.top.cells[column][2]];
+
+    const opposite_column = this.oppositeIndex(column);
+    this.top.cells[column][0] = this.right.cells[0][opposite_column];
+    this.top.cells[column][1] = this.right.cells[1][opposite_column];
+    this.top.cells[column][2] = this.right.cells[2][opposite_column];
+
+    this.right.cells[0][opposite_column] = this.bottom.cells[opposite_column][2];
+    this.right.cells[1][opposite_column] = this.bottom.cells[opposite_column][1];
+    this.right.cells[2][opposite_column] = this.bottom.cells[opposite_column][0];
+
+    this.bottom.cells[opposite_column][0] = this.left.cells[0][column];
+    this.bottom.cells[opposite_column][1] = this.left.cells[1][column];
+    this.bottom.cells[opposite_column][2] = this.left.cells[2][column];
+
+    this.left.cells[0][column] = first[2];
+    this.left.cells[1][column] = first[1];
+    this.left.cells[2][column] = first[0];
     this.handleHistory(new Move(column, MoveIntructions.Down2.direction), record_move);
   }
 
