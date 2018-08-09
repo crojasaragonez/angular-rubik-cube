@@ -1,7 +1,8 @@
 import { Cell } from './cell';
 import { Cube } from './cube';
 import { Location } from './location';
-import { SidePosition } from './enums/side-position.enum';
+import { SidePosition } from './enums';
+import { CubeHelper } from './cube-helper';
 
 export class Side {
   cells: Cell[][];
@@ -18,6 +19,9 @@ export class Side {
   selectCell(x: number, y: number) {
     this.cells[x][y].selected = true;
     this.selected = true;
+    if (this.position === SidePosition.Back) {
+      x = CubeHelper.oppositeIndex(x);
+    }
     this.selectedCellLocation = new Location(x, y);
   }
 

@@ -1,4 +1,4 @@
-import { Direction } from './enums/direction.enum';
+import { Direction } from './enums';
 
 export interface MoveIntruction {
   start_with: string;

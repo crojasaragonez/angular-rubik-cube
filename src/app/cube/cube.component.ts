@@ -1,7 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { Cube } from '../cube';
-import { Mode } from '../enums/mode.enum';
-import { SidePosition } from '../enums/side-position.enum';
+import { Mode, SidePosition } from '../enums';
+import { UserActionInterpreter } from '../user-action-interpreter';
 
 @Component({
   selector: 'app-cube',
@@ -19,29 +19,19 @@ export class CubeComponent {
     this.mode = Mode.Play;
   }
 
+  private performMove(code: number) {
+    if (this.mode !== Mode.Play) { return; }
+    const side = this.cube.findSelectedSide();
+    if (side === undefined) { return; }
+    const interpreter = new UserActionInterpreter(side);
+    const move = interpreter.resolve(code);
+    this.cube[move.action](move.value);
+  }
+
   @HostListener('window:keydown', ['$event']) onkeyUp(event: any) {
     event.preventDefault();
-    if (this.mode === Mode.Play) {
-      const side = this.cube.findSelection();
-      if (side === undefined) { return; }
-      if (event.keyCode === 39) { this.cube.moveRight(side.selectedCellLocation.x); }
-      if (event.keyCode === 37) { this.cube.moveLeft(side.selectedCellLocation.x); }
-      if (event.keyCode === 40) {
-        if (side.position === SidePosition.Left || side.position === SidePosition.Right) {
-          this.cube.moveDown2(side.selectedCellLocation.y);
-          return;
-        }
-        this.cube.moveDown(side.selectedCellLocation.y);
-      }
-      if (event.keyCode === 38) {
-        if (side.position === SidePosition.Left || side.position === SidePosition.Right) {
-          this.cube.moveUp2(side.selectedCellLocation.y);
-          return;
-        }
-        this.cube.moveUp(side.selectedCellLocation.y);
-      }
-      return;
-    }
+    this.performMove(event.keyCode);
+    if (this.mode !== Mode.Move) { return; }
     if (event.keyCode === 39) { this.cube.rotateY += 5; }
     if (event.keyCode === 37) { this.cube.rotateY -= 5; }
     if (event.keyCode === 40) { this.cube.rotateX += 5; }
@@ -68,24 +58,6 @@ export class CubeComponent {
   }
 
   @HostListener('swipe',  ['$event']) onTap(e) {
-    if (this.mode !== Mode.Play) { return; }
-    const side = this.cube.findSelection();
-    if (side === undefined) { return; }
-    if (e.direction === 4) { this.cube.moveRight(side.selectedCellLocation.x); }
-    if (e.direction === 2) { this.cube.moveLeft(side.selectedCellLocation.x); }
-    if (e.direction === 16) {
-      if (side.position === SidePosition.Left || side.position === SidePosition.Right) {
-        this.cube.moveDown2(side.selectedCellLocation.y);
-        return;
-      }
-      this.cube.moveDown(side.selectedCellLocation.y);
-    }
-    if (e.direction === 8) {
-      if (side.position === SidePosition.Left || side.position === SidePosition.Right) {
-        this.cube.moveUp2(side.selectedCellLocation.y);
-        return;
-      }
-      this.cube.moveUp(side.selectedCellLocation.y);
-    }
+    this.performMove(e.direction);
   }
 }

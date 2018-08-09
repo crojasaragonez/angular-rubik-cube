@@ -2,8 +2,8 @@ import { Side } from './side';
 import { Move } from './move';
 import { MoveIntructions } from './move-instructions';
 import { MoveIntruction } from './move-intruction';
-import { SidePosition } from './enums/side-position.enum';
-import { Direction } from './enums/direction.enum';
+import { SidePosition, Direction, Color } from './enums';
+import { CubeHelper } from './cube-helper';
 
 export class Cube {
   top: Side;
@@ -21,12 +21,12 @@ export class Cube {
   }
 
   reset() {
-    this.top = new Side('red', SidePosition.Top);
-    this.bottom = new Side('orange', SidePosition.Bottom);
-    this.left = new Side('green', SidePosition.Left);
-    this.right = new Side('blue', SidePosition.Right);
-    this.front = new Side('yellow', SidePosition.Front);
-    this.back = new Side('white', SidePosition.Back);
+    this.top = new Side(Color.Red, SidePosition.Top);
+    this.bottom = new Side(Color.Orange, SidePosition.Bottom);
+    this.left = new Side(Color.Green, SidePosition.Left);
+    this.right = new Side(Color.Blue, SidePosition.Right);
+    this.front = new Side(Color.Yellow, SidePosition.Front);
+    this.back = new Side(Color.White, SidePosition.Back);
     // select cell 0,0 from the front side by default
     this.front.selectCell(0, 0);
     this.rotateX = -18;
@@ -38,7 +38,7 @@ export class Cube {
     this.allSides().forEach(side => { side.resetSelection(); });
   }
 
-  findSelection() {
+  findSelectedSide() {
     return this.allSides().find(x => x.selected === true);
   }
 
@@ -52,16 +52,16 @@ export class Cube {
     if (column === 2) { this.front.rotateRight(); }
 
     const first = [this.top.cells[column][0], this.top.cells[column][1], this.top.cells[column][2]];
-    const opposite_column = this.oppositeIndex(column);
+    const opposite_column = CubeHelper.oppositeIndex(column);
 
     this.indexIterator(index => {
-      const opposite_index = this.oppositeIndex(index);
+      const opposite_index = CubeHelper.oppositeIndex(index);
       this.top.cells[column][index] = this.right.cells[index][opposite_column];
       this.right.cells[index][opposite_column] = this.bottom.cells[opposite_column][opposite_index];
     });
 
     this.indexIterator(index => {
-      const opposite_index = this.oppositeIndex(index);
+      const opposite_index = CubeHelper.oppositeIndex(index);
       this.bottom.cells[opposite_column][index] = this.left.cells[index][column];
       this.left.cells[index][column] = first[opposite_index];
     });
@@ -108,7 +108,7 @@ export class Cube {
 
   private moveHorizontal(instructions: MoveIntruction, row, record_move = true) {
     const first = this[instructions.start_with].cells[row];
-    const opposite_row = this.oppositeIndex(row);
+    const opposite_row = CubeHelper.oppositeIndex(row);
     instructions.moves.forEach(move => {
       if (move.from === SidePosition.Back) {
         this[move.to].cells[row] = this[move.from].cells[opposite_row].reverse();
@@ -133,11 +133,5 @@ export class Cube {
 
   private handleHistory(move: Move, record_move = true) {
     if (record_move) { this.history.push(move); }
-  }
-
-  private oppositeIndex(index) {
-    if (index === 1) { return index; }
-    if (index === 0) { return 2; }
-    return 0;
   }
 }

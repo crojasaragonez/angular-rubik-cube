@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Side } from '../side';
 import { Cube } from '../cube';
-import { SidePosition } from '../enums/side-position.enum';
+import { SidePosition } from '../enums';
 
 @Component({
   selector: 'app-side',

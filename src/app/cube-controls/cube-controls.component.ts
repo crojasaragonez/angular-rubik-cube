@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Cube } from '../cube';
-import { Mode } from '../enums/mode.enum';
+import { Mode } from '../enums';
 
 @Component({
   selector: 'app-cube-controls',

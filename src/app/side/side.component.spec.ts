@@ -2,7 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SideComponent } from './side.component';
 import { Side } from '../side';
-import { SidePosition } from '../enums/side-position.enum';
+import { Cube } from '../cube';
+import { SidePosition, Color } from '../enums';
 
 describe('SideComponent', () => {
   let component: SideComponent;
@@ -18,11 +19,22 @@ describe('SideComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SideComponent);
     component = fixture.componentInstance;
-    component.side = new Side('red', SidePosition.Top);
+    component.cube = new Cube();
+    component.side = new Side(Color.Red, SidePosition.Top);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('select', () => {
+    it('should the change current mode', () => {
+      spyOn(component.cube, 'resetSelection');
+      spyOn(component.side, 'selectCell');
+      component.select(2, 2);
+      expect(component.cube.resetSelection).toHaveBeenCalled();
+      expect(component.side.selectCell).toHaveBeenCalledWith(2, 2);
+    });
   });
 });

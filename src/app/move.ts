@@ -1,4 +1,4 @@
-import { Direction } from './enums/direction.enum';
+import { Direction } from './enums';
 
 export class Move {
   constructor(public value, public action: Direction) { }

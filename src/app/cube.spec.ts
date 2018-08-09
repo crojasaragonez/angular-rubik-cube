@@ -3,38 +3,38 @@ import { Side } from './side';
 import { Move } from './move';
 import { Location } from './location';
 import { Cell } from './cell';
-import { SidePosition } from './enums/side-position.enum';
+import { SidePosition, Color } from './enums';
 
 describe('Cube', () => {
   const instance = new Cube();
-  const selected_side = new Side('yellow', SidePosition.Front);
+  const selected_side = new Side(Color.Yellow, SidePosition.Front);
   selected_side.selectCell(0, 0);
 
   describe('reset', () => {
     it('should reset default attributes in the cube', () => {
       instance.reset();
-      expect(instance['top']).toEqual( new Side('red', SidePosition.Top));
-      expect(instance['bottom']).toEqual(new Side('orange', SidePosition.Bottom));
-      expect(instance['left']).toEqual(new Side('green', SidePosition.Left));
-      expect(instance['right']).toEqual(new Side('blue', SidePosition.Right));
-      expect(instance['back']).toEqual(new Side('white', SidePosition.Back));
-      expect(instance['front']).toEqual(selected_side);
+      expect(instance[SidePosition.Top]).toEqual( new Side(Color.Red, SidePosition.Top));
+      expect(instance[SidePosition.Bottom]).toEqual(new Side(Color.Orange, SidePosition.Bottom));
+      expect(instance[SidePosition.Left]).toEqual(new Side(Color.Green, SidePosition.Left));
+      expect(instance[SidePosition.Right]).toEqual(new Side(Color.Blue, SidePosition.Right));
+      expect(instance[SidePosition.Back]).toEqual(new Side(Color.White, SidePosition.Back));
+      expect(instance[SidePosition.Front]).toEqual(selected_side);
       expect(instance['rotateX']).toEqual(-18);
       expect(instance['rotateY']).toEqual(36);
       expect(instance['history']).toEqual([]);
     });
   });
 
-  describe('findSelection', () =>  {
+  describe('findSelectedSide', () =>  {
     it('should find the current selected position', () => {
-      expect(instance.findSelection()).toEqual(selected_side);
+      expect(instance.findSelectedSide()).toEqual(selected_side);
     });
   });
 
   describe('resetSelection', () => {
     it('should reset the current selected position', () => {
       instance.resetSelection();
-      expect(instance.findSelection()).toEqual(undefined);
+      expect(instance.findSelectedSide()).toEqual(undefined);
     });
   });
 
@@ -106,66 +106,66 @@ describe('Cube', () => {
 
   describe('moveDown', () => {
     it('should rotate left side of the cube when column is 0', () => {
-      spyOn(instance['left'], 'rotateLeft');
+      spyOn(instance[SidePosition.Left], 'rotateLeft');
       instance.moveDown(0);
-      expect(instance['left'].rotateLeft).toHaveBeenCalled();
+      expect(instance[SidePosition.Left].rotateLeft).toHaveBeenCalled();
     });
     it('should rotate right side of the cube when column is 2', () => {
-      spyOn(instance['right'], 'rotateRight');
+      spyOn(instance[SidePosition.Right], 'rotateRight');
       instance.moveDown(2);
-      expect(instance['right'].rotateRight).toHaveBeenCalled();
+      expect(instance[SidePosition.Right].rotateRight).toHaveBeenCalled();
     });
   });
 
     describe('moveDown2', () => {
     it('should rotate back side of the cube when column is 0', () => {
-      spyOn(instance['back'], 'rotateLeft');
+      spyOn(instance[SidePosition.Back], 'rotateLeft');
       instance.moveDown2(0);
-      expect(instance['back'].rotateLeft).toHaveBeenCalled();
+      expect(instance[SidePosition.Back].rotateLeft).toHaveBeenCalled();
     });
     it('should rotate front side of the cube when column is 2', () => {
-      spyOn(instance['front'], 'rotateRight');
+      spyOn(instance[SidePosition.Front], 'rotateRight');
       instance.moveDown2(2);
-      expect(instance['front'].rotateRight).toHaveBeenCalled();
+      expect(instance[SidePosition.Front].rotateRight).toHaveBeenCalled();
     });
   });
 
   describe('moveUp', () => {
     it('should rotate left side of the cube when column is 0', () => {
-      spyOn(instance['left'], 'rotateRight');
+      spyOn(instance[SidePosition.Left], 'rotateRight');
       instance.moveUp(0);
-      expect(instance['left'].rotateRight).toHaveBeenCalled();
+      expect(instance[SidePosition.Left].rotateRight).toHaveBeenCalled();
     });
     it('should rotate right side of the cube when column is 2', () => {
-      spyOn(instance['right'], 'rotateLeft');
+      spyOn(instance[SidePosition.Right], 'rotateLeft');
       instance.moveUp(2);
-      expect(instance['right'].rotateLeft).toHaveBeenCalled();
+      expect(instance[SidePosition.Right].rotateLeft).toHaveBeenCalled();
     });
   });
 
   describe('moveRight', () => {
     it('should rotate top side of the cube when column is 0', () => {
-      spyOn(instance['top'], 'rotateRight');
+      spyOn(instance[SidePosition.Top], 'rotateRight');
       instance.moveRight(0);
-      expect(instance['top'].rotateRight).toHaveBeenCalled();
+      expect(instance[SidePosition.Top].rotateRight).toHaveBeenCalled();
     });
     it('should rotate bottom side of the cube when column is 2', () => {
-      spyOn(instance['bottom'], 'rotateLeft');
+      spyOn(instance[SidePosition.Bottom], 'rotateLeft');
       instance.moveRight(2);
-      expect(instance['bottom'].rotateLeft).toHaveBeenCalled();
+      expect(instance[SidePosition.Bottom].rotateLeft).toHaveBeenCalled();
     });
   });
 
   describe('moveLeft', () => {
     it('should rotate top side of the cube when column is 0', () => {
-      spyOn(instance['top'], 'rotateLeft');
+      spyOn(instance[SidePosition.Top], 'rotateLeft');
       instance.moveLeft(0);
-      expect(instance['top'].rotateLeft).toHaveBeenCalled();
+      expect(instance[SidePosition.Top].rotateLeft).toHaveBeenCalled();
     });
     it('should rotate bottom side of the cube when column is 2', () => {
-      spyOn(instance['bottom'], 'rotateRight');
+      spyOn(instance[SidePosition.Bottom], 'rotateRight');
       instance.moveLeft(2);
-      expect(instance['bottom'].rotateRight).toHaveBeenCalled();
+      expect(instance[SidePosition.Bottom].rotateRight).toHaveBeenCalled();
     });
   });
 
@@ -175,41 +175,41 @@ describe('Cube', () => {
     });
     describe('red, yellow, green', () => {
       it('should have the right colors', () => {
-        expect(instance.front.cells[0][0].color).toEqual('yellow');
-        expect(instance.left.cells[0][2].color).toEqual('green');
-        expect(instance.top.cells[2][0].color).toEqual('red');
+        expect(instance.front.cells[0][0].color).toEqual(Color.Yellow);
+        expect(instance.left.cells[0][2].color).toEqual(Color.Green);
+        expect(instance.top.cells[2][0].color).toEqual(Color.Red);
       });
     });
 
     describe('red, blue, yellow', () => {
       it('should have the right colors', () => {
-        expect(instance.top.cells[2][2].color).toEqual('red');
-        expect(instance.right.cells[0][0].color).toEqual('blue');
-        expect(instance.front.cells[0][2].color).toEqual('yellow');
+        expect(instance.top.cells[2][2].color).toEqual(Color.Red);
+        expect(instance.right.cells[0][0].color).toEqual(Color.Blue);
+        expect(instance.front.cells[0][2].color).toEqual(Color.Yellow);
       });
     });
 
     describe('red, white, blue', () => {
       it('should have the right colors', () => {
-        expect(instance.top.cells[0][2].color).toEqual('red');
-        expect(instance.back.cells[2][2].color).toEqual('white');
-        expect(instance.right.cells[0][2].color).toEqual('blue');
+        expect(instance.top.cells[0][2].color).toEqual(Color.Red);
+        expect(instance.back.cells[2][2].color).toEqual(Color.White);
+        expect(instance.right.cells[0][2].color).toEqual(Color.Blue);
       });
     });
 
     describe('red, green, white', () => {
       it('should have the right colors', () => {
-        expect(instance.top.cells[0][0].color).toEqual('red');
-        expect(instance.left.cells[0][0].color).toEqual('green');
-        expect(instance.back.cells[2][0].color).toEqual('white');
+        expect(instance.top.cells[0][0].color).toEqual(Color.Red);
+        expect(instance.left.cells[0][0].color).toEqual(Color.Green);
+        expect(instance.back.cells[2][0].color).toEqual(Color.White);
       });
     });
 
     describe('red, yellow, green', () => {
       it('should have the right colors', () => {
-        expect(instance.top.cells[2][0].color).toEqual('red');
-        expect(instance.front.cells[0][0].color).toEqual('yellow');
-        expect(instance.left.cells[0][2].color).toEqual('green');
+        expect(instance.top.cells[2][0].color).toEqual(Color.Red);
+        expect(instance.front.cells[0][0].color).toEqual(Color.Yellow);
+        expect(instance.left.cells[0][2].color).toEqual(Color.Green);
       });
     });
 
@@ -217,33 +217,33 @@ describe('Cube', () => {
 
     describe('orange, green, yellow', () => {
       it('should have the right colors', () => {
-        expect(instance.bottom.cells[0][0].color).toEqual('orange');
-        expect(instance.left.cells[2][2].color).toEqual('green');
-        expect(instance.front.cells[2][0].color).toEqual('yellow');
+        expect(instance.bottom.cells[0][0].color).toEqual(Color.Orange);
+        expect(instance.left.cells[2][2].color).toEqual(Color.Green);
+        expect(instance.front.cells[2][0].color).toEqual(Color.Yellow);
       });
     });
 
     describe('orange, white, green', () => {
       it('should have the right colors', () => {
-        expect(instance.bottom.cells[2][0].color).toEqual('orange');
-        expect(instance.back.cells[0][0].color).toEqual('white');
-        expect(instance.left.cells[2][0].color).toEqual('green');
+        expect(instance.bottom.cells[2][0].color).toEqual(Color.Orange);
+        expect(instance.back.cells[0][0].color).toEqual(Color.White);
+        expect(instance.left.cells[2][0].color).toEqual(Color.Green);
       });
     });
 
     describe('orange, blue, white', () => {
       it('should have the right colors', () => {
-        expect(instance.bottom.cells[2][2].color).toEqual('orange');
-        expect(instance.right.cells[2][2].color).toEqual('blue');
-        expect(instance.back.cells[0][2].color).toEqual('white');
+        expect(instance.bottom.cells[2][2].color).toEqual(Color.Orange);
+        expect(instance.right.cells[2][2].color).toEqual(Color.Blue);
+        expect(instance.back.cells[0][2].color).toEqual(Color.White);
       });
     });
 
     describe('orange, yellow, blue', () => {
       it('should have the right colors', () => {
-        expect(instance.bottom.cells[0][2].color).toEqual('orange');
-        expect(instance.front.cells[2][2].color).toEqual('yellow');
-        expect(instance.right.cells[2][0].color).toEqual('blue');
+        expect(instance.bottom.cells[0][2].color).toEqual(Color.Orange);
+        expect(instance.front.cells[2][2].color).toEqual(Color.Yellow);
+        expect(instance.right.cells[2][0].color).toEqual(Color.Blue);
       });
     });
   });
@@ -253,136 +253,134 @@ describe('Cube', () => {
       instance.reset();
     });
 
-    const side_colors = (side: Side) => {
-      return side.cells.map(c => c.map(e => e.color));
-    };
+    const side_colors = (side: Side) => side.cells.map(c => c.map(e => e.color));
 
     describe('moveDown', () => {
       it('should have cube sides in the right place', () => {
         instance.moveDown(0);
-        expect(side_colors(instance.front)).toEqual([ ['red', 'yellow', 'yellow'],
-                                                      ['red', 'yellow', 'yellow'],
-                                                      ['red', 'yellow', 'yellow']]);
+        expect(side_colors(instance.front)).toEqual([ [Color.Red, Color.Yellow, Color.Yellow],
+                                                      [Color.Red, Color.Yellow, Color.Yellow],
+                                                      [Color.Red, Color.Yellow, Color.Yellow]]);
 
-        expect(side_colors(instance.bottom)).toEqual([['yellow', 'orange', 'orange'],
-                                                      ['yellow', 'orange', 'orange'],
-                                                      ['yellow', 'orange', 'orange']]);
+        expect(side_colors(instance.bottom)).toEqual([[Color.Yellow, Color.Orange, Color.Orange],
+                                                      [Color.Yellow, Color.Orange, Color.Orange],
+                                                      [Color.Yellow, Color.Orange, Color.Orange]]);
 
-        expect(side_colors(instance.back)).toEqual([  ['orange', 'white', 'white'],
-                                                      ['orange', 'white', 'white'],
-                                                      ['orange', 'white', 'white']]);
+        expect(side_colors(instance.back)).toEqual([  [Color.Orange, Color.White, Color.White],
+                                                      [Color.Orange, Color.White, Color.White],
+                                                      [Color.Orange, Color.White, Color.White]]);
 
-        expect(side_colors(instance.top)).toEqual([   ['white', 'red', 'red'],
-                                                      ['white', 'red', 'red'],
-                                                      ['white', 'red', 'red']]);
+        expect(side_colors(instance.top)).toEqual([   [Color.White, Color.Red, Color.Red],
+                                                      [Color.White, Color.Red, Color.Red],
+                                                      [Color.White, Color.Red, Color.Red]]);
 
-        expect(side_colors(instance.left)).toEqual([  ['green', 'green', 'green'],
-                                                      ['green', 'green', 'green'],
-                                                      ['green', 'green', 'green']]);
+        expect(side_colors(instance.left)).toEqual([  [Color.Green, Color.Green, Color.Green],
+                                                      [Color.Green, Color.Green, Color.Green],
+                                                      [Color.Green, Color.Green, Color.Green]]);
 
-        expect(side_colors(instance.right)).toEqual([ ['blue', 'blue', 'blue'],
-                                                      ['blue', 'blue', 'blue'],
-                                                      ['blue', 'blue', 'blue']]);
+        expect(side_colors(instance.right)).toEqual([ [Color.Blue, Color.Blue, Color.Blue],
+                                                      [Color.Blue, Color.Blue, Color.Blue],
+                                                      [Color.Blue, Color.Blue, Color.Blue]]);
       });
     });
 
     describe('moveUp', () => {
       it('should have cube sides in the right place', () => {
         instance.moveUp(0);
-        expect(side_colors(instance.front)).toEqual([ ['orange', 'yellow', 'yellow'],
-                                                      ['orange', 'yellow', 'yellow'],
-                                                      ['orange', 'yellow', 'yellow']]);
+        expect(side_colors(instance.front)).toEqual([ [Color.Orange, Color.Yellow, Color.Yellow],
+                                                      [Color.Orange, Color.Yellow, Color.Yellow],
+                                                      [Color.Orange, Color.Yellow, Color.Yellow]]);
 
-        expect(side_colors(instance.top)).toEqual([['yellow', 'red', 'red'],
-                                                   ['yellow', 'red', 'red'],
-                                                   ['yellow', 'red', 'red']]);
+        expect(side_colors(instance.top)).toEqual([[Color.Yellow, Color.Red, Color.Red],
+                                                   [Color.Yellow, Color.Red, Color.Red],
+                                                   [Color.Yellow, Color.Red, Color.Red]]);
 
 
-        expect(side_colors(instance.back)).toEqual([  ['red', 'white', 'white'],
-                                                      ['red', 'white', 'white'],
-                                                      ['red', 'white', 'white']]);
+        expect(side_colors(instance.back)).toEqual([  [Color.Red, Color.White, Color.White],
+                                                      [Color.Red, Color.White, Color.White],
+                                                      [Color.Red, Color.White, Color.White]]);
 
-        expect(side_colors(instance.bottom)).toEqual([['white', 'orange', 'orange'],
-                                                      ['white', 'orange', 'orange'],
-                                                      ['white', 'orange', 'orange']]);
+        expect(side_colors(instance.bottom)).toEqual([[Color.White, Color.Orange, Color.Orange],
+                                                      [Color.White, Color.Orange, Color.Orange],
+                                                      [Color.White, Color.Orange, Color.Orange]]);
       });
     });
 
     describe('moveRight', () => {
       it('should have cube sides in the right place', () => {
         instance.moveRight(0);
-        expect(side_colors(instance.front)).toEqual([ ['green', 'green', 'green'],
-                                                      ['yellow', 'yellow', 'yellow'],
-                                                      ['yellow', 'yellow', 'yellow']]);
+        expect(side_colors(instance.front)).toEqual([ [Color.Green, Color.Green, Color.Green],
+                                                      [Color.Yellow, Color.Yellow, Color.Yellow],
+                                                      [Color.Yellow, Color.Yellow, Color.Yellow]]);
 
-        expect(side_colors(instance.right)).toEqual([ ['yellow', 'yellow', 'yellow'],
-                                                      ['blue', 'blue', 'blue'],
-                                                      ['blue', 'blue', 'blue']]);
+        expect(side_colors(instance.right)).toEqual([ [Color.Yellow, Color.Yellow, Color.Yellow],
+                                                      [Color.Blue, Color.Blue, Color.Blue],
+                                                      [Color.Blue, Color.Blue, Color.Blue]]);
 
-        expect(side_colors(instance.back)).toEqual([  ['white', 'white', 'white'],
-                                                      ['white', 'white', 'white'],
-                                                      ['blue', 'blue', 'blue']]);
+        expect(side_colors(instance.back)).toEqual([  [Color.White, Color.White, Color.White],
+                                                      [Color.White, Color.White, Color.White],
+                                                      [Color.Blue, Color.Blue, Color.Blue]]);
 
-        expect(side_colors(instance.left)).toEqual([  ['white', 'white', 'white'],
-                                                      ['green', 'green', 'green'],
-                                                      ['green', 'green', 'green']]);
+        expect(side_colors(instance.left)).toEqual([  [Color.White, Color.White, Color.White],
+                                                      [Color.Green, Color.Green, Color.Green],
+                                                      [Color.Green, Color.Green, Color.Green]]);
       });
     });
 
     describe('moveLeft', () => {
       it('should have cube sides in the right place', () => {
         instance.moveLeft(0);
-        expect(side_colors(instance.front)).toEqual([['blue', 'blue', 'blue'],
-                                                    ['yellow', 'yellow', 'yellow'],
-                                                    ['yellow', 'yellow', 'yellow']]);
+        expect(side_colors(instance.front)).toEqual([[Color.Blue, Color.Blue, Color.Blue],
+                                                    [Color.Yellow, Color.Yellow, Color.Yellow],
+                                                    [Color.Yellow, Color.Yellow, Color.Yellow]]);
 
-        expect(side_colors(instance.left)).toEqual([['yellow', 'yellow', 'yellow'],
-                                                    ['green', 'green', 'green'],
-                                                    ['green', 'green', 'green']]);
+        expect(side_colors(instance.left)).toEqual([[Color.Yellow, Color.Yellow, Color.Yellow],
+                                                    [Color.Green, Color.Green, Color.Green],
+                                                    [Color.Green, Color.Green, Color.Green]]);
 
-        expect(side_colors(instance.back)).toEqual([['white', 'white', 'white'],
-                                                    ['white', 'white', 'white'],
-                                                    ['green', 'green', 'green']]);
+        expect(side_colors(instance.back)).toEqual([[Color.White, Color.White, Color.White],
+                                                    [Color.White, Color.White, Color.White],
+                                                    [Color.Green, Color.Green, Color.Green]]);
 
-        expect(side_colors(instance.right)).toEqual([['white', 'white', 'white'],
-                                                     ['blue', 'blue', 'blue'],
-                                                     ['blue', 'blue', 'blue']]);
+        expect(side_colors(instance.right)).toEqual([[Color.White, Color.White, Color.White],
+                                                     [Color.Blue, Color.Blue, Color.Blue],
+                                                     [Color.Blue, Color.Blue, Color.Blue]]);
       });
     });
 
     describe('moveDown2', () => {
       it('should have cube sides in the right place', () => {
         instance.moveDown2(0);
-        expect(side_colors(instance.left)).toEqual([['red', 'green', 'green'],
-                                                    ['red', 'green', 'green'],
-                                                    ['red', 'green', 'green']]);
-        expect(side_colors(instance.bottom)).toEqual([['orange', 'orange', 'orange'],
-                                                    ['orange', 'orange', 'orange'],
-                                                    ['green', 'green', 'green']]);
-        expect(side_colors(instance.right)).toEqual([['blue', 'blue', 'orange'],
-                                                    ['blue', 'blue', 'orange'],
-                                                    ['blue', 'blue', 'orange']]);
-        expect(side_colors(instance.top)).toEqual([['blue', 'blue', 'blue'],
-                                                    ['red', 'red', 'red'],
-                                                    ['red', 'red', 'red']]);
+        expect(side_colors(instance.left)).toEqual([[Color.Red, Color.Green, Color.Green],
+                                                    [Color.Red, Color.Green, Color.Green],
+                                                    [Color.Red, Color.Green, Color.Green]]);
+        expect(side_colors(instance.bottom)).toEqual([[Color.Orange, Color.Orange, Color.Orange],
+                                                    [Color.Orange, Color.Orange, Color.Orange],
+                                                    [Color.Green, Color.Green, Color.Green]]);
+        expect(side_colors(instance.right)).toEqual([[Color.Blue, Color.Blue, Color.Orange],
+                                                    [Color.Blue, Color.Blue, Color.Orange],
+                                                    [Color.Blue, Color.Blue, Color.Orange]]);
+        expect(side_colors(instance.top)).toEqual([[Color.Blue, Color.Blue, Color.Blue],
+                                                    [Color.Red, Color.Red, Color.Red],
+                                                    [Color.Red, Color.Red, Color.Red]]);
       });
     });
 
     describe('moveUp2', () => {
       it('should have cube sides in the right place', () => {
         instance.moveUp2(0);
-        expect(side_colors(instance.left)).toEqual([['orange', 'green', 'green'],
-                                                    ['orange', 'green', 'green'],
-                                                    ['orange', 'green', 'green']]);
-        expect(side_colors(instance.bottom)).toEqual([['orange', 'orange', 'orange'],
-                                                    ['orange', 'orange', 'orange'],
-                                                    ['blue', 'blue', 'blue']]);
-        expect(side_colors(instance.right)).toEqual([['blue', 'blue', 'red'],
-                                                    ['blue', 'blue', 'red'],
-                                                    ['blue', 'blue', 'red']]);
-        expect(side_colors(instance.top)).toEqual([['green', 'green', 'green'],
-                                                    ['red', 'red', 'red'],
-                                                    ['red', 'red', 'red']]);
+        expect(side_colors(instance.left)).toEqual([[Color.Orange, Color.Green, Color.Green],
+                                                    [Color.Orange, Color.Green, Color.Green],
+                                                    [Color.Orange, Color.Green, Color.Green]]);
+        expect(side_colors(instance.bottom)).toEqual([[Color.Orange, Color.Orange, Color.Orange],
+                                                    [Color.Orange, Color.Orange, Color.Orange],
+                                                    [Color.Blue, Color.Blue, Color.Blue]]);
+        expect(side_colors(instance.right)).toEqual([[Color.Blue, Color.Blue, Color.Red],
+                                                    [Color.Blue, Color.Blue, Color.Red],
+                                                    [Color.Blue, Color.Blue, Color.Red]]);
+        expect(side_colors(instance.top)).toEqual([[Color.Green, Color.Green, Color.Green],
+                                                    [Color.Red, Color.Red, Color.Red],
+                                                    [Color.Red, Color.Red, Color.Red]]);
       });
     });
 
@@ -391,21 +389,21 @@ describe('Cube', () => {
         instance.moveLeft(0);
         instance.front.selectCell(0, 0);
         instance.moveUp(0);
-        expect(side_colors(instance.front)).toEqual([['orange', 'blue', 'blue'],
-                                                     ['orange', 'yellow', 'yellow'],
-                                                     ['orange', 'yellow', 'yellow']]);
+        expect(side_colors(instance.front)).toEqual([[Color.Orange, Color.Blue, Color.Blue],
+                                                     [Color.Orange, Color.Yellow, Color.Yellow],
+                                                     [Color.Orange, Color.Yellow, Color.Yellow]]);
 
-        expect(side_colors(instance.left)).toEqual([['yellow', 'green', 'green'],
-                                                    ['yellow', 'green', 'green'],
-                                                    ['yellow', 'green', 'green']]);
+        expect(side_colors(instance.left)).toEqual([[Color.Yellow, Color.Green, Color.Green],
+                                                    [Color.Yellow, Color.Green, Color.Green],
+                                                    [Color.Yellow, Color.Green, Color.Green]]);
 
-        expect(side_colors(instance.back)).toEqual([['red', 'white', 'white'],
-                                                    ['red', 'white', 'white'],
-                                                    ['red', 'green', 'green']]);
+        expect(side_colors(instance.back)).toEqual([[Color.Red, Color.White, Color.White],
+                                                    [Color.Red, Color.White, Color.White],
+                                                    [Color.Red, Color.Green, Color.Green]]);
 
-        expect(side_colors(instance.right)).toEqual([['white', 'white', 'white'],
-                                                     ['blue', 'blue', 'blue'],
-                                                     ['blue', 'blue', 'blue']]);
+        expect(side_colors(instance.right)).toEqual([[Color.White, Color.White, Color.White],
+                                                     [Color.Blue, Color.Blue, Color.Blue],
+                                                     [Color.Blue, Color.Blue, Color.Blue]]);
       });
     });
   });

@@ -1,5 +1,4 @@
-import { Direction } from './enums/direction.enum';
-import { SidePosition } from './enums/side-position.enum';
+import { Direction, SidePosition } from './enums';
 import { MoveIntruction } from './move-intruction';
 
 export class MoveIntructions {
