@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Cube } from '../cube';
+import { Cube } from '../models';
 import { Mode } from '../enums';
 
 @Component({

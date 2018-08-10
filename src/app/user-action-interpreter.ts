@@ -1,5 +1,4 @@
-import { Move } from './move';
-import { Side } from './side';
+import { Move, Side } from './models';
 import { Direction, SidePosition, UserAction } from './enums';
 import { CubeHelper } from './cube-helper';
 
@@ -21,7 +20,7 @@ export class UserActionInterpreter {
       if (this.side.position === SidePosition.Bottom) {
         return new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Down2);
       }
-      if(this.side.position === SidePosition.Back) {
+      if (this.side.position === SidePosition.Back) {
         return new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Right);
       }
       return new Move(this.side.selectedCellLocation.x, Direction.Right);
@@ -33,7 +32,7 @@ export class UserActionInterpreter {
       if (this.side.position === SidePosition.Bottom) {
         return new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Up2);
       }
-      if(this.side.position === SidePosition.Back) {
+      if (this.side.position === SidePosition.Back) {
         return new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Left);
       }
       return new Move(this.side.selectedCellLocation.x, Direction.Left);

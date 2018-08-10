@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
 import { CubeControlsComponent } from './cube-controls.component';
-import { Cube } from '../cube';
+import { Cube } from '../models';
 import { Mode } from '../enums';
 
 describe('CubeControlsComponent', () => {

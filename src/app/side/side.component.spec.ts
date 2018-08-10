@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SideComponent } from './side.component';
-import { Side } from '../side';
-import { Cube } from '../cube';
+import { Side, Cube } from '../models';
 import { SidePosition, Color } from '../enums';
 
 describe('SideComponent', () => {

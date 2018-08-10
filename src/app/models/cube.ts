@@ -1,9 +1,9 @@
 import { Side } from './side';
 import { Move } from './move';
-import { MoveIntructions } from './move-instructions';
-import { MoveIntruction } from './move-intruction';
-import { SidePosition, Color } from './enums';
-import { CubeHelper } from './cube-helper';
+import { MoveIntructions } from '../move-instructions';
+import { MoveIntruction } from '../move-intruction';
+import { SidePosition, Color } from '../enums';
+import { CubeHelper } from '../cube-helper';
 
 export class Cube {
   top: Side;

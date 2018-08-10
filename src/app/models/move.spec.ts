@@ -1,5 +1,5 @@
 import { Move } from './move';
-import { Direction } from './enums';
+import { Direction } from '../enums';
 
 describe('Move', () => {
   it('should have the correct attributes', () => {
