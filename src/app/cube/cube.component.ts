@@ -21,6 +21,7 @@ export class CubeComponent {
   }
 
   private performMove(code: number) {
+    if (!Object.values(UserAction).includes(code)) { return; }
     if (this.mode !== Mode.Play) { return; }
     const side = this.cube.findSelectedSide();
     if (side === undefined) { return; }
@@ -49,13 +50,11 @@ export class CubeComponent {
   }
 
   @HostListener('window:mousemove', ['$event']) onMousemove(event: MouseEvent) {
-    if (this.mode !== Mode.Move) { return; }
     event.preventDefault();
-    if (this.mouseDown) {
-      this.cube.rotateX -= event.clientY - this.last.clientY;
-      this.cube.rotateY += event.clientX - this.last.clientX;
-      this.last = event;
-    }
+    if (this.mode !== Mode.Move || !this.mouseDown) { return; }
+    this.cube.rotateX -= event.clientY - this.last.clientY;
+    this.cube.rotateY += event.clientX - this.last.clientX;
+    this.last = event;
   }
 
   @HostListener('swipe',  ['$event']) onTap(e) {
