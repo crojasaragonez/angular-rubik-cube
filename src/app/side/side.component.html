@@ -1,9 +1,9 @@
 <div class="side">
-  <ng-container *ngFor="let x of row_indexes">
-    <div *ngFor="let y of column_indexes" class="cell" [class.selected]="side.cells[x][y].selected"
-                                                       [ngClass]="side.cells[x][y].color"
-                                                       (click)="select(x, y)">
-                                                       {{side.cells[x][y].text}}
+  <ng-container *ngFor="let row of side.cells; let x_index = index">
+    <div *ngFor="let cell of row; let y_index = index" class="cell" [class.selected]="side.cells[x_index][y_index].selected"
+                                                                    [ngClass]="side.cells[x_index][y_index].color"
+                                                                    (click)="select(x_index, y_index)">
+      {{side.cells[x_index][y_index].text}}
     </div>
   </ng-container>
 </div>

@@ -13,9 +13,6 @@ export class SideComponent {
   @Input() cube: Cube;
   @Input() side: Side;
 
-  row_indexes = [0, 1, 2];
-  column_indexes = [0, 1, 2];
-
   select(x, y) {
     this.cube.resetSelection();
     this.side.selectCell(x, y);
