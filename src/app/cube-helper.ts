@@ -4,4 +4,8 @@ export class CubeHelper {
     if (index === 0) { return 2; }
     return 0;
   }
+
+  static indexIterator(block: Function) {
+    [0, 1, 2].forEach(index => block(index));
+  }
 }
