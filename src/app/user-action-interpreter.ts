@@ -21,6 +21,9 @@ export class UserActionInterpreter {
       if (this.side.position === SidePosition.Bottom) {
         return new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Down2);
       }
+      if(this.side.position === SidePosition.Back) {
+        return new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Right);
+      }
       return new Move(this.side.selectedCellLocation.x, Direction.Right);
     }
     if (this.LEFT_CODES.includes(code)) {
@@ -29,6 +32,9 @@ export class UserActionInterpreter {
       }
       if (this.side.position === SidePosition.Bottom) {
         return new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Up2);
+      }
+      if(this.side.position === SidePosition.Back) {
+        return new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Left);
       }
       return new Move(this.side.selectedCellLocation.x, Direction.Left);
     }

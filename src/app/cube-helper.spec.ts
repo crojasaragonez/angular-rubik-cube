@@ -1,7 +1,6 @@
 import { CubeHelper } from './cube-helper';
 
 describe('CubeHelper', () => {
-
   describe('oppositeIndex', () => {
     it('should return the inverse each value', () => {
       expect(CubeHelper.oppositeIndex(0)).toEqual(2);

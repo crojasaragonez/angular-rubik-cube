@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { Cube } from '../cube';
-import { Mode, SidePosition } from '../enums';
+import { Mode } from '../enums';
 import { UserActionInterpreter } from '../user-action-interpreter';
 import { UserAction } from '../enums';
 

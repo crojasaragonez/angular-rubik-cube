@@ -2,7 +2,7 @@ import { Side } from './side';
 import { Move } from './move';
 import { MoveIntructions } from './move-instructions';
 import { MoveIntruction } from './move-intruction';
-import { SidePosition, Direction, Color } from './enums';
+import { SidePosition, Color } from './enums';
 import { CubeHelper } from './cube-helper';
 
 export class Cube {

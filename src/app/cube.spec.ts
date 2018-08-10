@@ -1,8 +1,5 @@
 import { Cube } from './cube';
 import { Side } from './side';
-import { Move } from './move';
-import { Location } from './location';
-import { Cell } from './cell';
 import { SidePosition, Color } from './enums';
 
 describe('Cube', () => {

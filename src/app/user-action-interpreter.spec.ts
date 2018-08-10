@@ -119,19 +119,19 @@ describe('UserActionInterpreter', () => {
       const side = new Side(Color.White, SidePosition.Back);
       side.selectCell(0, 0);
       it('should resolve keydown right event', () => {
-        expect(instance(side).resolve(UserAction.RightKey)).toEqual(new Move(side.selectedCellLocation.x, Direction.Right));
+        expect(instance(side).resolve(UserAction.RightKey)).toEqual(new Move(2, Direction.Right));
       });
 
       it('should resolve swipe right event', () => {
-        expect(instance(side).resolve(UserAction.SwipeRight)).toEqual(new Move(side.selectedCellLocation.x, Direction.Right));
+        expect(instance(side).resolve(UserAction.SwipeRight)).toEqual(new Move(2, Direction.Right));
       });
 
       it('should resolve keydown left event', () => {
-        expect(instance(side).resolve(UserAction.LeftKey)).toEqual(new Move(side.selectedCellLocation.x, Direction.Left));
+        expect(instance(side).resolve(UserAction.LeftKey)).toEqual(new Move(2, Direction.Left));
       });
 
       it('should resolve swipe left event', () => {
-        expect(instance(side).resolve(UserAction.SwipeLeft)).toEqual(new Move(side.selectedCellLocation.x, Direction.Left));
+        expect(instance(side).resolve(UserAction.SwipeLeft)).toEqual(new Move(2, Direction.Left));
       });
 
       it('should resolve keydown up event', () => {
