@@ -8,6 +8,7 @@ import { SideComponent } from './side/side.component';
 import { CubeControlsComponent } from './cube-controls/cube-controls.component';
 import { HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { HammerConfig } from './hammer-config';
+import { CubeStyle } from './cube-style';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { HammerConfig } from './hammer-config';
     BrowserModule,
     FormsModule
   ],
-  providers: [{ provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig }],
+  providers: [CubeStyle, { provide: HAMMER_GESTURE_CONFIG, useClass: HammerConfig }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Component, HostListener } from '@angular/core';
 import { Cube } from '../models';
 import { Mode, UserAction } from '../enums';
 import { UserActionInterpreter } from '../user-action-interpreter';
+import { CubeStyle } from '../cube-style';
 
 @Component({
   selector: 'app-cube',
@@ -14,7 +15,7 @@ export class CubeComponent {
   mouseDown = false;
   last: MouseEvent;
   mode: Mode;
-  constructor() {
+  constructor(public cubeStyle: CubeStyle) {
     this.cube = new Cube();
     this.mode = Mode.Play;
   }
@@ -33,10 +34,10 @@ export class CubeComponent {
     event.preventDefault();
     this.performMove(event.keyCode);
     if (this.mode !== Mode.Move) { return; }
-    if (event.keyCode === UserAction.RightKey) { this.cube.rotateY += 5; }
-    if (event.keyCode === UserAction.LeftKey) { this.cube.rotateY -= 5; }
-    if (event.keyCode === UserAction.DownKey) { this.cube.rotateX += 5; }
-    if (event.keyCode === UserAction.UpKey) { this.cube.rotateX -= 5; }
+    if (event.keyCode === UserAction.RightKey) { this.cubeStyle.rotateY += 5; }
+    if (event.keyCode === UserAction.LeftKey) { this.cubeStyle.rotateY -= 5; }
+    if (event.keyCode === UserAction.DownKey) { this.cubeStyle.rotateX += 5; }
+    if (event.keyCode === UserAction.UpKey) { this.cubeStyle.rotateX -= 5; }
   }
 
   @HostListener('window:mouseup') onMouseup() {
