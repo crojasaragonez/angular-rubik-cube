@@ -8,58 +8,42 @@ export class UserActionInterpreter {
   readonly LEFT_CODES  = [UserAction.LeftKey, UserAction.SwipeLeft];
   readonly DOWN_CODES  = [UserAction.DownKey, UserAction.SwipeDown];
   readonly UP_CODES    = [UserAction.UpKey, UserAction.SwipeUp];
+  readonly RIGHT_MOVES = {
+    'top': new Move(this.side.selectedCellLocation.x, Direction.Up2),
+    'bottom': new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Down2),
+    'back': new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Right)
+  }
+  readonly LEFT_MOVES = {
+    'top': new Move(this.side.selectedCellLocation.x, Direction.Down2),
+    'bottom': new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Up2),
+    'back': new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Left)
+  }
+  readonly DOWN_MOVES = {
+    'left': new Move(this.side.selectedCellLocation.y, Direction.Down2),
+    'back': new Move(this.side.selectedCellLocation.y, Direction.Up),
+    'right': new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.y), Direction.Up2)
+  }
+  readonly UP_MOVES = {
+    'left': new Move(this.side.selectedCellLocation.y, Direction.Up2),
+    'back': new Move(this.side.selectedCellLocation.y, Direction.Down),
+    'right': new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.y), Direction.Down2)
+  }
   constructor(private side: Side) {
 
   }
 
   resolve(code: number): Move {
     if (this.RIGHT_CODES.includes(code)) {
-      if (this.side.position === SidePosition.Top) {
-        return new Move(this.side.selectedCellLocation.x, Direction.Up2);
-      }
-      if (this.side.position === SidePosition.Bottom) {
-        return new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Down2);
-      }
-      if (this.side.position === SidePosition.Back) {
-        return new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Right);
-      }
-      return new Move(this.side.selectedCellLocation.x, Direction.Right);
+      return this.RIGHT_MOVES[this.side.position] || new Move(this.side.selectedCellLocation.x, Direction.Right);
     }
     if (this.LEFT_CODES.includes(code)) {
-      if (this.side.position === SidePosition.Top) {
-        return new Move(this.side.selectedCellLocation.x, Direction.Down2);
-      }
-      if (this.side.position === SidePosition.Bottom) {
-        return new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Up2);
-      }
-      if (this.side.position === SidePosition.Back) {
-        return new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.x), Direction.Left);
-      }
-      return new Move(this.side.selectedCellLocation.x, Direction.Left);
+      return this.LEFT_MOVES[this.side.position] || new Move(this.side.selectedCellLocation.x, Direction.Left);
     }
     if (this.DOWN_CODES.includes(code)) {
-      if (this.side.position === SidePosition.Left) {
-        return new Move(this.side.selectedCellLocation.y, Direction.Down2);
-      }
-      if (this.side.position === SidePosition.Back) {
-        return new Move(this.side.selectedCellLocation.y, Direction.Up);
-      }
-      if (this.side.position === SidePosition.Right) {
-        return new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.y), Direction.Up2);
-      }
-      return new Move(this.side.selectedCellLocation.y, Direction.Down);
+      return this.DOWN_MOVES[this.side.position] || new Move(this.side.selectedCellLocation.y, Direction.Down);
     }
     if (this.UP_CODES.includes(code)) {
-      if (this.side.position === SidePosition.Left) {
-        return new Move(this.side.selectedCellLocation.y, Direction.Up2);
-      }
-      if (this.side.position === SidePosition.Back) {
-        return new Move(this.side.selectedCellLocation.y, Direction.Down);
-      }
-      if (this.side.position === SidePosition.Right) {
-        return new Move(CubeHelper.oppositeIndex(this.side.selectedCellLocation.y), Direction.Down2);
-      }
-      return new Move(this.side.selectedCellLocation.y, Direction.Up);
+      return this.UP_MOVES[this.side.position] || new Move(this.side.selectedCellLocation.y, Direction.Up);
     }
   }
 }

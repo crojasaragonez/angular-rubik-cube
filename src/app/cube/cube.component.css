@@ -51,4 +51,3 @@
 .back {
   transform: rotateX(180deg) translate3d(0, 0, var(--side-size));
 }
-
