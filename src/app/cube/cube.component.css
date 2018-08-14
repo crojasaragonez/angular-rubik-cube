@@ -1,8 +1,14 @@
+:host {
+  --cube-size: 250px;
+  --side-size: 125px;
+  --side-size-opposite: -125px;
+}
+
 .cube-container {
   perspective: 1000px;
   margin-right: 32px;
-  width: 250px;
-  height: 250px;
+  width: var(--cube-size);
+  height: var(--cube-size);
 }
 
 .cube {
@@ -19,30 +25,30 @@
 }
 
 .front {
-  transform: translate3d(0, 0, 125px);
+  transform: translate3d(0, 0, var(--side-size));
 }
 
 .top {
-  transform: rotateX(90deg) translate3d(0, 0, 125px);
+  transform: rotateX(90deg) translate3d(0, 0, var(--side-size));
 }
 
 .bottom {
-  transform: rotateX(-90deg) translate3d(0, 0, 125px);
+  transform: rotateX(-90deg) translate3d(0, 0, var(--side-size));
 }
 
 .left {
   left: 50%;
-  margin-left: -125px;
-  transform: rotateY(-90deg) translate3d(0, 0, 125px);
+  margin-left: var(--side-size-opposite);
+  transform: rotateY(-90deg) translate3d(0, 0, var(--side-size));
 }
 
 .right {
   left: 50%;
-  margin-left: -125px;
-  transform: rotateY(90deg) translate3d(0, 0, 125px);
+  margin-left: var(--side-size-opposite);
+  transform: rotateY(90deg) translate3d(0, 0, var(--side-size));
 }
 
 .back {
-  transform: rotateX(180deg) translate3d(0, 0, 125px);
+  transform: rotateX(180deg) translate3d(0, 0, var(--side-size));
 }
 
