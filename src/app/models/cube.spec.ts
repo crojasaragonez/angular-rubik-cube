@@ -1,6 +1,6 @@
 import { Cube } from './cube';
 import { Side } from './side';
-import { SidePosition, Color } from './enums';
+import { SidePosition, Color } from '../enums';
 
 describe('Cube', () => {
   const instance = new Cube();

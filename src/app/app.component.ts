@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Cube } from './cube';
+import { Cube } from './models';
 
 @Component({
   selector: 'app-root',

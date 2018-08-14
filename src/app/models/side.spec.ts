@@ -1,7 +1,7 @@
 import { Side } from './side';
 import { Cell } from './cell';
 import { Location } from './location';
-import { SidePosition, Color } from './enums';
+import { SidePosition, Color } from '../enums';
 
 describe('Side', () => {
   const instance = new Side(Color.Red, SidePosition.Top);

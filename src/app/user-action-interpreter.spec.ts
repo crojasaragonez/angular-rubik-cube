@@ -1,6 +1,5 @@
 import { UserActionInterpreter } from './user-action-interpreter';
-import { Side } from './side';
-import { Move } from './move';
+import { Side, Move } from './models';
 import { SidePosition, Direction, UserAction, Color } from './enums';
 
 describe('UserActionInterpreter', () => {

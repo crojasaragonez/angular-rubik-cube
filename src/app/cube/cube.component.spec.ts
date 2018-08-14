@@ -23,7 +23,7 @@ describe('CubeComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CubeComponent);
     component = fixture.componentInstance;
-    space3d = fixture.nativeElement.querySelector('.space3d');
+    space3d = fixture.nativeElement.querySelector('.cube-container');
     fixture.detectChanges();
   });
 

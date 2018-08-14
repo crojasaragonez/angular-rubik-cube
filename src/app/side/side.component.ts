@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Side } from '../side';
-import { Cube } from '../cube';
+import { Cube, Side } from '../models';
 
 @Component({
   selector: 'app-side',

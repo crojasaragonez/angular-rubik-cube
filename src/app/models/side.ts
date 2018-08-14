@@ -1,7 +1,7 @@
 import { Cell } from './cell';
 import { Location } from './location';
-import { SidePosition, Color } from './enums';
-import { CubeHelper } from './cube-helper';
+import { SidePosition, Color } from '../enums';
+import { CubeHelper } from '../cube-helper';
 
 export class Side {
   cells: Cell[][];

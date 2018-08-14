@@ -1,5 +1,5 @@
 import { Cell } from './cell';
-import { Color } from './enums';
+import { Color } from '../enums';
 
 describe('Cell', () => {
   const instance = new Cell(Color.Red);
