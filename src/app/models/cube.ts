@@ -13,6 +13,8 @@ export class Cube {
   front: Side;
   back: Side;
   history: Move[];
+  rotateX = -18;
+  rotateY = 36;
 
   constructor() {
     this.reset();
@@ -27,6 +29,8 @@ export class Cube {
     this.back = new Side(Color.White, SidePosition.Back);
     // select cell 0,0 from the front side by default
     this.front.selectCell(0, 0);
+    this.rotateX = -18;
+    this.rotateY = 36;
     this.history = [];
   }
 

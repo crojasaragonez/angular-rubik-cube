@@ -1,6 +1,8 @@
 .cube-container {
   perspective: 1000px;
   margin-right: 32px;
+  width: 250px;
+  height: 250px;
 }
 
 .cube {
@@ -15,3 +17,32 @@
   width: 100%;
   height: 100%;
 }
+
+.front {
+  transform: translate3d(0, 0, 125px);
+}
+
+.top {
+  transform: rotateX(90deg) translate3d(0, 0, 125px);
+}
+
+.bottom {
+  transform: rotateX(-90deg) translate3d(0, 0, 125px);
+}
+
+.left {
+  left: 50%;
+  margin-left: -125px;
+  transform: rotateY(-90deg) translate3d(0, 0, 125px);
+}
+
+.right {
+  left: 50%;
+  margin-left: -125px;
+  transform: rotateY(90deg) translate3d(0, 0, 125px);
+}
+
+.back {
+  transform: rotateX(180deg) translate3d(0, 0, 125px);
+}
+
