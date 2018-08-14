@@ -1,7 +1,7 @@
 :host {
   --cube-size: 250px;
-  --side-size: 125px;
-  --side-size-opposite: -125px;
+  --side-size: calc(var(--cube-size) / 2);
+  --side-size-opposite: calc((var(--cube-size) / 2) * -1);
 }
 
 .cube-container {
