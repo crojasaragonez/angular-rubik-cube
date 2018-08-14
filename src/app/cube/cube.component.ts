@@ -52,8 +52,8 @@ export class CubeComponent {
   @HostListener('window:mousemove', ['$event']) onMousemove(event: MouseEvent) {
     event.preventDefault();
     if (this.mode !== Mode.Move || !this.mouseDown) { return; }
-    this.cube.rotateX -= event.clientY - this.last.clientY;
-    this.cube.rotateY += event.clientX - this.last.clientX;
+    this.cubeStyle.rotateX -= event.clientY - this.last.clientY;
+    this.cubeStyle.rotateY += event.clientX - this.last.clientX;
     this.last = event;
   }
 

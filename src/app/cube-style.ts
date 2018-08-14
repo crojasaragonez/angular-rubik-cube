@@ -10,11 +10,11 @@ export class CubeStyle {
 
   cube() {
     return {
-      transform: `rotateX(${this.rotateX}deg) rotateY( ${this.rotateY}deg)`
+      transform: `rotateX(${this.rotateX}deg) rotateY(${this.rotateY}deg)`
     };
   }
 
   cubeContainer() {
-    return { width: `${this.size}px`, height: `${this.size}px` }
+    return { width: `${this.size}px`, height: `${this.size}px` };
   }
 }
