@@ -3,7 +3,7 @@ import { Direction } from '../enums';
 export class Move {
   constructor(public value: number, public action: Direction) { }
 
-  undo() {
+  undo(): Move {
     if (this.action === Direction.Up) { return new Move(this.value, Direction.Down); }
     if (this.action === Direction.Up2) { return new Move(this.value, Direction.Down2); }
     if (this.action === Direction.Down) { return new Move(this.value, Direction.Up); }
