@@ -51,6 +51,12 @@ describe('Cube', () => {
       });
     });
 
+    it('should do nothing if history is empty', () => {
+      spyOn(instance, 'move');
+      instance.undo();
+      expect(instance.move).not.toHaveBeenCalled();
+    });
+
     it('should keep history consistent', () => {
       instance.move(new Move(0, Direction.Left));
       instance.move(new Move(0, Direction.Right));
