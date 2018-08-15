@@ -1,5 +1,6 @@
 import { Side } from './side';
 import { Move } from './move';
+import { Location } from './location';
 import { MoveIntructions } from '../move-instructions';
 import { MoveIntruction } from '../move-intruction';
 import { SidePosition, Color } from '../enums';
@@ -42,12 +43,25 @@ export class Cube {
     return this.allSides().find(x => x.selected === true);
   }
 
-  moveUp2(column: number, record_move = true) {
+  move(move: Move, record_move = true) {
+    const side = this.findSelectedSide();
+    const last_location = new Location(side.selectedCellLocation.x, side.selectedCellLocation.y);
+    this[move.action](move.value, record_move);
+    this.resetSelection();
+    side.selectCell(last_location.x, last_location.y);
+  }
+
+  undo() {
+    if (this.history.length === 0) { return; }
+    this.move(this.history.pop().undo(), false);
+  }
+
+  private moveUp2(column: number, record_move = true) {
     CubeHelper.indexIterator(() => { this.moveDown2(column, false); });
     this.handleHistory(new Move(column, MoveIntructions.Up2.direction), record_move);
   }
 
-  moveDown2(column: number, record_move = true) {
+  private moveDown2(column: number, record_move = true) {
     if (column === 0) { this.back.rotateLeft(); }
     if (column === 2) { this.front.rotateRight(); }
 
@@ -69,31 +83,25 @@ export class Cube {
     this.handleHistory(new Move(column, MoveIntructions.Down2.direction), record_move);
   }
 
-  undo() {
-    if (this.history.length === 0) { return; }
-    const move = this.history.pop();
-    this[move.undo()](move.value, false);
-  }
-
-  moveDown(column: number, record_move = true) {
+  private moveDown(column: number, record_move = true) {
     if (column === 0) { this.left.rotateLeft(); }
     if (column === 2) { this.right.rotateRight(); }
     this.moveVertical(MoveIntructions.Down, column, record_move);
   }
 
-  moveUp(column: number, record_move = true) {
+  private moveUp(column: number, record_move = true) {
     if (column === 0) { this.left.rotateRight(); }
     if (column === 2) { this.right.rotateLeft(); }
     this.moveVertical(MoveIntructions.Up, column, record_move);
   }
 
-  moveRight(row: number, record_move = true) {
+  private moveRight(row: number, record_move = true) {
     if (row === 0) { this.top.rotateRight(); }
     if (row === 2) { this.bottom.rotateLeft(); }
     this.moveHorizontal(MoveIntructions.Right, row, record_move);
   }
 
-  moveLeft(row: number, record_move = true) {
+  private moveLeft(row: number, record_move = true) {
     if (row === 0) { this.top.rotateLeft(); }
     if (row === 2) { this.bottom.rotateRight(); }
     this.moveHorizontal(MoveIntructions.Left, row, record_move);

@@ -25,8 +25,7 @@ export class CubeComponent {
     const side = this.cube.findSelectedSide();
     if (side === undefined) { return; }
     const interpreter = new UserActionInterpreter(side);
-    const move = interpreter.resolve(code);
-    this.cube[move.action](move.value);
+    this.cube.move(interpreter.resolve(code));
   }
 
   @HostListener('window:keydown', ['$event']) onkeyUp(event: any) {
