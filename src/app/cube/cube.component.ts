@@ -25,12 +25,13 @@ export class CubeComponent {
     const side = this.cube.findSelectedSide();
     if (side === undefined) { return; }
     const interpreter = new UserActionInterpreter(side);
-    const move = interpreter.resolve(code);
-    this.cube[move.action](move.value);
+    this.cube.move(interpreter.resolve(code));
   }
 
   @HostListener('window:keydown', ['$event']) onkeyUp(event: any) {
     event.preventDefault();
+    // handle Ctrl + z
+    if (event.ctrlKey && event.keyCode === UserAction.Zkey) { this.cube.undo(); }
     this.performMove(event.keyCode);
     if (this.mode !== Mode.Move) { return; }
     if (event.keyCode === UserAction.RightKey) { this.cube.rotateY += 5; }

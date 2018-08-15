@@ -6,6 +6,13 @@
   </ng-container>
 </div>
 <div class="bottom-controls">
-  <input type="radio" name="mode" [(ngModel)]="mode" [value]="0" (ngModelChange)="change($event)"> Play
-  <input type="radio" name="mode" [(ngModel)]="mode" [value]="1" (ngModelChange)="change($event)"> Move
+  <label class="radio-container">Play
+    <input type="radio" name="mode" [(ngModel)]="mode" [value]="0" (ngModelChange)="change($event)">
+    <span class="checkmark"></span>
+  </label>
+  <label class="radio-container">Move
+    <input type="radio" name="mode" [(ngModel)]="mode" [value]="1" (ngModelChange)="change($event)">
+    <span class="checkmark"></span>
+  </label>
 </div>
+

@@ -6,5 +6,6 @@ export enum UserAction {
   UpKey      = 38,
   SwipeUp    = 8,
   DownKey    = 40,
-  SwipeDown  = 16
+  SwipeDown  = 16,
+  Zkey       = 90
 }

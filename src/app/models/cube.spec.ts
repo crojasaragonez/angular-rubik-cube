@@ -1,6 +1,7 @@
 import { Cube } from './cube';
 import { Side } from './side';
-import { SidePosition, Color } from '../enums';
+import { Move } from './move';
+import { SidePosition, Color, Direction } from '../enums';
 
 describe('Cube', () => {
   const instance = new Cube();
@@ -37,65 +38,38 @@ describe('Cube', () => {
 
   describe('undo', () => {
 
-    beforeEach(() => {
-      instance.reset();
+    beforeEach(() => instance.reset());
+
+    it('should revert every possible move', () => {
+      Object.keys(Direction).forEach(key => {
+        const cube = new Cube();
+        const move = new Move(0, Direction[key]);
+        cube.move(move);
+        spyOn(cube, 'move');
+        cube.undo();
+        expect(cube.move).toHaveBeenCalledWith(move.undo(), false);
+      });
     });
 
-    it('should revert moveDown', () => {
-      spyOn(instance, 'moveUp');
-      instance.moveDown(0);
+    it('should do nothing if history is empty', () => {
+      spyOn(instance, 'move');
       instance.undo();
-      expect(instance.moveUp).toHaveBeenCalledWith(0, false);
-    });
-
-    it('should revert moveDown2', () => {
-      spyOn(instance, 'moveUp2');
-      instance.moveDown2(0);
-      instance.undo();
-      expect(instance.moveUp2).toHaveBeenCalledWith(0, false);
-    });
-
-    it('should revert moveUp', () => {
-      spyOn(instance, 'moveDown');
-      instance.moveUp(0);
-      instance.undo();
-      expect(instance.moveDown).toHaveBeenCalledWith(0, false);
-    });
-
-    it('should revert moveUp2', () => {
-      spyOn(instance, 'moveDown2');
-      instance.moveUp2(0);
-      instance.undo();
-      expect(instance.moveDown2).toHaveBeenCalledWith(0, false);
-    });
-
-    it('should revert moveRight', () => {
-      spyOn(instance, 'moveLeft');
-      instance.moveRight(0);
-      instance.undo();
-      expect(instance.moveLeft).toHaveBeenCalledWith(0, false);
-    });
-
-    it('should revert moveLeft', () => {
-      spyOn(instance, 'moveRight');
-      instance.moveLeft(0);
-      instance.undo();
-      expect(instance.moveRight).toHaveBeenCalledWith(0, false);
+      expect(instance.move).not.toHaveBeenCalled();
     });
 
     it('should keep history consistent', () => {
-      instance.moveLeft(0);
-      instance.moveRight(0);
-      instance.moveUp(0);
-      instance.moveDown(0);
+      instance.move(new Move(0, Direction.Left));
+      instance.move(new Move(0, Direction.Right));
+      instance.move(new Move(0, Direction.Up));
+      instance.move(new Move(0, Direction.Down));
       expect(instance['history'].length).toEqual(4);
     });
 
     it('should remove last item in history after a revert', () => {
-      instance.moveLeft(0);
-      instance.moveRight(0);
-      instance.moveUp(0);
-      instance.moveDown(0);
+      instance.move(new Move(0, Direction.Left));
+      instance.move(new Move(0, Direction.Right));
+      instance.move(new Move(0, Direction.Up));
+      instance.move(new Move(0, Direction.Down));
       instance.undo();
       expect(instance['history'].length).toEqual(3);
     });
@@ -104,25 +78,25 @@ describe('Cube', () => {
   describe('moveDown', () => {
     it('should rotate left side of the cube when column is 0', () => {
       spyOn(instance[SidePosition.Left], 'rotateLeft');
-      instance.moveDown(0);
+      instance.move(new Move(0, Direction.Down));
       expect(instance[SidePosition.Left].rotateLeft).toHaveBeenCalled();
     });
     it('should rotate right side of the cube when column is 2', () => {
       spyOn(instance[SidePosition.Right], 'rotateRight');
-      instance.moveDown(2);
+      instance.move(new Move(2, Direction.Down));
       expect(instance[SidePosition.Right].rotateRight).toHaveBeenCalled();
     });
   });
 
-    describe('moveDown2', () => {
+  describe('moveDown2', () => {
     it('should rotate back side of the cube when column is 0', () => {
       spyOn(instance[SidePosition.Back], 'rotateLeft');
-      instance.moveDown2(0);
+      instance.move(new Move(0, Direction.Down2));
       expect(instance[SidePosition.Back].rotateLeft).toHaveBeenCalled();
     });
     it('should rotate front side of the cube when column is 2', () => {
       spyOn(instance[SidePosition.Front], 'rotateRight');
-      instance.moveDown2(2);
+      instance.move(new Move(2, Direction.Down2));
       expect(instance[SidePosition.Front].rotateRight).toHaveBeenCalled();
     });
   });
@@ -130,12 +104,12 @@ describe('Cube', () => {
   describe('moveUp', () => {
     it('should rotate left side of the cube when column is 0', () => {
       spyOn(instance[SidePosition.Left], 'rotateRight');
-      instance.moveUp(0);
+      instance.move(new Move(0, Direction.Up));
       expect(instance[SidePosition.Left].rotateRight).toHaveBeenCalled();
     });
     it('should rotate right side of the cube when column is 2', () => {
       spyOn(instance[SidePosition.Right], 'rotateLeft');
-      instance.moveUp(2);
+      instance.move(new Move(2, Direction.Up));
       expect(instance[SidePosition.Right].rotateLeft).toHaveBeenCalled();
     });
   });
@@ -143,12 +117,12 @@ describe('Cube', () => {
   describe('moveRight', () => {
     it('should rotate top side of the cube when column is 0', () => {
       spyOn(instance[SidePosition.Top], 'rotateRight');
-      instance.moveRight(0);
+      instance.move(new Move(0, Direction.Right));
       expect(instance[SidePosition.Top].rotateRight).toHaveBeenCalled();
     });
     it('should rotate bottom side of the cube when column is 2', () => {
       spyOn(instance[SidePosition.Bottom], 'rotateLeft');
-      instance.moveRight(2);
+      instance.move(new Move(2, Direction.Right));
       expect(instance[SidePosition.Bottom].rotateLeft).toHaveBeenCalled();
     });
   });
@@ -156,12 +130,12 @@ describe('Cube', () => {
   describe('moveLeft', () => {
     it('should rotate top side of the cube when column is 0', () => {
       spyOn(instance[SidePosition.Top], 'rotateLeft');
-      instance.moveLeft(0);
+      instance.move(new Move(0, Direction.Left));
       expect(instance[SidePosition.Top].rotateLeft).toHaveBeenCalled();
     });
     it('should rotate bottom side of the cube when column is 2', () => {
       spyOn(instance[SidePosition.Bottom], 'rotateRight');
-      instance.moveLeft(2);
+      instance.move(new Move(2, Direction.Left));
       expect(instance[SidePosition.Bottom].rotateRight).toHaveBeenCalled();
     });
   });
@@ -254,7 +228,7 @@ describe('Cube', () => {
 
     describe('moveDown', () => {
       it('should have cube sides in the right place', () => {
-        instance.moveDown(0);
+        instance.move(new Move(0, Direction.Down));
         expect(side_colors(instance.front)).toEqual([ [Color.Red, Color.Yellow, Color.Yellow],
                                                       [Color.Red, Color.Yellow, Color.Yellow],
                                                       [Color.Red, Color.Yellow, Color.Yellow]]);
@@ -283,7 +257,7 @@ describe('Cube', () => {
 
     describe('moveUp', () => {
       it('should have cube sides in the right place', () => {
-        instance.moveUp(0);
+        instance.move(new Move(0, Direction.Up));
         expect(side_colors(instance.front)).toEqual([ [Color.Orange, Color.Yellow, Color.Yellow],
                                                       [Color.Orange, Color.Yellow, Color.Yellow],
                                                       [Color.Orange, Color.Yellow, Color.Yellow]]);
@@ -305,7 +279,7 @@ describe('Cube', () => {
 
     describe('moveRight', () => {
       it('should have cube sides in the right place', () => {
-        instance.moveRight(0);
+        instance.move(new Move(0, Direction.Right));
         expect(side_colors(instance.front)).toEqual([ [Color.Green, Color.Green, Color.Green],
                                                       [Color.Yellow, Color.Yellow, Color.Yellow],
                                                       [Color.Yellow, Color.Yellow, Color.Yellow]]);
@@ -326,7 +300,7 @@ describe('Cube', () => {
 
     describe('moveLeft', () => {
       it('should have cube sides in the right place', () => {
-        instance.moveLeft(0);
+        instance.move(new Move(0, Direction.Left));
         expect(side_colors(instance.front)).toEqual([[Color.Blue, Color.Blue, Color.Blue],
                                                     [Color.Yellow, Color.Yellow, Color.Yellow],
                                                     [Color.Yellow, Color.Yellow, Color.Yellow]]);
@@ -347,7 +321,7 @@ describe('Cube', () => {
 
     describe('moveDown2', () => {
       it('should have cube sides in the right place', () => {
-        instance.moveDown2(0);
+        instance.move(new Move(0, Direction.Down2));
         expect(side_colors(instance.left)).toEqual([[Color.Red, Color.Green, Color.Green],
                                                     [Color.Red, Color.Green, Color.Green],
                                                     [Color.Red, Color.Green, Color.Green]]);
@@ -365,7 +339,7 @@ describe('Cube', () => {
 
     describe('moveUp2', () => {
       it('should have cube sides in the right place', () => {
-        instance.moveUp2(0);
+        instance.move(new Move(0, Direction.Up2));
         expect(side_colors(instance.left)).toEqual([[Color.Orange, Color.Green, Color.Green],
                                                     [Color.Orange, Color.Green, Color.Green],
                                                     [Color.Orange, Color.Green, Color.Green]]);
@@ -383,9 +357,9 @@ describe('Cube', () => {
 
     describe('moveLeft, moveUp', () => {
       it('should have cube sides in the right place', () => {
-        instance.moveLeft(0);
+        instance.move(new Move(0, Direction.Left));
         instance.front.selectCell(0, 0);
-        instance.moveUp(0);
+        instance.move(new Move(0, Direction.Up));
         expect(side_colors(instance.front)).toEqual([[Color.Orange, Color.Blue, Color.Blue],
                                                      [Color.Orange, Color.Yellow, Color.Yellow],
                                                      [Color.Orange, Color.Yellow, Color.Yellow]]);
