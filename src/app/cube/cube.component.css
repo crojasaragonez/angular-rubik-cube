@@ -6,7 +6,6 @@
 
 .cube-container {
   perspective: 1000px;
-  margin-right: 32px;
   width: var(--cube-size);
   height: var(--cube-size);
 }
