@@ -1,12 +1,9 @@
 <app-cube-controls [cube]="cube" [(mode)]="mode"></app-cube-controls>
 
 <div class="cube-container">
-    <div class="cube" [ngStyle]="{'transform':'rotateX(' + cube.rotateX + 'deg) rotateY(' + cube.rotateY + 'deg)'}">
-      <app-side class="side front" [cube]="cube" [side]="cube.front"></app-side>
-      <app-side class="side top" [cube]="cube" [side]="cube.top"></app-side>
-      <app-side class="side bottom" [cube]="cube" [side]="cube.bottom"></app-side>
-      <app-side class="side left" [cube]="cube" [side]="cube.left"></app-side>
-      <app-side class="side right" [cube]="cube" [side]="cube.right"></app-side>
-      <app-side class="side back" [cube]="cube" [side]="cube.back"></app-side>
-    </div>
+  <div class="cube" [ngStyle]="{'transform':'rotateX(' + cube.rotateX + 'deg) rotateY(' + cube.rotateY + 'deg)'}">
+    <ng-container *ngFor="let side of cube.allSides()">
+      <app-side class="side" [cube]="cube" [side]="side" [ngClass]="side.position"></app-side>
+    </ng-container>
+  </div>
 </div>
