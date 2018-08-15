@@ -9,28 +9,13 @@ describe('Move', () => {
   });
 
   describe('undo', () => {
-    it('should return the opposite move', () => {
-      expect(new Move(0, Direction.Up).undo()).toEqual(Direction.Down);
-    });
-
-    it('should return the opposite move', () => {
-      expect(new Move(0, Direction.Down).undo()).toEqual(Direction.Up);
-    });
-
-    it('should return the opposite move', () => {
-      expect(new Move(0, Direction.Right).undo()).toEqual(Direction.Left);
-    });
-
-    it('should return the opposite move', () => {
-      expect(new Move(0, Direction.Left).undo()).toEqual(Direction.Right);
-    });
-
-    it('should return the opposite move', () => {
-      expect(new Move(0, Direction.Down2).undo()).toEqual(Direction.Up2);
-    });
-
-    it('should return the opposite move', () => {
-      expect(new Move(0, Direction.Up2).undo()).toEqual(Direction.Down2);
+    it('should revert all possible moves', () => {
+      expect(new Move(0, Direction.Up).undo()).toEqual(new Move(0, Direction.Down));
+      expect(new Move(0, Direction.Down).undo()).toEqual(new Move(0, Direction.Up));
+      expect(new Move(0, Direction.Right).undo()).toEqual(new Move(0, Direction.Left));
+      expect(new Move(0, Direction.Left).undo()).toEqual(new Move(0, Direction.Right));
+      expect(new Move(0, Direction.Down2).undo()).toEqual(new Move(0, Direction.Up2));
+      expect(new Move(0, Direction.Up2).undo()).toEqual(new Move(0, Direction.Down2));
     });
   });
 });
