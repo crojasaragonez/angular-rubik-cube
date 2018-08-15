@@ -49,7 +49,7 @@ describe('CubeComponent', () => {
   });
 
   describe('keydown event', () => {
-    let event = new Event('keydown', { bubbles: true });
+    const event = new Event('keydown', { bubbles: true });
     beforeEach(() => { component.mode = Mode.Move; });
     it('should handle keydown events', () => {
       spyOn(event, 'preventDefault');
