@@ -70,6 +70,7 @@ export class Cube {
   }
 
   undo() {
+    if (this.history.length === 0) { return; }
     const move = this.history.pop();
     this[move.undo()](move.value, false);
   }

@@ -31,6 +31,8 @@ export class CubeComponent {
 
   @HostListener('window:keydown', ['$event']) onkeyUp(event: any) {
     event.preventDefault();
+    //handle Ctrl + z
+    if (event.ctrlKey && event.keyCode == UserAction.Zkey) { this.cube.undo(); }
     this.performMove(event.keyCode);
     if (this.mode !== Mode.Move) { return; }
     if (event.keyCode === UserAction.RightKey) { this.cube.rotateY += 5; }
