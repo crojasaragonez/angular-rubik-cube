@@ -148,4 +148,13 @@ describe('CubeComponent', () => {
       expect(spyClientX).not.toHaveBeenCalled();
     });
   });
+
+  describe('swipe event', () => {
+    it('should call performMove with the given parameter', () => {
+      spyOn(component as any, 'performMove');
+      const event = { direction: UserAction.SwipeRight };
+      component.onTap(event);
+      expect(component['performMove']).toHaveBeenCalledWith(event.direction);
+    });
+  });
 });

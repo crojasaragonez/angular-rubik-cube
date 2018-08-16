@@ -56,6 +56,10 @@ export class Cube {
     this.move(this.history.pop().undo(), false);
   }
 
+  allSides() {
+    return [this.front, this.top, this.bottom, this.left, this.right, this.back];
+  }
+
   private moveUp2(column: number, record_move = true) {
     CubeHelper.indexIterator(() => { this.moveDown2(column, false); });
     this.handleHistory(new Move(column, MoveIntructions.Up2.direction), record_move);
@@ -105,10 +109,6 @@ export class Cube {
     if (row === 0) { this.top.rotateLeft(); }
     if (row === 2) { this.bottom.rotateRight(); }
     this.moveHorizontal(MoveIntructions.Left, row, record_move);
-  }
-
-  private allSides() {
-    return [this.front, this.top, this.bottom, this.left, this.right, this.back];
   }
 
   private moveHorizontal(instructions: MoveIntruction, row, record_move = true) {
