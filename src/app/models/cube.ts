@@ -115,11 +115,8 @@ export class Cube {
     const first = this[instructions.start_with].cells[row];
     const opposite_row = CubeHelper.oppositeIndex(row);
     instructions.moves.forEach(move => {
-      if (move.from === SidePosition.Back) {
-        this[move.to].cells[row] = this[move.from].cells[opposite_row].reverse();
-      } else {
-        this[move.to].cells[row] = this[move.from].cells[row];
-      }
+      this[move.to].cells[row] = move.from === SidePosition.Back ? this[move.from].cells[opposite_row].reverse()
+                                                                 : this[move.from].cells[row];
     });
     this[instructions.end_with].cells[opposite_row] = first.reverse();
     this.handleHistory(new Move(row, instructions.direction), record_move);
