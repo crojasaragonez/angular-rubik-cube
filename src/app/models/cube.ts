@@ -61,7 +61,7 @@ export class Cube {
   }
 
   private moveUp2(column: number, record_move = true) {
-    CubeHelper.indexIterator(() => { this.moveDown2(column, false); });
+    CubeHelper.indexIterator(() => this.moveDown2(column, false));
     this.handleHistory(new Move(column, MoveIntructions.Up2.direction), record_move);
   }
 

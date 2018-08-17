@@ -12,7 +12,7 @@ describe('CubeHelper', () => {
   describe('indexIterator', () => {
     it('should execute the given action 3 times', () => {
       spyOn(console, 'log');
-      CubeHelper.indexIterator(index => { console.log(index); });
+      CubeHelper.indexIterator(index => console.log(index));
       expect(console.log).toHaveBeenCalledTimes(3);
     });
   });
