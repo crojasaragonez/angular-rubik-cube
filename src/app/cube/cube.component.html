@@ -2,8 +2,6 @@
 
 <div class="cube-container">
   <div class="cube" [ngStyle]="{'transform':'rotateX(' + cube.rotateX + 'deg) rotateY(' + cube.rotateY + 'deg)'}">
-    <ng-container *ngFor="let side of cube.allSides()">
-      <app-side class="side" [cube]="cube" [side]="side" [ngClass]="side.position"></app-side>
-    </ng-container>
+    <app-side *ngFor="let side of cube.allSides()" class="side" [cube]="cube" [side]="side" [ngClass]="side.position"></app-side>
   </div>
 </div>
