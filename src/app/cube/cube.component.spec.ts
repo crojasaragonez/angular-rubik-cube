@@ -5,6 +5,7 @@ import { CubeComponent } from './cube.component';
 import { CubeControlsComponent } from '../cube-controls/cube-controls.component';
 import { SideComponent } from '../side/side.component';
 import { Mode, UserAction } from '../enums';
+import { CurrentSelection } from '../models';
 import 'hammerjs';
 
 describe('CubeComponent', () => {
@@ -36,14 +37,6 @@ describe('CubeComponent', () => {
       it('should perform the move', () => {
         component['performMove'](2);
         expect(component.cube.history.length).toEqual(1);
-      });
-    });
-
-    describe('no side is selected', () => {
-      it('should not perform the move', () => {
-        component.cube.resetSelection();
-        component['performMove'](2);
-        expect(component.cube.history.length).toEqual(0);
       });
     });
   });
