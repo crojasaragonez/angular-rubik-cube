@@ -29,10 +29,8 @@ describe('SideComponent', () => {
 
   describe('select', () => {
     it('should the change current mode', () => {
-      spyOn(component.cube, 'resetSelection');
       spyOn(component.side, 'selectCell');
       component.select(2, 2);
-      expect(component.cube.resetSelection).toHaveBeenCalled();
       expect(component.side.selectCell).toHaveBeenCalledWith(2, 2);
     });
   });
