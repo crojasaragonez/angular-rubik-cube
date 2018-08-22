@@ -1,4 +1,8 @@
-# Rubik
+# Rubik's cube
+
+![ss](https://user-images.githubusercontent.com/4663192/44442758-37cfb400-a591-11e8-996d-60a76c1953e0.png)
+
+See it live here: https://crojasaragonez.github.io/angular-rubik-cube/
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
 
