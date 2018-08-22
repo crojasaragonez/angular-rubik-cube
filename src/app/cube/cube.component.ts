@@ -22,9 +22,7 @@ export class CubeComponent {
   private performMove(code: number) {
     if (!Object.values(UserAction).includes(code)) { return; }
     if (this.mode !== Mode.Play) { return; }
-    const side = this.cube.findSelectedSide();
-    if (side === undefined) { return; }
-    const interpreter = new UserActionInterpreter(side);
+    const interpreter = new UserActionInterpreter();
     this.cube.move(interpreter.resolve(code));
   }
 

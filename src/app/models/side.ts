@@ -1,12 +1,12 @@
 import { Cell } from './cell';
 import { Location } from './location';
+import { CurrentSelection } from './current-selection';
 import { SidePosition, Color } from '../enums';
 
 export class Side {
   cells: Cell[][];
-  selectedCellLocation: Location;
 
-  constructor(color: Color, public position: SidePosition, public selected: boolean = false) {
+  constructor(color: Color, public position: SidePosition) {
     this.cells = [
       [new Cell(color), new Cell(color), new Cell(color)],
       [new Cell(color), new Cell(color), new Cell(color)],
@@ -15,17 +15,8 @@ export class Side {
   }
 
   selectCell(x: number, y: number) {
-    this.cells[x][y].selected = true;
-    this.selected = true;
-    this.selectedCellLocation = new Location(x, y);
-  }
-
-  resetSelection() {
-    this.cells.forEach(row => {
-      row.forEach(cell => { cell.selected = false; });
-    });
-    this.selected = false;
-    this.selectedCellLocation = undefined;
+    CurrentSelection.side = this;
+    CurrentSelection.location = new Location(x, y);
   }
 
   rotateLeft() {

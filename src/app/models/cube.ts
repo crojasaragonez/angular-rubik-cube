@@ -1,6 +1,5 @@
 import { Side } from './side';
 import { Move } from './move';
-import { Location } from './location';
 import { MoveIntructions } from '../move-instructions';
 import { MoveIntruction } from '../move-intruction';
 import { SidePosition, Color } from '../enums';
@@ -35,20 +34,8 @@ export class Cube {
     this.history = [];
   }
 
-  resetSelection() {
-    this.allSides().forEach(side => { side.resetSelection(); });
-  }
-
-  findSelectedSide() {
-    return this.allSides().find(x => x.selected === true);
-  }
-
   move(move: Move, record_move = true) {
-    const side = this.findSelectedSide();
-    const last_location = new Location(side.selectedCellLocation.x, side.selectedCellLocation.y);
     this[move.action](move.value, record_move);
-    this.resetSelection();
-    side.selectCell(last_location.x, last_location.y);
   }
 
   undo() {
