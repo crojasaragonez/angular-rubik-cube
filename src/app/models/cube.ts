@@ -1,7 +1,5 @@
 import { Side } from './side';
 import { Move } from './move';
-import { Location } from './location';
-import { CurrentSelection } from './current-selection';
 import { MoveIntructions } from '../move-instructions';
 import { MoveIntruction } from '../move-intruction';
 import { SidePosition, Color } from '../enums';
@@ -37,8 +35,6 @@ export class Cube {
   }
 
   move(move: Move, record_move = true) {
-    const side = CurrentSelection;
-    const last_location = CurrentSelection.location;
     this[move.action](move.value, record_move);
   }
 

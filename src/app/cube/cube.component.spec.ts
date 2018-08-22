@@ -5,7 +5,6 @@ import { CubeComponent } from './cube.component';
 import { CubeControlsComponent } from '../cube-controls/cube-controls.component';
 import { SideComponent } from '../side/side.component';
 import { Mode, UserAction } from '../enums';
-import { CurrentSelection } from '../models';
 import 'hammerjs';
 
 describe('CubeComponent', () => {
