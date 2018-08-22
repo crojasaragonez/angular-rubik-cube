@@ -6,7 +6,7 @@ export class Cell {
   constructor(public color: Color, public text: string = '') {
   }
 
-  isSelected(x, y, side: Side){
+  isSelected(x, y, side: Side) {
     return CurrentSelection.location.x === x &&
            CurrentSelection.location.y === y &&
            CurrentSelection.side === side;
