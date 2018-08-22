@@ -1,6 +1,7 @@
 import { Side } from './side';
 import { Cell } from './cell';
 import { Location } from './location';
+import { CurrentSelection } from './current-selection';
 import { SidePosition, Color } from '../enums';
 
 describe('Side', () => {
@@ -11,22 +12,9 @@ describe('Side', () => {
   });
 
   describe('selectCell', () => {
-    instance.selectCell(1, 1);
-
     it('should change some properties in the class', () => {
-      expect(instance.selected).toBeTruthy();
-      expect(instance.cells[1][1].selected).toBeTruthy();
-      expect(instance.selectedCellLocation).toEqual(new Location(1, 1));
-    });
-  });
-
-  describe('resetSelection', () => {
-    it('should reset selected property', () => {
       instance.selectCell(1, 1);
-      instance.resetSelection();
-      expect(instance.selected).toBeFalsy();
-      expect(instance.cells[1][1].selected).toBeFalsy();
-      expect(instance.selectedCellLocation).toBeUndefined();
+      expect(CurrentSelection.location).toEqual(new Location(1, 1));
     });
   });
 

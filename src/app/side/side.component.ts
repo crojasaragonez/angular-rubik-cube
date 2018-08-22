@@ -12,7 +12,6 @@ export class SideComponent {
   @Input() side: Side;
 
   select(x, y) {
-    this.cube.resetSelection();
     this.side.selectCell(x, y);
   }
 }

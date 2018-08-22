@@ -38,14 +38,6 @@ describe('CubeComponent', () => {
         expect(component.cube.history.length).toEqual(1);
       });
     });
-
-    describe('no side is selected', () => {
-      it('should not perform the move', () => {
-        component.cube.resetSelection();
-        component['performMove'](2);
-        expect(component.cube.history.length).toEqual(0);
-      });
-    });
   });
 
   describe('keydown event', () => {

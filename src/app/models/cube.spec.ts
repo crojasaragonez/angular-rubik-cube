@@ -23,19 +23,6 @@ describe('Cube', () => {
     });
   });
 
-  describe('findSelectedSide', () =>  {
-    it('should find the current selected position', () => {
-      expect(instance.findSelectedSide()).toEqual(selected_side);
-    });
-  });
-
-  describe('resetSelection', () => {
-    it('should reset the current selected position', () => {
-      instance.resetSelection();
-      expect(instance.findSelectedSide()).toEqual(undefined);
-    });
-  });
-
   describe('undo', () => {
 
     beforeEach(() => instance.reset());
