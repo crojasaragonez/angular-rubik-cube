@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Cube } from './models';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +6,5 @@ import { Cube } from './models';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  cube: Cube;
-  constructor() {
-    this.cube = new Cube();
-  }
+  constructor() { }
 }
