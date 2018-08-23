@@ -10,10 +10,18 @@ branches:
   only:
     - master
 
+cache:
+  directories:
+    - node_modules
+
 before_script:
   - npm install -g @angular/cli
+  - npm install -g codecov
 
 script:
   - ng build --prod --aot
   - ng test --browsers ChromeHeadless --watch false
   - ng e2e --protractor-config e2e/protractor-travis.conf.js
+
+after_success:
+  - codecov
