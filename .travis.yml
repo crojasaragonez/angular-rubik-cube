@@ -20,7 +20,7 @@ before_script:
 
 script:
   - ng build --prod --aot
-  - ng test --browsers ChromeHeadless --watch false
+  - ng test --browsers ChromeHeadless --watch false --code-coverage
   - ng e2e --protractor-config e2e/protractor-travis.conf.js
 
 after_success:
