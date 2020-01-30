@@ -1,7 +1,7 @@
 import { Side } from './side';
 import { Move } from './move';
-import { MoveIntructions } from '../move-instructions';
-import { MoveIntruction } from '../move-intruction';
+import { MoveInstructions } from '../move-instructions';
+import { MoveInstruction } from '../move-instruction';
 import { SidePosition, Color } from '../enums';
 import { CubeHelper } from '../cube-helper';
 
@@ -49,7 +49,7 @@ export class Cube {
 
   private moveUp2(column: number, record_move = true) {
     CubeHelper.indexIterator(() => this.moveDown2(column, false));
-    this.handleHistory(new Move(column, MoveIntructions.Up2.direction), record_move);
+    this.handleHistory(new Move(column, MoveInstructions.Up2.direction), record_move);
   }
 
   private moveDown2(column: number, record_move = true) {
@@ -71,34 +71,34 @@ export class Cube {
       this.left.cells[index][column] = first[opposite_index];
     });
 
-    this.handleHistory(new Move(column, MoveIntructions.Down2.direction), record_move);
+    this.handleHistory(new Move(column, MoveInstructions.Down2.direction), record_move);
   }
 
   private moveDown(column: number, record_move = true) {
     if (column === 0) { this.left.rotateLeft(); }
     if (column === 2) { this.right.rotateRight(); }
-    this.moveVertical(MoveIntructions.Down, column, record_move);
+    this.moveVertical(MoveInstructions.Down, column, record_move);
   }
 
   private moveUp(column: number, record_move = true) {
     if (column === 0) { this.left.rotateRight(); }
     if (column === 2) { this.right.rotateLeft(); }
-    this.moveVertical(MoveIntructions.Up, column, record_move);
+    this.moveVertical(MoveInstructions.Up, column, record_move);
   }
 
   private moveRight(row: number, record_move = true) {
     if (row === 0) { this.top.rotateRight(); }
     if (row === 2) { this.bottom.rotateLeft(); }
-    this.moveHorizontal(MoveIntructions.Right, row, record_move);
+    this.moveHorizontal(MoveInstructions.Right, row, record_move);
   }
 
   private moveLeft(row: number, record_move = true) {
     if (row === 0) { this.top.rotateLeft(); }
     if (row === 2) { this.bottom.rotateRight(); }
-    this.moveHorizontal(MoveIntructions.Left, row, record_move);
+    this.moveHorizontal(MoveInstructions.Left, row, record_move);
   }
 
-  private moveHorizontal(instructions: MoveIntruction, row, record_move = true) {
+  private moveHorizontal(instructions: MoveInstruction, row, record_move = true) {
     const first = this[instructions.start_with].cells[row];
     const opposite_row = CubeHelper.oppositeIndex(row);
     instructions.moves.forEach(move => {
@@ -109,7 +109,7 @@ export class Cube {
     this.handleHistory(new Move(row, instructions.direction), record_move);
   }
 
-  private moveVertical(instructions: MoveIntruction, column, record_move = true) {
+  private moveVertical(instructions: MoveInstruction, column, record_move = true) {
     CubeHelper.indexIterator(cell => {
       const first = this[instructions.start_with].cells[cell][column];
       instructions.moves.forEach(move => {

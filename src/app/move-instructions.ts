@@ -1,8 +1,8 @@
 import { Direction, SidePosition } from './enums';
-import { MoveIntruction } from './move-intruction';
+import { MoveInstruction } from './move-instruction';
 
-export class MoveIntructions {
-  static Left: MoveIntruction = {
+export class MoveInstructions {
+  static Left: MoveInstruction = {
     start_with: SidePosition.Left,
     end_with: SidePosition.Back,
     direction: Direction.Left,
@@ -12,7 +12,7 @@ export class MoveIntructions {
       { from: SidePosition.Back, to: SidePosition.Right },
     ]
   };
-  static Right: MoveIntruction = {
+  static Right: MoveInstruction = {
     start_with: SidePosition.Right,
     end_with: SidePosition.Back,
     direction: Direction.Right,
@@ -22,7 +22,7 @@ export class MoveIntructions {
       { from: SidePosition.Back, to: SidePosition.Left }
     ]
   };
-  static Up: MoveIntruction = {
+  static Up: MoveInstruction = {
     start_with: SidePosition.Front,
     end_with: SidePosition.Top,
     direction: Direction.Up,
@@ -32,11 +32,11 @@ export class MoveIntructions {
       { from: SidePosition.Top, to: SidePosition.Back },
     ]
   };
-  static Up2: MoveIntruction = {
+  static Up2: MoveInstruction = {
     start_with: SidePosition.Top,
     direction: Direction.Up2,
   };
-  static Down: MoveIntruction = {
+  static Down: MoveInstruction = {
     start_with: SidePosition.Front,
     end_with: SidePosition.Bottom,
     direction: Direction.Down,
@@ -46,7 +46,7 @@ export class MoveIntructions {
       { from: SidePosition.Bottom, to: SidePosition.Back },
     ]
   };
-  static Down2: MoveIntruction = {
+  static Down2: MoveInstruction = {
     start_with: SidePosition.Top,
     direction: Direction.Down2,
   };
