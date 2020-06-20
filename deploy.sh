@@ -13,6 +13,6 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git push -f git@github.com:crojasaragonez/vue-rubik-cube master:gh-pages
+git push -f git@github.com:crojasaragonez/angular-rubik-cube master:gh-pages
 
 cd -
