@@ -7,7 +7,7 @@ set -e
 ng build --prod --base-href /angular-rubik-cube/
 
 # navigate into the build output directory
-cd dist
+cd dist/rubik
 
 git init
 git add -A
